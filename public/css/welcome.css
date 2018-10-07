@@ -1,0 +1,53 @@
+#welcome-wrapper {
+	padding-top: 50px;
+	background-color: #7fbcf4;
+	height: 100vh;
+}
+
+#welcome-wrapper #welcome-header{
+	background-color: #ffc042;
+	height: 50px;
+	line-height: 50px;
+	width: 100%;
+	padding-right: 50px;
+}
+
+
+#welcome-wrapper #welcome-header .header-button {
+	float: right;
+	width: 120px;
+	text-align: center;
+	text-decoration: none;
+}
+
+#welcome-wrapper #welcome-content {
+	padding-top: 100px;
+	text-align: center;
+}
+
+#welcome-wrapper #welcome-content .row{
+	margin-right: 50px;
+	margin-left: 50px;
+}
+
+#welcome-wrapper #welcome-content .row .info{
+	margin-top: 50px;
+	font-size: 22px;
+}
+
+#welcome-wrapper #welcome-header .header-button.company {
+	float: right;
+	width: 120px;
+	background-color: #f47442;
+	color: white;
+}
+
+#welcome-wrapper #welcome-footer{
+	background-color: #ffc042;
+	bottom: 0;
+	position:absolute;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	width: 100%;
+}
