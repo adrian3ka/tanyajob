@@ -1,0 +1,8 @@
+#wrapper #content .login-form{
+	text-align: center;
+	width: 500px;
+	margin: auto;
+	padding: 40px 50px 20px 50px;
+	background-color: #8c939e;
+	border-radius: 4px;
+}
