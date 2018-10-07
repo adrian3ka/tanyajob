@@ -4,12 +4,13 @@ body {
 
 #wrapper {
 	padding-top: 50px;
-	background-color: #7fbcf4;
+	background-color: #d9e8f6;
 	height: 100vh;
 }
 
 #wrapper #header{
-	background-color: #ffc042;
+	font-family: "Century Gothic";
+	background-color: #f8ae67;
 	height: 50px;
 	line-height: 50px;
 	width: 100%;
@@ -42,12 +43,12 @@ body {
 #wrapper #header .header-button.company {
 	float: right;
 	width: 120px;
-	background-color: #f47442;
+	background-color: #f87035;
 	color: white;
 }
 
 #wrapper #footer{
-	background-color: #ffc042;
+	background-color: #f8ae67;
 	bottom: 0;
 	position:absolute;
 	height: 50px;
