@@ -20,6 +20,13 @@
 			<div id="header">                   
 				@auth
 					<a class = "header-button main-logo pull-left" href="{{ url('/home') }}"><img src="{{  asset('img/logo-main.png') }}" width="90px"></a>
+					<a class = "header-button" href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+						KELUAR
+					</a>
+
+					<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+						{{ csrf_field() }}
+					</form>
 				@else
 					<a class = "header-button main-logo pull-left" href="{{ url('/') }}"><img src="{{  asset('img/logo-main.png') }}" width="90px"></a>
 					<a class = "header-button company" href="#">PERUSAHAAN</a>
