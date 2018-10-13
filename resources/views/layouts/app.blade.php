@@ -19,12 +19,12 @@
 		<div id="wrapper">
 			<div id="header">                   
 				@auth
-					<a class = "header-button" href="{{ url('/home') }}">Home</a>
+					<a class = "header-button main-logo pull-left" href="{{ url('/home') }}"><img src="{{  asset('img/logo-main.png') }}" width="90px"></a>
 				@else
-					<a class = "header-button pull-left" href="{{ url('/') }}">Home</a>
-					<a class = "header-button company" href="#">Perusahaan</a>
-					<a class = "header-button" href="{{ route('login') }}">Login</a>
-					<a class = "header-button" href="{{ route('register') }}">Register</a>
+					<a class = "header-button main-logo pull-left" href="{{ url('/') }}"><img src="{{  asset('img/logo-main.png') }}" width="90px"></a>
+					<a class = "header-button company" href="#">PERUSAHAAN</a>
+					<a class = "header-button" href="{{ route('login') }}">MASUK</a>
+					<a class = "header-button" href="{{ route('register') }}">DAFTAR</a>
 				@endauth
 			</div>
 
