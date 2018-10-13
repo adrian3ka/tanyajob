@@ -39,10 +39,11 @@
 				@yield('content')
             </div>
             
-			<div id="footer">
-				&copy; Tanya Job
-			</div>
+			
         </div>
+        <div id="footer">
+			&copy; Tanya Job
+		</div>
 		<script src="{{ asset('js/jquery_3_3_1.min.js') }}"></</script>
         <script src="{{ asset('bootstrap_3_3_7/dist/js/bootstrap.min.js') }}"></script>
     </body>

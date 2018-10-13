@@ -6,6 +6,7 @@ body {
 	background-image: url('../img/background-main.jpg');
 	background-size: cover;
 	min-height: 100vh;
+    vertical-align:middle;
 }
 
 #wrapper #header{
@@ -28,7 +29,7 @@ body {
 }
 
 #wrapper #content {
-	min-height: 100vh;
+	margin-top:100px;
 	text-align: center;
 }
 
@@ -50,10 +51,9 @@ body {
 	color: white;
 }
 
-#wrapper #footer{
+#footer{
 	background-color: #010868;
 	color: white;
-	bottom: 0;
 	height: 50px;
 	line-height: 50px;
 	text-align: center;
