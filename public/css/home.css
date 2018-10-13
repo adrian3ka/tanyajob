@@ -7,8 +7,8 @@
 #dashboard {
 	background-color: #afceff;
 	margin: 0 10%;
-	padding-top: 40px;
-	padding-left: 10px;
+	padding-top: 20px;
+	padding-left: 0px;
 	padding-bottom: 30px;
 	text-align: left;
 	height: 100%;
@@ -16,16 +16,70 @@
 	margin-bottom: 10px;
 }
 
+#wrapper #dashboard .title .btnEdit .edit-icon {
+	margin-left: 5px;
+	margin-bottom: 10px;
+}
+
+#wrapper #dashboard .title .btnAdd .add-icon {
+	margin-left: 5px;
+	margin-bottom: 10px;
+}
+
+
 #dashboard-detail {
 	background-color: #afceff;
-	margin: 0 10%;
+	margin: 0%;
 	padding-top: 40px;
 	padding-left: 10px;
 	padding-bottom: 30px;
 	text-align: left;
 	height: 100%;
 }
+
 #dashboard .user-info {
 	font-size: 18px;
 }
+
+#dashboard .title {
+	font-weight: bold;
+	font-size: 25px;
+	margin-bottom: 20px;
+	
+}
+
+hr{
+	border-width: 3px;
+}
+
+.btnEdit {
+	float: right;
+	background-color: #afceff;
+	color: #0a22ff;
+	border: none;
+}
+
+.btnEdit:hover {
+	background-color: #afceff;
+	color: yellow;
+	
+}
+
+.btnAdd {
+	float: right;
+	background-color: #afceff;
+	color: red;
+	border: none;
+}
+
+.btnEdit:hover {
+	background-color: #afceff;
+	color: yellow;
+	
+}
+
+.pengalaman{
+	border-width: 1px;
+}
+
 
