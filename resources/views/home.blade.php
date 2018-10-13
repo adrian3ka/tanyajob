@@ -14,31 +14,41 @@
 		<hr>
 		<div class="row user-info">
 			<div class="col-sm-4">Tanggal Lahir</div>
-			<div class="col-sm-8">DD/MM/YYYY</div>
+			<div class="col-sm-8">24 Juli 1997</div>
 		</div>
 		<div class="row user-info">
 			<div class="col-sm-4">Pendidikan Terakhir</div>
-			<div class="col-sm-8">XXXXXXXXX</div>
+			<div class="col-sm-8">S1</div>
 		</div>
 		<div class="row user-info">
 			<div class="col-sm-4">Jurusan</div>
-			<div class="col-sm-8">XXXXXXXXXXXXXX</div>
+			<div class="col-sm-8">Computer Science</div>
 		</div>
 		<div class="row user-info">
 			<div class="col-sm-4">Kemampuan</div>
-			<div class="col-sm-8">X , X , X , X</div>
+			<div class="col-sm-8">
+				<span class="label label-primary">PHP</span>
+				<span class="label label-primary">Javascript</span>
+				<span class="label label-primary">MySQL</span>
+				<span class="label label-primary">COBOL</span>
+			</div>
 		</div>
 		<div class="row user-info">
 			<div class="col-sm-4">Bersedia Ditempatkan</div>
-			<div class="col-sm-8">XXXXXXXXXXXXXXXXXX</div>
+			<div class="col-sm-8">DKI-Jakarta</div>
 		</div>
 		<div class="row user-info">
 			<div class="col-sm-4">Ekspetasi Gaji</div>
-			<div class="col-sm-8">XXXXXXXXXXX - YYYYYYYYYYYYYYY</div>
+			<div class="col-sm-8">Rp 15.000.000,- hingga Rp 25.000.000,-</div>
 		</div>
 		<div class="row user-info">
 			<div class="col-sm-4">Fasilitas Yang Diharapkan</div>
-			<div class="col-sm-8">X, X, X, X, X</div>
+			<div class="col-sm-8">
+				<span class="label label-success">Makan Siang</span>
+				<span class="label label-success">Makan Malam</span>
+				<span class="label label-success">Gaji Net</span>
+				<span class="label label-success">Asuransi Kesehatan</span>
+			</div>
 		</div>
 	</div>
 		
@@ -64,7 +74,7 @@
 				</div>
 				<div class="row user-info">
 					<div class="col-sm-4">Posisi</div>
-					<div class="col-sm-8">IT Specialitst</div>
+					<div class="col-sm-8">IT Specialist</div>
 				</div>
 				<div class="row user-info">
 					<div class="col-sm-4">Jenjang Karir</div>
@@ -73,7 +83,7 @@
 				
 				<div class="row user-info">
 					<div class="col-sm-4">Gaji</div>
-					<div class="col-sm-8">Rp 5.750.000</div>
+					<div class="col-sm-8">Rp 5.750.000,-</div>
 				</div>
 				<div class="row user-info">
 					<div class="col-sm-4">Lokasi</div>

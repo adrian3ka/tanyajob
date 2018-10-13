@@ -13,7 +13,8 @@
 	text-align: left;
 	height: 100%;
 	border-radius: 25px;
-	margin-bottom: 10px;
+	margin-bottom: 20px;
+	margin-top: 20px;
 }
 
 #wrapper #dashboard .title .btnEdit .edit-icon {
@@ -28,7 +29,6 @@
 
 
 #dashboard-detail {
-	background-color: #afceff;
 	margin: 0%;
 	padding-top: 40px;
 	padding-left: 10px;
@@ -36,6 +36,7 @@
 	text-align: left;
 	height: 100%;
 }
+
 
 #dashboard .user-info {
 	font-size: 18px;
@@ -61,7 +62,7 @@ hr{
 
 .btnEdit:hover {
 	background-color: #afceff;
-	color: yellow;
+	color: #3a00ff;
 	
 }
 
@@ -72,11 +73,6 @@ hr{
 	border: none;
 }
 
-.btnEdit:hover {
-	background-color: #afceff;
-	color: yellow;
-	
-}
 
 .pengalaman{
 	border-width: 1px;
