@@ -1,0 +1,18 @@
+#wrapper {
+	background-color: #eff2f7;
+	background-image: none;
+	background-size: cover;
+	height: 100vh;
+}
+#dashboard {
+	background-color: #afceff;
+	margin: 0 10%;
+	padding-top: 40px;
+	padding-left: 10px;
+	padding-bottom: 30px;
+	text-align: left;
+	height: 100%;
+}
+#dashboard .user-info {
+	font-size: 10px;
+}
