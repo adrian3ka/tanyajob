@@ -27,6 +27,8 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            
+            $table->foreign('last_degree_id')->references('id')->on('master_degrees')->onDelete('cascade');
         });
     }
 

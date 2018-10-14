@@ -1,7 +1,19 @@
 @extends('layouts.app')
 
 @section('css')
-	<link href="{{  asset('css/home.css') }}" rel="stylesheet" type="text/css">
+	<link href="{{  asset('css/user/edit.css') }}" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="{{ asset('css/bootstrap-multiselect.css') }}" type="text/css"/>
+@endsection
+
+@section('script')
+	<script type="text/javascript" src=" {{ asset('js/bootstrap-multiselect.js') }} "></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('.multiple-select').multiselect({
+				enableFiltering: true
+			});
+		});
+	</script>
 @endsection
 
 @section('content')
@@ -19,45 +31,75 @@
             {{ method_field('PUT')}}
 			<div class="row">
 				<div class="col-sm-4">Tanggal Lahir</div>
-				<div class="col-sm-8"><input type="date" name="date_of_birth" value="{{Auth::user()->date_of_birth->format('Y-m-d')}}"></div>
+				<div class="col-sm-8"><input type="date" name="date_of_birth" value="{{ Auth::user()->date_of_birth != null ? Auth::user()->date_of_birth->format('Y-m-d') : ''}}"></div>
 			</div>
+			<div class="row">
+				<div class="col-sm-4">Pendidikan Terakhir</div>
+				<div class="col-sm-8">
+					<select name="last_degree_id">
+						@for ($i = 0; $i < $master_degree->count() ; $i++)
+							<option value="{{ $master_degree[$i]->id }}">{{ $master_degree[$i]->name }} </option>
+						@endfor
+					</select>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-4">Jurusan</div>
+				<div class="col-sm-8">
+					<select name="major_id">
+						@for ($i = 0; $i < $master_major->count() ; $i++)
+							<option value="{{ $master_major[$i]->id }}">{{ $master_major[$i]->name }} </option>
+						@endfor
+					</select>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-sm-4">Kemampuan yang dimiliki</div>
+				<div class="col-sm-8">
+					<select class="multiple-select" name="skill_set[]" multiple="multiple">
+							@for ($i = 0; $i < $skill_set->count() ; $i++)
+								<option value="{{ $skill_set[$i]->id }}">{{ $skill_set[$i]->name }} </option>
+							@endfor
+					</select>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-sm-4">Lokasi Yang Diharapkan</div>
+				<div class="col-sm-8">
+					<select name="location_id">
+						@for ($i = 0; $i < $master_location->count() ; $i++)
+							<option value="{{ $master_location[$i]->id }}">{{ $master_location[$i]->name }} </option>
+						@endfor
+					</select>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-sm-4">Gaji Minimal Yang Diharapkan</div>
+				<div class="col-sm-8"><input type="number" name="expected_salary_lower" ></div>
+			</div>
+			
+			<div class="row">
+				<div class="col-sm-4">Gaji Maximal Yang Diharapkan</div>
+				<div class="col-sm-8"><input type="number" name="expected_salary_upper"></div>
+			</div>
+			
+			
+			<div class="row">
+				<div class="col-sm-4">Kemampuan yang dimiliki</div>
+				<div class="col-sm-8">
+					<select class="multiple-select" name="skill_set[]" multiple="multiple">
+							@for ($i = 0; $i < $facility->count() ; $i++)
+								<option value="{{ $facility[$i]->id }}">{{ $facility[$i]->name }} </option>
+							@endfor
+					</select>
+				</div>
+			</div>
+			
 			<input type="submit">
 		</form>
-		
-		<div class="row user-info">
-			<div class="col-sm-4">Pendidikan Terakhir</div>
-			<div class="col-sm-8">S1</div>
-		</div>
-		<div class="row user-info">
-			<div class="col-sm-4">Jurusan</div>
-			<div class="col-sm-8">Computer Science</div>
-		</div>
-		<div class="row user-info">
-			<div class="col-sm-4">Kemampuan</div>
-			<div class="col-sm-8">
-				<span class="label label-primary">PHP</span>
-				<span class="label label-primary">Javascript</span>
-				<span class="label label-primary">MySQL</span>
-				<span class="label label-primary">COBOL</span>
-			</div>
-		</div>
-		<div class="row user-info">
-			<div class="col-sm-4">Bersedia Ditempatkan</div>
-			<div class="col-sm-8">DKI-Jakarta</div>
-		</div>
-		<div class="row user-info">
-			<div class="col-sm-4">Ekspetasi Gaji</div>
-			<div class="col-sm-8">Rp 15.000.000,- hingga Rp 25.000.000,-</div>
-		</div>
-		<div class="row user-info">
-			<div class="col-sm-4">Fasilitas Yang Diharapkan</div>
-			<div class="col-sm-8">
-				<span class="label label-success">Makan Siang</span>
-				<span class="label label-success">Makan Malam</span>
-				<span class="label label-success">Gaji Net</span>
-				<span class="label label-success">Asuransi Kesehatan</span>
-			</div>
-		</div>
 	</div>
 </div>
 @endsection
