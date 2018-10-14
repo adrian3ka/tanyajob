@@ -20,6 +20,10 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
+Route::resources([
+    'users' => 'UserController'
+]);
+
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });

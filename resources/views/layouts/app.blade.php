@@ -13,6 +13,7 @@
         <!-- Styles -->
         <link href="{{  asset('bootstrap_3_3_7/dist/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
         <link href="{{  asset('css/app.css') }}" rel="stylesheet" type="text/css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css">
 		@yield('css')
     </head>
     <body>
@@ -46,5 +47,6 @@
 		</div>
 		<script src="{{ asset('js/jquery_3_3_1.min.js') }}"></</script>
         <script src="{{ asset('bootstrap_3_3_7/dist/js/bootstrap.min.js') }}"></script>
+        @yield('script')
     </body>
 </html>
