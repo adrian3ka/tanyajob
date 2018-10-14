@@ -27,3 +27,5 @@ Route::resources([
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
+
+Route::get('/seed','SeedController@index');

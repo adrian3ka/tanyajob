@@ -19,14 +19,11 @@
             {{ method_field('PUT')}}
 			<div class="row">
 				<div class="col-sm-4">Tanggal Lahir</div>
-				<div class="col-sm-8"><input type="date" name="date_of_birth"></div>
+				<div class="col-sm-8"><input type="date" name="date_of_birth" value="{{Auth::user()->date_of_birth->format('Y-m-d')}}"></div>
 			</div>
 			<input type="submit">
 		</form>
-		<div class="row user-info">
-			<div class="col-sm-4">Tanggal Lahir</div>
-			<div class="col-sm-8">24 Juli 1997</div>
-		</div>
+		
 		<div class="row user-info">
 			<div class="col-sm-4">Pendidikan Terakhir</div>
 			<div class="col-sm-8">S1</div>

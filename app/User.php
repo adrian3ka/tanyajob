@@ -27,4 +27,7 @@ class User extends \TCG\Voyager\Models\User
     protected $hidden = [
         'password', 'remember_token',
     ];
+    
+    
+	protected $dates = ['date_of_birth'];
 }

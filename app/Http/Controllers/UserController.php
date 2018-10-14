@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use App\User;
+use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -75,10 +77,16 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserRequest $request, $id)
     {
         //
-        echo $request->date_of_birth;
+        $user = User::findOrFail($id);
+        $input = $request->all();
+        
+        $user->update($request->all());
+        $user->date_of_birth = $input['date_of_birth'];
+        echo $user->save();
+		return redirect ('home');
     }
 
     /**
