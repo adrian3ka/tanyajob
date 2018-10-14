@@ -35,6 +35,17 @@
 	border-left: 6px solid #afceff;
 }
 
+#wrapper #dashboard .pnlExpInfo{
+	background-color: none;
+	/*padding-top: 20px;
+	padding-bottom: 10px;
+	*/
+	text-align: left;
+	/*border-right: 6px solid #afceff;
+	border-left: 6px solid #afceff;
+	border-bottom: 6px solid #afceff;*/
+}
+
 #wrapper #dashboard .title .btnEdit .edit-icon {
 	margin-left: 5px;
 	margin-bottom: 10px;
@@ -53,6 +64,10 @@
 	padding-bottom: 30px;
 	text-align: left;
 	height: 100%;
+	
+	border-left: 6px solid #afceff;
+	border-right: 6px solid #afceff;
+	border-bottom: 6px solid #afceff;
 }
 
 
@@ -92,7 +107,10 @@ hr{
 
 
 .pengalaman{
-	border-width: 1px;
+	border-bottom: 6px solid red;
+	color: red;
+	height:100%;
+	
 }
 
 .dropbtn {
