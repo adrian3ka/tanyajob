@@ -9,7 +9,6 @@
 	<div id="dashboard">
 		<div class ="pnlTitle">	
 			<div class="row title">
-				{{ Auth::user()->name }}
 				<div class="col-sm-4">PROFIL DIRI</div>
 				<a href=" {{  url('/users/'. Auth::user()->id . '/edit') }} ">
 					<button class="btnEdit">Edit<img class ="edit-icon" src="{{  asset('img/home/edit.png') }}" width="30px"></button>
@@ -27,51 +26,20 @@
 		</div>
 		<div class="row user-info">
 			<div class="col-sm-4">Jurusan</div>
-			<div class="col-sm-8"><!--Computer Science-->
-				
-<div class="dropdown">
-  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
-  <span class="caret"></span></button>
-  <ul class="dropdown-menu">
-    <li><a href="#">HTML</a></li>
-    <li><a href="#">CSS</a></li>
-    <li><a href="#">JavaScript</a></li>
-  </ul>
-</div>
-			</div>
+			<div class="col-sm-8">Computer Science</div>
 		</div>
 		<div class="row user-info">
 			<div class="col-sm-4">Kemampuan</div>
 			<div class="col-sm-8">
-				<div class="btn-group">
-					<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					Action
-				  </button>
-				  <div class="dropdown-menu">
-					<a class="dropdown-item" href="#">Action</a>
-					<a class="dropdown-item" href="#">Another action</a>
-					<a class="dropdown-item" href="#">Something else here</a>
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#">Separated link</a>
-				  </div>
-				</div>
-				<!--span class="label label-primary">PHP</span>
+				<span class="label label-primary">PHP</span>
 				<span class="label label-primary">Javascript</span>
 				<span class="label label-primary">MySQL</span>
-				<span class="label label-primary">COBOL</span-->
+				<span class="label label-primary">COBOL</span>
 			</div>
 		</div>
 		<div class="row user-info">
 			<div class="col-sm-4">Bersedia Ditempatkan</div>
-			<div class="col-sm-8">
-				<select>
-  <option value="volvo">Volvo</option>
-  <option value="saab">Saab</option>
-  <option value="mercedes">Mercedes</option>
-  <option value="audi">Audi</option>
-</select>
-				<!--DKI-Jakarta-->
-			</div>
+			<div class="col-sm-8">DKI-Jakarta</div>
 		</div>
 		<div class="row user-info">
 			<div class="col-sm-4">Ekspetasi Gaji</div>
