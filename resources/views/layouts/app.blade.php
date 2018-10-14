@@ -14,7 +14,7 @@
         <link href="{{  asset('bootstrap_3_3_7/dist/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
         <link href="{{  asset('css/app.css') }}" rel="stylesheet" type="text/css">
 		<script src="{{ asset('js/jquery_3_3_1.min.js') }}"></</script>
-        <script src="{{ asset('bootstrap_3_3_7/dist/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('bootstrap_3_3_7/dist/js/bootstrap.js') }}"></script>
 		@yield('css')
         @yield('script')
     </head>
