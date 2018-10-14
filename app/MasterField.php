@@ -7,4 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class MasterField extends Model
 {
     //
+    protected $fillable = [
+        'name',
+    ];
 }
