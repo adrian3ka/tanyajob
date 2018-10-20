@@ -62,7 +62,9 @@
 		<div class ="pnlTitle">	
 			<div class="row title">
 				<div class="col-sm-4">PENGALAMAN</div>
-					<button class="btnAdd">Add<img class ="add-icon" src="{{  asset('img/home/add.png') }}" width="25px"></button>
+					<a href="{{  url('/workexperiences/new') }} ">
+						<button class="btnAdd">Add<img class ="add-icon" src="{{  asset('img/home/add.png') }}" width="25px"></button>
+					</a>
 				</div>
 			</div>
 		<div class="pnlExpInfo">
@@ -101,7 +103,6 @@
 						<div class="col-sm-8">1 Tahun 8 Bulan</div>
 					</div>
 				</div>
-				<!--hr class="pengalaman"-->
 			@endfor
 			<br>
 			

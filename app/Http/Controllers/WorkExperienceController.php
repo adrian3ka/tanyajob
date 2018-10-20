@@ -23,7 +23,7 @@ class WorkExperienceController extends Controller
      */
     public function create()
     {
-        //
+        return view('workexperience/create');
     }
 
     /**
