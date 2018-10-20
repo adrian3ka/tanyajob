@@ -50,8 +50,11 @@
 #wrapper #dashboard .title {
 	font-weight: bold;
 	font-size: 25px;
-	border-right:10px;
-	
+	/*border-right: 6px solid black;
+	border-left: 6px solid black;
+	border-top: 6px solid black;
+	border-bottom: 6px solid black;
+	*/
 }
 
 #wrapper #dashboard .detail {
@@ -81,7 +84,6 @@ hr{
 	background-color: red;
 }
 
-
 .btnEdit {
 	float: right;
 	background-color: #afceff;
@@ -94,28 +96,3 @@ hr{
 	color: #3a00ff;
 	
 }
-
-.btnAdd {
-	float: right;
-	background-color: #afceff;
-	color: red;
-	border: none;
-}
-
-
-.pengalaman{
-	border-bottom: 6px solid red;
-	color: red;
-	height:100%;
-	
-}
-
-.dropbtn {
-    background-color: #4CAF50;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-}
-
