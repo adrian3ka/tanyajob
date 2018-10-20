@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
-	<link href="{{  asset('css/user/edit.css') }}" rel="stylesheet" type="text/css">
+	<link href="{{  asset('css/workexperience/create.css') }}" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" href="{{ asset('css/bootstrap-multiselect.css') }}" type="text/css"/>
 	<!-- Include the default stylesheet -->
 	<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/wenzhixin/multiple-select/e14b36de/multiple-select.css">
