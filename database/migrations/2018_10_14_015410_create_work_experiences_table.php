@@ -17,7 +17,7 @@ class CreateWorkExperiencesTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->string('company_name');
-            $table->integer('industry_id');
+            $table->integer('industry_id')->unsigned();
             $table->integer('job_position');
             $table->integer('job_level_id');
             $table->integer('salary_lower');
@@ -25,10 +25,10 @@ class CreateWorkExperiencesTable extends Migration
             $table->integer('location_id');
             $table->timestamp('started_work_at');
             $table->timestamp('ended_work_at')->nullable();
-            
-            
             $table->timestamps();
             
+            
+            $table->foreign('industry_id')->references('id')->on('master_industries')->onDelete('cascade');
         });
         
         
