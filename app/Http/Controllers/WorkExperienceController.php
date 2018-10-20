@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\MasterIndustry;
 use Illuminate\Http\Request;
 
 class WorkExperienceController extends Controller
@@ -23,7 +24,9 @@ class WorkExperienceController extends Controller
      */
     public function create()
     {
-        return view('workexperience/create');
+        return view('workexperience/create',[
+			'master_industry' => MasterIndustry::all(),
+        ]);
     }
 
     /**

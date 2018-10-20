@@ -23,8 +23,28 @@
 @section('content')
 <div class="wrapper">
 	<div id="dashboard">
-		
-		
+		<form action="#" method="POST">
+			{{ csrf_field() }}
+            {{ method_field('PUT')}}
+			<div class="row">
+				<div class="col-sm-4">Nama Perusahaan</div>
+				<div class="col-sm-8"><input type="text" name="company_name" value=""></div>
+			</div>
+			<div class="row">
+				<div class="col-sm-4">Industri</div>
+				<div class="col-sm-8">
+					<select name="industry_id">
+						@for ($i = 0; $i < $master_industry->count() ; $i++)
+							<option value="{{ $master_industry[$i]->id }}">{{ $master_industry[$i]->name }} </option>
+						@endfor
+					</select>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-4">Posisi</div>
+				<div class="col-sm-8"><input type="text" name="job_position" value=""></div>
+			</div>
+		</form>
 	</div>
 </div>
 @endsection
