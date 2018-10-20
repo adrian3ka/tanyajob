@@ -19,12 +19,13 @@
 @section('content')
 <div class="wrapper">
 	<div id="dashboard">
-		
+		<div class= "pnlTitle">
 		<div class="row title">
 			<div class="col-sm-4">EDIT PROFIL DIRI</div>
 				<button class="btnEdit">Edit<img class ="edit-icon" src="{{  asset('img/home/edit.png') }}" width="30px"></button>
 			</a>
 		</div>
+		</div> 
 		<hr>
 		<form action=" {{ url('users/' . Auth::user()->id ) }}" method="POST">
 			{{ csrf_field() }}
@@ -35,12 +36,14 @@
 			</div>
 			<div class="row">
 				<div class="col-sm-4">Pendidikan Terakhir</div>
+				<div class="dropdown">
 				<div class="col-sm-8">
-					<select name="last_degree_id">
+					<select class="last_degree_id">
 						@for ($i = 0; $i < $master_degree->count() ; $i++)
 							<option value="{{ $master_degree[$i]->id }}">{{ $master_degree[$i]->name }} </option>
 						@endfor
 					</select>
+				</div>
 				</div>
 			</div>
 			<div class="row">

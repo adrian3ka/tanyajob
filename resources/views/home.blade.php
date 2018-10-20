@@ -68,12 +68,14 @@
 		<div class="pnlExpInfo">
 			@for ($i = 0; $i < 2; $i++)
 				<div id="dashboard-detail">
-					<div class="row user-info">
+					<div class="row company-info">
 						<div class="col-sm-12">
+							<button class="building"><img class ="building-icon" src="{{  asset('img/home/asset gedung.png') }}" width="20px"></button>
+							<div class="col-sm-8">PT. Bank Central Asia Tbk.</div>
 							<button class="btnEdit"><img class ="edit-icon" src="{{  asset('img/home/edit.png') }}" width="20px"></button>
 						</div>
-						<div class="col-sm-4">Perusahaan</div>
-						<div class="col-sm-8">PT. Bank Centrak Asia Tbk.</div>
+						<!--div class="col-sm-4">Perusahaan</div-->
+						
 					</div>
 					<div class="row user-info">
 						<div class="col-sm-4">Bidang Industri</div>

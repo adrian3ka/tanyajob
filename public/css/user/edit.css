@@ -17,6 +17,19 @@
 	margin-top: 20px;
 }
 
+#.dropdown{
+	width: 500px;
+	position: relative;
+	font-family: Arial;
+	colot: blue;
+}
+
+
+.last_degree_id{
+	background-color: DodgerBlue;
+}
+background-color: DodgerBlue;
+
 #wrapper #dashboard .pnlTitle{
 	background-color: #afceff;
 	padding-top: 20px;
