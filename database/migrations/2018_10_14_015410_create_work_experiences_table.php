@@ -25,6 +25,7 @@ class CreateWorkExperiencesTable extends Migration
             $table->integer('location_id')->unsigned();
             $table->timestamp('started_work_at');
             $table->timestamp('ended_work_at')->nullable();
+            $table->boolean('current')->nullable();
             $table->timestamps();
             
             

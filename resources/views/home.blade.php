@@ -62,7 +62,7 @@
 		<div class ="pnlTitle">	
 			<div class="row title">
 				<div class="col-sm-4">PENGALAMAN</div>
-					<a href="{{  url('/workexperiences/new') }} ">
+					<a href="{{  url('/workexperiences/create') }} ">
 						<button class="btnAdd">Add<img class ="add-icon" src="{{  asset('img/home/add.png') }}" width="25px"></button>
 					</a>
 				</div>

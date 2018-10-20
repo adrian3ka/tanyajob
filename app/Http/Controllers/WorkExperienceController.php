@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\MasterIndustry;
+use App\MasterJobLevel;
+use App\MasterLocation;
 use Illuminate\Http\Request;
 
 class WorkExperienceController extends Controller
@@ -26,6 +28,8 @@ class WorkExperienceController extends Controller
     {
         return view('workexperience/create',[
 			'master_industry' => MasterIndustry::all(),
+			'master_job_level' => MasterJobLevel::all(),
+			'master_location' => MasterLocation::all(),
         ]);
     }
 
