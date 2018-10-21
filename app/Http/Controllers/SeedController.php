@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 class SeedController extends Controller
 {
 	function index(){
+		
 		App\MasterDegree::firstOrCreate(['name' => 'SMA']);
 		App\MasterDegree::firstOrCreate(['name' => 'SMK']);
 		App\MasterDegree::firstOrCreate(['name' => 'Sarjana (S1)']);
@@ -128,11 +129,11 @@ class SeedController extends Controller
 		App\MasterMajor::firstOrCreate(['name' => 'Pariwisata']);
 		
 
-		App\SkillSet::firstOrCreate(['name' => 'PHP']);
-		App\SkillSet::firstOrCreate(['name' => 'MySQL']);
-		App\SkillSet::firstOrCreate(['name' => 'Scripting']);
-		App\SkillSet::firstOrCreate(['name' => 'COBOL']);
-		App\SkillSet::firstOrCreate(['name' => 'Microsoft Word']);
+		App\MasterSkillSet::firstOrCreate(['name' => 'PHP']);
+		App\MasterSkillSet::firstOrCreate(['name' => 'MySQL']);
+		App\MasterSkillSet::firstOrCreate(['name' => 'Scripting']);
+		App\MasterSkillSet::firstOrCreate(['name' => 'COBOL']);
+		App\MasterSkillSet::firstOrCreate(['name' => 'Microsoft Word']);
 
 
 		App\MasterLocation::firstOrCreate(['name' => 'Banda Aceh']);
@@ -181,14 +182,7 @@ class SeedController extends Controller
 		App\MasterLocation::firstOrCreate(['name' => 'Tanjung Selor']);
 		App\MasterLocation::firstOrCreate(['name' => 'Ambon']);
 		App\MasterLocation::firstOrCreate(['name' => 'Manokwari']);
-		
-		
-		
-
-		App\Facility::firstOrCreate(['name' => 'Makan Siang']);
-		App\Facility::firstOrCreate(['name' => 'Makan Malam']);
-		App\Facility::firstOrCreate(['name' => 'Gaji Net']);
-		App\Facility::firstOrCreate(['name' => 'Asuransi Kesehatan']);
+	
 		/*
 		App\MasterField::firstOrCreate(['name' => 'Operasional']);
 		App\MasterField::firstOrCreate(['name' => 'Penerbangan']);
@@ -465,15 +459,19 @@ class SeedController extends Controller
 		
 		
 		
-		App\Facility::firstOrCreate(['name' => 'Fasilitas Kesehatan']);
-		App\Facility::firstOrCreate(['name' => 'Pensiun dan Tabungan Perencanaan']);
-		App\Facility::firstOrCreate(['name' => 'Pembayaran Cuti']);
-		App\Facility::firstOrCreate(['name' => 'Jadwal Fleksibel']);
-		App\Facility::firstOrCreate(['name' => 'Tunjangan Perjalanan']);
-		App\Facility::firstOrCreate(['name' => 'Fasilitas Tempat Tinggal']);
-		App\Facility::firstOrCreate(['name' => 'Program Komunitas Karyawan']);
-		App\Facility::firstOrCreate(['name' => 'Fasilitas Studi']);
-		App\Facility::firstOrCreate(['name' => 'Fasilitas Bantuan Hukum']);
+		App\MasterFacility::firstOrCreate(['name' => 'Makan Siang']);
+		App\MasterFacility::firstOrCreate(['name' => 'Makan Malam']);
+		App\MasterFacility::firstOrCreate(['name' => 'Gaji Net']);
+		App\MasterFacility::firstOrCreate(['name' => 'Asuransi Kesehatan']);
+		App\MasterFacility::firstOrCreate(['name' => 'Fasilitas Kesehatan']);
+		App\MasterFacility::firstOrCreate(['name' => 'Pensiun dan Tabungan Perencanaan']);
+		App\MasterFacility::firstOrCreate(['name' => 'Pembayaran Cuti']);
+		App\MasterFacility::firstOrCreate(['name' => 'Jadwal Fleksibel']);
+		App\MasterFacility::firstOrCreate(['name' => 'Tunjangan Perjalanan']);
+		App\MasterFacility::firstOrCreate(['name' => 'Fasilitas Tempat Tinggal']);
+		App\MasterFacility::firstOrCreate(['name' => 'Program Komunitas Karyawan']);
+		App\MasterFacility::firstOrCreate(['name' => 'Fasilitas Studi']);
+		App\MasterFacility::firstOrCreate(['name' => 'Fasilitas Bantuan Hukum']);
 		
 		
 		App\MasterJobLevel::firstOrCreate(['name' => 'Magang']);

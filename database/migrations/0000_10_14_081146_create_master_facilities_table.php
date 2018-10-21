@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSkillSetsTable extends Migration
+class CreateMasterFacilitiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateSkillSetsTable extends Migration
      */
     public function up()
     {
-        Schema::create('skill_sets', function (Blueprint $table) {
+        Schema::create('master_facilities', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->unique();
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateSkillSetsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('skill_sets');
+        Schema::dropIfExists('facilities');
     }
 }

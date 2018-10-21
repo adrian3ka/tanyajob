@@ -30,4 +30,8 @@ class User extends \TCG\Voyager\Models\User
     
     
 	protected $dates = ['date_of_birth'];
+	
+	public function expectedLocations() {
+		return $this->belongsToMany('App\MasterLocation');
+	}
 }
