@@ -26,20 +26,26 @@
 	font-weight: bold;
 	font-size: 25px;
 	border-right:10px;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	background-color: rgb(75,134,180);
+	padding-top: 20px;
+	padding-bottom: 20px;
+
+	background-color: #005b96;
+	color: white;
+	
 }
 
 #wrapper #dashboard .workExp .detail {
 	padding-top: 10px;
 	padding-bottom: 10px;
+	padding-left: 20px;
+	padding-right: 20px;
 	text-align: left;
 	min-height: 34px;
 	line-height: 34px;
-	background-color: #e7eff6;
-	/*border-right: 6px solid #afceff;
-	border-left: 6px solid #afceff;*/
+	background-color: rgb(179,205,224, 0.3);
+	font-size: 15px;
+	border-right: 1px solid #005b96;
+	border-left: 1px solid #005b96;
 }
 
 

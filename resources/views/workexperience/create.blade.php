@@ -27,16 +27,15 @@
 			<div class="row title">
 				<div class="col-sm-8">TAMBAH PENGALAMAN</div>
 			</div>
-			<hr>
 			<form action="#" method="POST" class="form-group">
 				{{ csrf_field() }}
 				{{ method_field('PUT')}}
-				<div class="row detail">
+				<div class="row detail" style="padding-top:50px;">
 					<div class="col-sm-4">Nama Perusahaan</div>
-					<div class="col-sm-8"><input class="form-control" type="text" name="company_name" value=""></div>
+					<div class="col-sm-8"><input class="form-control" type="text" name="company_name" value="" placeholder="Contoh: PT. ABC"></div>
 				</div>
 				<div class="row detail">
-					<div class="col-sm-4">Industri</div>
+					<div class="col-sm-4">Bidang Industri</div>
 					<div class="col-sm-8">
 						<select class="form-control" name="industry_id">
 							@for ($i = 0; $i < $master_industry->count() ; $i++)
@@ -45,9 +44,21 @@
 						</select>
 					</div>
 				</div>
+				
+				<div class="row detail">
+					<div class="col-sm-4">Bidang Pekerjaan</div>
+					<div class="col-sm-8">
+						<select class="form-control" name="field_id">
+							@for ($i = 0; $i < $master_field->count() ; $i++)
+								<option value="{{ $master_field[$i]->id }}">{{ $master_field[$i]->name }} </option>
+							@endfor
+						</select>
+					</div>
+				</div>
+				
 				<div class="row detail">
 					<div class="col-sm-4">Posisi</div>
-					<div class="col-sm-8"><input class="form-control" type="text" name="job_position" value=""></div>
+					<div class="col-sm-8"><input class="form-control" type="text" name="job_position" value="" Placeholder="Contoh: IT Specialist; IT Analyst "></div>
 				</div>
 				<div class="row detail">
 					<div class="col-sm-4">Jenjang Karir</div>
@@ -61,7 +72,7 @@
 				</div>
 				<div class="row detail">
 					<div class="col-sm-4">Gaji Awal</div>
-					<div class="col-sm-8"><input class="form-control" type="number" name="expected_salary_lower" ></div>
+					<div class="col-sm-8"><input class="form-control" type="number" name="expected_salary_lower"></div>
 				</div>
 				
 				<div class="row detail">
@@ -69,7 +80,7 @@
 					<div class="col-sm-8"><input class="form-control" type="number" name="expected_salary_upper"></div>
 				</div>
 				<div class="row detail">
-					<div class="col-sm-4">Lokasi Yang Diharapkan</div>
+					<div class="col-sm-4">Lokasi</div>
 					<div class="col-sm-8">
 						<select class="form-control" name="location_id">
 							@for ($i = 0; $i < $master_location->count() ; $i++)
@@ -90,9 +101,8 @@
 					<div class="col-sm-5"><input class="form-control" type="date" name="end_date" value=""></div>
 					<div class="col-sm-3"><input type="checkbox" name="current" value="">Masih Bekerja Di Sini</div>
 				</div>
-				<div class="row detail">
 					<div class="row detail" style="text-align:center; padding-top:50px;"><button type="submit" class="btn btn-primary">Submit</button></div>
-				</div>
+				
 			</form>
 		</div>
 	</div>
