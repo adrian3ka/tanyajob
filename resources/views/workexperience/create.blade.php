@@ -23,24 +23,11 @@
 @section('content')
 <div class="wrapper">
 	<div id="dashboard">
-<<<<<<< Updated upstream
-			<div class="row title">
-				<div class="col-sm-4">TAMBAH PENGALAMAN</div>
-			</div>
-		<div class="col-md-4 bg"></div>
-		<div class="col-md-4 bg">
-		<form action="#" method="POST">
-			{{ csrf_field() }}
-            {{ method_field('PUT')}}
-			<div class="row">
-				<div class="col-sm-4">Nama Perusahaan</div>
-				<div class="col-sm-8"><input type="text" name="company_name" value=""></div>
-=======
 		<div class="workExp">
 			<div class="row title">
 				<div class="col-sm-8">TAMBAH PENGALAMAN</div>
->>>>>>> Stashed changes
 			</div>
+			<hr>
 			<form action="#" method="POST" class="form-group">
 				{{ csrf_field() }}
 				{{ method_field('PUT')}}
@@ -62,28 +49,6 @@
 					<div class="col-sm-4">Posisi</div>
 					<div class="col-sm-8"><input class="form-control" type="text" name="job_position" value=""></div>
 				</div>
-<<<<<<< Updated upstream
-			</div>
-			
-			
-			<div class="row">
-				<div class="col-sm-4">Tanggal Mulai</div>
-				<div class="col-sm-8"><input type="date" name="start_date" value=""></div>
-			</div>
-			
-			<div class="row">
-				<div class="col-sm-4">Tanggal Selesai</div>
-				<div class="col-sm-8"><input type="date" name="end_date" value=""></div>
-			</div>
-			<div class="row">
-				<div class="col-sm-12"><input type="checkbox" name="current" value="">Masih Bekerja Di Sini</div>
-			</div>
-			
-			<input type="submit">
-		</form>
-		</div>
-		<div class="col-md-4 bg"></div>
-=======
 				<div class="row detail">
 					<div class="col-sm-4">Jenjang Karir</div>
 					<div class="col-sm-8">
@@ -130,7 +95,6 @@
 				</div>
 			</form>
 		</div>
->>>>>>> Stashed changes
 	</div>
 </div>
 @endsection

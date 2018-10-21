@@ -3,12 +3,6 @@
 	background-image: none;
 	background-size: cover;
 	
-	
-}
-#wrapper #content {
-	margin-top: 0%;
-	background-color: white;
-	padding-bottom:100%;
 }
 #dashboard {
 	background-color: none;
@@ -19,21 +13,6 @@
 	margin-bottom: 20px;
 	/*margin-top: 20px;*/
 }
-
-
-div#content {
-	
-}
-#wrapper #dashboard .title{
-	background-color: #afceff;
-	padding-top: 20px;
-	padding-bottom: 10px;
-	
-}
-
-.wrapper #dashboard .pnlTitle{
-	background-color: #afceff;
-}	
 
 #wrapper #dashboard .workExp{
 	/*border-left: 3px solid #9b9b9b;
