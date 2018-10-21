@@ -26,11 +26,10 @@
 		<li>{{ $error }}</li>
 	@endforeach
 	<div id="dashboard">
-		
-			<div class="row title">
-				<div class="col-sm-4">EDIT PROFIL DIRI</div>
-					<!--button class="btnEdit">Edit<img class ="edit-icon" src="{{  asset('img/home/edit.png') }}" width="30px"></button-->
-			</div>
+		<div class="row title">
+			<div class="col-sm-4">EDIT PROFIL DIRI</div>
+				<!--button class="btnEdit">Edit<img class ="edit-icon" src="{{  asset('img/home/edit.png') }}" width="30px"></button-->
+		</div>
 		
 		<hr>
 		<form action=" {{ url('users/' . Auth::user()->id ) }}" method="POST" class="form-group">
