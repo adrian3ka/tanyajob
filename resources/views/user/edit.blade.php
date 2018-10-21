@@ -14,6 +14,7 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$(".multiple-select").multipleSelect({
+				noneSelectedText: 'Select Something (required)',
 				filter: true
 			});
 		});
@@ -22,24 +23,26 @@
 
 @section('content')
 <div class="wrapper">
-	@foreach ($errors->all() as $error)
-		<li>{{ $error }}</li>
-	@endforeach
 	<div id="dashboard">
+		@if(!$errors->isEmpty())
+			<div class="alert alert-danger">
+				@foreach ($errors->all() as $error)
+					<li>{{ $error }}</li>
+				@endforeach
+			</div>
+		@endif
 		<div class="row title">
 			<div class="col-sm-4">EDIT PROFIL DIRI</div>
-				<!--button class="btnEdit">Edit<img class ="edit-icon" src="{{  asset('img/home/edit.png') }}" width="30px"></button-->
 		</div>
-		
 		<hr>
-		<form action=" {{ url('users/' . Auth::user()->id ) }}" method="POST" class="form-group">
+		<form action=" {{ url('users/' . Auth::user()->id ) }}" method="POST">
 			{{ csrf_field() }}
             {{ method_field('PUT')}}
-			<div class="row detail">
+			<div class="row detail form-group {{ $errors->has('date_of_birth') ? 'has-error' : '' }}">
 				<div class="col-sm-4">Tanggal Lahir</div>
-				<div class="col-sm-8"><input class="form-control" type="date" name="date_of_birth" value="{{ Auth::user()->date_of_birth != null ? Auth::user()->date_of_birth->format('Y-m-d') : ''}}"></div>
+				<div class="col-sm-8"><input required class="form-control has-error" type="date" name="date_of_birth" value="{{ Auth::user()->date_of_birth != null ? Auth::user()->date_of_birth->format('Y-m-d') : ''}}"></div>
 			</div>
-			<div class="row detail">
+			<div class="row detail form-group {{ $errors->has('last_degree_id') ? 'has-error' : '' }}">
 				<div class="col-sm-4">Pendidikan Terakhir</div>
 				<div class="col-sm-8">
 					<select class="form-control" name="last_degree_id">
@@ -49,10 +52,10 @@
 					</select>
 				</div>
 			</div>
-			<div class="row detail">
+			<div class="row detail form-group {{ $errors->has('major_id') ? 'has-error' : '' }}">
 				<div class="col-sm-4">Jurusan</div>
 				<div class="col-sm-8">
-					<select class="form-control" name="major_id">
+					<select required class="form-control" name="major_id">
 						@for ($i = 0; $i < $master_major->count() ; $i++)
 							<option value="{{ $master_major[$i]->id }}">{{ $master_major[$i]->name }} </option>
 						@endfor
@@ -60,7 +63,7 @@
 				</div>
 			</div>
 			
-			<div class="row detail">
+			<div class="row detail form-group {{ $errors->has('skill_set[]') ? 'has-error' : '' }}">
 				<div class="col-sm-4">Kemampuan yang dimiliki</div>
 				<div class="col-sm-8">
 					<select class="multiple-select" style="width:95%;" name="skill_set[]" multiple="multiple">
@@ -71,29 +74,29 @@
 				</div>
 			</div>
 			
-			<div class="row detail">
-				<div class="col-sm-4">Lokasi Yang Diharapkan</div>
+			<div class="row detail form-group {{ $errors->has('location_id') ? 'has-error' : '' }}">
+				<div class="col-sm-4">Lokasi Yang di Inginkan</div>
 				<div class="col-sm-8">
-					<select name="location_id" class="form-control">
-						@for ($i = 0; $i < $master_location->count() ; $i++)
-							<option value="{{ $master_location[$i]->id }}">{{ $master_location[$i]->name }} </option>
-						@endfor
+					<select class="multiple-select" style="width:95%;" name="location_id[]" multiple="multiple">
+							@for ($i = 0; $i < $master_location->count() ; $i++)
+								<option value="{{ $master_location[$i]->id }}">{{ $master_location[$i]->name }} </option> 
+							@endfor
 					</select>
 				</div>
 			</div>
 			
-			<div class="row detail">
+			<div class="row detail form-group {{ $errors->has('expected_salary_lower') ? 'has-error' : '' }}">
 				<div class="col-sm-4">Gaji Minimal Yang Diharapkan</div>
-				<div class="col-sm-8"><input type="number" class="form-control" name="expected_salary_lower" Placeholder="Minimal"></div>
+				<div class="col-sm-8"><input type="number" class="form-control" name="expected_salary_lower" Placeholder="Minimal" value="{{ Auth::user()->expected_salary_lower }}" required></div>
 			</div>
 			
-			<div class="row detail">
+			<div class="row detail form-group {{ $errors->has('expected_salary_upper') ? 'has-error' : '' }}">
 				<div class="col-sm-4">Gaji Maximal Yang Diharapkan</div>
-				<div class="col-sm-8"><input class="form-control" type="number" name="expected_salary_upper" Placeholder="Maksimal"></div>
+				<div class="col-sm-8"><input class="form-control" type="number" name="expected_salary_upper" Placeholder="Maksimal" value="{{ Auth::user()->expected_salary_upper }}" required></div>
 			</div>
 			
 			
-			<div class="row detail">
+			<div class="row detail form-group {{ $errors->has('skill_set') ? 'has-error' : '' }}">
 				<div class="col-sm-4">Kemampuan yang dimiliki</div>
 				<div class="col-sm-8">
 					<select class="multiple-select" style="width:95%;" name="skill_set[]" multiple="multiple">
