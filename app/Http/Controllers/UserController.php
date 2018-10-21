@@ -96,6 +96,11 @@ class UserController extends Controller
         
         $user->update($request->all());
         $user->date_of_birth = $input['date_of_birth'];
+        $user->last_degree_id = $input['last_degree_id'];
+        $user->major_id = $input['major_id'];
+        $user->expected_salary_lower = $input['expected_salary_lower'];
+        $user->expected_salary_upper = $input['expected_salary_upper'];
+        
         echo $user->save();
 		return redirect ('home');
     }
