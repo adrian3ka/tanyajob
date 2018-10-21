@@ -48,8 +48,6 @@
 				<div class="col-sm-4">Pendidikan Terakhir</div>
 				<div class="dropdown">
 				<div class="col-sm-8">
-					<select class="last_degree_id">
-
 					<select class="form-control" name="last_degree_id">
 						@for ($i = 0; $i < $master_degree->count() ; $i++)
 							<option value="{{ $master_degree[$i]->id }}">{{ $master_degree[$i]->name }} </option>
