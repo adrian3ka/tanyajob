@@ -101,7 +101,7 @@
 					<div class="col-sm-5"><input class="form-control" type="date" name="end_date" value=""></div>
 					<div class="col-sm-3"><input type="checkbox" name="current" value="">Masih Bekerja Di Sini</div>
 				</div>
-					<div class="row detail" style="text-align:center; padding-top:50px;"><button type="submit" class="btn btn-primary">Submit</button></div>
+					<div class="row detail" style="text-align:center; padding-top:50px; border-bottom:1px solid #005b96"><button type="submit" class="btn btn-primary">Submit</button></div>
 				
 			</form>
 		</div>
