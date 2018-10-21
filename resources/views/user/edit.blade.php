@@ -22,14 +22,10 @@
 
 @section('content')
 <div class="wrapper">
+	@foreach ($errors->all() as $error)
+		<li>{{ $error }}</li>
+	@endforeach
 	<div id="dashboard">
-		<div class= "pnlTitle">
-		<div class="row title">
-			<div class="col-sm-4">EDIT PROFIL DIRI</div>
-				<button class="btnEdit">Edit<img class ="edit-icon" src="{{  asset('img/home/edit.png') }}" width="30px"></button>
-			</a>
-		</div>
-		</div> 
 		
 			<div class="row title">
 				<div class="col-sm-4">EDIT PROFIL DIRI</div>
@@ -46,14 +42,12 @@
 			</div>
 			<div class="row detail">
 				<div class="col-sm-4">Pendidikan Terakhir</div>
-				<div class="dropdown">
 				<div class="col-sm-8">
 					<select class="form-control" name="last_degree_id">
 						@for ($i = 0; $i < $master_degree->count() ; $i++)
 							<option value="{{ $master_degree[$i]->id }}">{{ $master_degree[$i]->name }} </option>
 						@endfor
 					</select>
-				</div>
 				</div>
 			</div>
 			<div class="row detail">

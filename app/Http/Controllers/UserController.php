@@ -8,7 +8,7 @@ use App\MasterDegree;
 use App\MasterMajor;
 use App\MasterSkillSet;
 use App\MasterLocation;
-use App\Facility;
+use App\MasterFacility;
 use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
 
@@ -77,7 +77,7 @@ class UserController extends Controller
 			'master_major' => MasterMajor::orderBy('name')->get(),
 			'skill_set' => MasterSkillSet::orderBy('name')->get(),
 			'master_location' => MasterLocation::orderBy('name')->get(),
-			'facility' => Facility::orderBy('name')->get(),
+			'facility' => MasterFacility::orderBy('name')->get(),
 		]);
     }
 

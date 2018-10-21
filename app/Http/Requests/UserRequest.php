@@ -29,6 +29,7 @@ class UserRequest extends FormRequest
 			'major_id' => 'required|numeric',
 			'expected_salary_lower' => 'required|numeric',
 			'expected_salary_upper' => 'required|numeric',
+			'skill_set' => 'required'
 		];
     }
 }
