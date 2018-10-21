@@ -10,4 +10,8 @@ class MasterLocation extends Model
     protected $fillable = [
         'name',
     ];
+    
+	public function Users() {
+		return $this->belongsToMany('App\User', 'user_expected_locations');
+	}
 }

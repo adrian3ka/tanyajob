@@ -6,7 +6,7 @@ use Auth;
 use App\User;
 use App\MasterDegree;
 use App\MasterMajor;
-use App\SkillSet;
+use App\MasterSkillSet;
 use App\MasterLocation;
 use App\Facility;
 use App\Http\Requests\UserRequest;
@@ -75,7 +75,7 @@ class UserController extends Controller
         return view('user/edit',[
 			'master_degree' => MasterDegree::all(),
 			'master_major' => MasterMajor::orderBy('name')->get(),
-			'skill_set' => SkillSet::orderBy('name')->get(),
+			'skill_set' => MasterSkillSet::orderBy('name')->get(),
 			'master_location' => MasterLocation::orderBy('name')->get(),
 			'facility' => Facility::orderBy('name')->get(),
 		]);

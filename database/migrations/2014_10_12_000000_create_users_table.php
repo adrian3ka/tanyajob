@@ -20,7 +20,6 @@ class CreateUsersTable extends Migration
             $table->timestamp('date_of_birth')->nullable();
             $table->integer('last_degree_id')->unsigned()->nullable();
             $table->integer('major_id')->unsigned()->nullable();
-            $table->integer('expected_location_id')->unsigned()->nullable();
             $table->integer('expected_salary_lower')->nullable();
             $table->integer('expected_salary_upper')->nullable();
             $table->timestamp('email_verified_at')->nullable();

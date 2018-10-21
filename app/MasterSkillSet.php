@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SkillSet extends Model
+class MasterSkillSet extends Model
 {
     //
     protected $fillable = [

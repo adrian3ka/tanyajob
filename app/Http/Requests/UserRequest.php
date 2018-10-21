@@ -25,6 +25,10 @@ class UserRequest extends FormRequest
     {
 		return [
 			'date_of_birth' => 'required',
+			'last_degree_id' => 'required|numeric',
+			'major_id' => 'required|numeric',
+			'expected_salary_lower' => 'required|numeric',
+			'expected_salary_upper' => 'required|numeric',
 		];
     }
 }
