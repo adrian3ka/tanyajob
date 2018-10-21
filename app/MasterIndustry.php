@@ -4,8 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class MasterMajor extends Model
+class MasterIndustry extends Model
 {
+    //
     protected $fillable = [
         'name',
     ];

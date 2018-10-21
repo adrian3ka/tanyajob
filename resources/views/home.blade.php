@@ -62,17 +62,20 @@
 		<div class ="pnlTitle">	
 			<div class="row title">
 				<div class="col-sm-4">PENGALAMAN</div>
-					<button class="btnAdd">Add<img class ="add-icon" src="{{  asset('img/home/add.png') }}" width="25px"></button>
+					<a href="{{  url('/workexperiences/create') }} ">
+						<button class="btnAdd">Add<img class ="add-icon" src="{{  asset('img/home/add.png') }}" width="25px"></button>
+					</a>
 				</div>
 			</div>
 		<div class="pnlExpInfo">
 			@for ($i = 0; $i < 2; $i++)
 				<div id="dashboard-detail">
+					<div class ="incCompany">
 					<div class="row company-info">
 						<div class="col-sm-12">
 							<button class="building"><img class ="building-icon" src="{{  asset('img/home/asset gedung.png') }}" width="20px"></button>
 							<div class="col-sm-8">PT. Bank Central Asia Tbk.</div>
-							<button class="btnEdit"><img class ="edit-icon" src="{{  asset('img/home/edit.png') }}" width="20px"></button>
+							<button class="btnEditExp"><img class ="edit-icon" src="{{  asset('img/home/edit.png') }}" width="20px"></button>
 						</div>
 						<!--div class="col-sm-4">Perusahaan</div-->
 						
@@ -103,7 +106,7 @@
 						<div class="col-sm-8">1 Tahun 8 Bulan</div>
 					</div>
 				</div>
-				<!--hr class="pengalaman"-->
+				</div>
 			@endfor
 			<br>
 			

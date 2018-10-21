@@ -24,6 +24,10 @@ Route::resources([
     'users' => 'UserController'
 ]);
 
+Route::resources([
+    'workexperiences' => 'WorkExperienceController'
+]);
+
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });

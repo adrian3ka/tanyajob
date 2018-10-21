@@ -29,6 +29,7 @@ class CreateUsersTable extends Migration
             $table->timestamps();
             
             $table->foreign('last_degree_id')->references('id')->on('master_degrees')->onDelete('cascade');
+            $table->foreign('major_id')->references('id')->on('master_majors')->onDelete('cascade');
         });
     }
 

@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class MasterMajor extends Model
+class MasterJobLevel extends Model
 {
     protected $fillable = [
         'name',

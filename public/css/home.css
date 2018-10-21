@@ -8,7 +8,6 @@
 	background-color: none;
 	margin: 0 10%;
 	padding-top: 20px;
-	padding-left: 0px;
 	padding-bottom: 30px;
 	text-align: left;
 	height: 100%;
@@ -37,16 +36,11 @@
 
 #wrapper #dashboard .pnlExpInfo{
 	background-color: none;
-	/*padding-top: 20px;
-	padding-bottom: 10px;
-	*/
 	text-align: left;
-	/*border-right: 6px solid #afceff;
-	border-left: 6px solid #afceff;
-	border-bottom: 6px solid #afceff;*/
 }
 
 #wrapper #dashboard .title .btnEdit .edit-icon {
+	background-color: none;
 	margin-left: 5px;
 	margin-bottom: 10px;
 }
@@ -88,9 +82,21 @@
 	margin-bottom: 15px;
 	color: black;
 	font-weight: bold;
-	background-color: #afceff;
+	background-color: none;
+	padding-top:2px;
+	padding-bottom:2px;
 }
 
+#wrapper #dashboard .pnlExpInfo #dashboard-detail .company-info .building {
+	background-color: white;
+	border: none;
+	float:left;
+}
+
+#wrapper #dashboard .pnlExpInfo #dashboard-detail .incCompany {
+	background-color: none;
+	border: none;
+}
 
 #dashboard .title {
 	font-weight: bold;
@@ -109,6 +115,12 @@ hr{
 	border: none;
 }
 
+.btnEditExp {
+	float: right;
+	background-color: white;
+	border: none;
+}
+
 .btnEdit:hover {
 	background-color: #afceff;
 	color: #3a00ff;
@@ -117,8 +129,8 @@ hr{
 
 .btnAdd {
 	float: right;
-	background-color: red;
-	color: blue;
+	background-color: #afceff;
+	color: #0a22ff;
 	border: none;
 }
 
