@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\MasterIndustry;
 use App\MasterJobLevel;
 use App\MasterLocation;
+use App\MasterField;
+
 use Illuminate\Http\Request;
 
 class WorkExperienceController extends Controller
@@ -27,9 +29,10 @@ class WorkExperienceController extends Controller
     public function create()
     {
         return view('workexperience/create',[
-			'master_industry' => MasterIndustry::all(),
+			'master_industry' => MasterIndustry::orderBy('name')->get(),
 			'master_job_level' => MasterJobLevel::all(),
-			'master_location' => MasterLocation::all(),
+			'master_location' => MasterLocation::orderBy('name')->get(),
+			'master_field' => MasterField::orderBy('name')->get(),
         ]);
     }
 

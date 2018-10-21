@@ -8,7 +8,7 @@ use App\MasterDegree;
 use App\MasterMajor;
 use App\MasterSkillSet;
 use App\MasterLocation;
-use App\Facility;
+use App\MasterFacility;
 use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
 
@@ -77,7 +77,7 @@ class UserController extends Controller
 			'master_major' => MasterMajor::orderBy('name')->get(),
 			'skill_set' => MasterSkillSet::orderBy('name')->get(),
 			'master_location' => MasterLocation::orderBy('name')->get(),
-			'facility' => Facility::orderBy('name')->get(),
+			'facility' => MasterFacility::orderBy('name')->get(),
 		]);
     }
 
@@ -96,6 +96,11 @@ class UserController extends Controller
         
         $user->update($request->all());
         $user->date_of_birth = $input['date_of_birth'];
+        $user->last_degree_id = $input['last_degree_id'];
+        $user->major_id = $input['major_id'];
+        $user->expected_salary_lower = $input['expected_salary_lower'];
+        $user->expected_salary_upper = $input['expected_salary_upper'];
+        
         echo $user->save();
 		return redirect ('home');
     }

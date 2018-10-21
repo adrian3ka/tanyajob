@@ -315,7 +315,6 @@ class SeedController extends Controller
 		App\MasterField::firstOrCreate(['name' => 'Editor']);
 		App\MasterField::firstOrCreate(['name' => 'Perencana Pola']);
 		App\MasterField::firstOrCreate(['name' => 'Konseptor Desain/Penggambar']);
-		
 		App\MasterField::firstOrCreate(['name' => 'Pemandu Wisata']);
 		App\MasterField::firstOrCreate(['name' => 'Sekretaris']);
 		App\MasterField::firstOrCreate(['name' => 'Quality Assurance']);
@@ -454,9 +453,7 @@ class SeedController extends Controller
 		App\MasterField::firstOrCreate(['name' => 'Teknisi Struktural']);
 		App\MasterField::firstOrCreate(['name' => 'Helpdesk IT']);
 		App\MasterField::firstOrCreate(['name' => 'Ahli Gizi']);
-		App\MasterField::firstOrCreate(['name' => 'Ahli Pangan']);s
-		
-		
+		App\MasterField::firstOrCreate(['name' => 'Ahli Pangan']);		
 		
 		App\MasterFacility::firstOrCreate(['name' => 'Makan Siang']);
 		App\MasterFacility::firstOrCreate(['name' => 'Makan Malam']);
@@ -471,8 +468,7 @@ class SeedController extends Controller
 		App\MasterFacility::firstOrCreate(['name' => 'Program Komunitas Karyawan']);
 		App\MasterFacility::firstOrCreate(['name' => 'Fasilitas Studi']);
 		App\MasterFacility::firstOrCreate(['name' => 'Fasilitas Bantuan Hukum']);
-		
-		
+				
 		App\MasterJobLevel::firstOrCreate(['name' => 'Magang']);
 		App\MasterJobLevel::firstOrCreate(['name' => 'Staff']);
 		App\MasterJobLevel::firstOrCreate(['name' => 'Staff Senior']);
