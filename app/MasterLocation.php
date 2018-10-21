@@ -12,6 +12,6 @@ class MasterLocation extends Model
     ];
     
 	public function Users() {
-		return $this->belongsToMany('App\User', 'user_expected_locations');
+		return $this->belongsToMany('App\User', 'user_expected_locations','user_id', 'location_id');
 	}
 }

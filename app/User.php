@@ -32,6 +32,12 @@ class User extends \TCG\Voyager\Models\User
 	protected $dates = ['date_of_birth'];
 	
 	public function expectedLocations() {
-		return $this->belongsToMany('App\MasterLocation');
+		return $this->belongsToMany('App\MasterLocation', 'user_expected_locations', 'user_id','location_id');
+	}
+	public function skillSets() {
+		return $this->belongsToMany('App\MasterSkillSet', 'user_skill_sets');
+	}
+	public function expectedFacilities() {
+		return $this->belongsToMany('App\MasterFacility', 'user_expected_facilities');
 	}
 }

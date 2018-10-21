@@ -97,9 +97,9 @@
 			
 			
 			<div class="row detail form-group {{ $errors->has('skill_set') ? 'has-error' : '' }}">
-				<div class="col-sm-4">Kemampuan yang dimiliki</div>
+				<div class="col-sm-4">Fasilitas Yang Diharapkan</div>
 				<div class="col-sm-8">
-					<select class="multiple-select" style="width:95%;" name="skill_set[]" multiple="multiple">
+					<select class="multiple-select" style="width:95%;" name="facility[]" multiple="multiple">
 							@for ($i = 0; $i < $facility->count() ; $i++)
 								<option value="{{ $facility[$i]->id }}">{{ $facility[$i]->name }} </option>
 							@endfor
