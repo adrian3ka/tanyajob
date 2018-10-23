@@ -102,11 +102,11 @@ class UserController extends Controller
         $user->expected_salary_upper = $input['expected_salary_upper'];
         
         $user->expectedLocations()->sync($input['location_id']);
-        //$user->skillSets()->sync($input['skill_set_id']);
-        //$user->expectedFacilities()->sync($input['facility_id']);
+        $user->skillSets()->sync($input['skill_set_id']);
+        $user->expectedFacilities()->sync($input['facility_id']);
         echo $user->save();
         echo json_encode($input);
-		//return redirect ('home');
+		return redirect ('home');
     }
 
     /**

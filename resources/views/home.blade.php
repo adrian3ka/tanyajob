@@ -18,40 +18,41 @@
 		<div class="pnlUserInfo">
 		<div class="row user-info">
 			<div class="col-sm-4">Tanggal Lahir</div>
-			<div class="col-sm-8">24 Juli 1997</div>
+			<div class="col-sm-8">{{ Auth::user()->date_of_birth }}</div>
 		</div>
 		<div class="row user-info">
 			<div class="col-sm-4">Pendidikan Terakhir</div>
-			<div class="col-sm-8">S1</div>
+			<div class="col-sm-8">{{ Auth::user()->lastDegree->name }}</div>
 		</div>
 		<div class="row user-info">
 			<div class="col-sm-4">Jurusan</div>
-			<div class="col-sm-8">Computer Science</div>
+			<div class="col-sm-8">{{ Auth::user()->major->name }}</div>
 		</div>
 		<div class="row user-info">
 			<div class="col-sm-4">Kemampuan</div>
 			<div class="col-sm-8">
-				<span class="label label-primary">PHP</span>
-				<span class="label label-primary">Javascript</span>
-				<span class="label label-primary">MySQL</span>
-				<span class="label label-primary">COBOL</span>
+				@foreach (Auth::user()->skillSets as $skill)
+					<span class="label label-primary">{{ $skill->name }}</span>
+				@endforeach
 			</div>
 		</div>
 		<div class="row user-info">
 			<div class="col-sm-4">Bersedia Ditempatkan</div>
-			<div class="col-sm-8">DKI-Jakarta</div>
+			<div class="col-sm-8">
+				@foreach (Auth::user()->expectedLocations as $loc)
+					<span class="label label-primary">{{ $loc->name }}</span>
+				@endforeach</div>
 		</div>
 		<div class="row user-info">
 			<div class="col-sm-4">Ekspetasi Gaji</div>
-			<div class="col-sm-8">Rp 15.000.000,- hingga Rp 25.000.000,-</div>
+			<div class="col-sm-8">Rp. {{ Auth::user()->expected_salary_lower}}, -  hingga Rp. {{ Auth::user()->expected_salary_upper }}, -</div>
 		</div>
 		<div class="row user-info">
 			<div class="col-sm-4">Fasilitas Yang Diharapkan</div>
 			<div class="col-sm-8">
-				<span class="label label-success">Makan Siang</span>
-				<span class="label label-success">Makan Malam</span>
-				<span class="label label-success">Gaji Net</span>
-				<span class="label label-success">Asuransi Kesehatan</span>
+				@foreach (Auth::user()->expectedFacilities as $f)
+					<span class="label label-success">{{ $f->name }}</span>
+				@endforeach</div>
 			</div>
 		</div>
 		</div>
