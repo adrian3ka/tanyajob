@@ -127,13 +127,50 @@ class SeedController extends Controller
 		App\MasterMajor::firstOrCreate(['name' => 'Sistem dan Teknologi Informasi']);
 		App\MasterMajor::firstOrCreate(['name' => 'Komputer Akuntansi']);
 		App\MasterMajor::firstOrCreate(['name' => 'Pariwisata']);
+		App\MasterMajor::firstOrCreate(['name' => 'Pendidikan Kepolisian']);
+		App\MasterMajor::firstOrCreate(['name' => 'Pendidikan Militer']);
+		App\MasterMajor::firstOrCreate(['name' => 'Penerbangan']);
+		App\MasterMajor::firstOrCreate(['name' => 'Design Interior']);
+		App\MasterMajor::firstOrCreate(['name' => 'Design Grafis']);
+		App\MasterMajor::firstOrCreate(['name' => 'DKV']);
+		App\MasterMajor::firstOrCreate(['name' => 'Tata Boga']);
+		App\MasterMajor::firstOrCreate(['name' => 'Teknik Pertambangan']);
+		App\MasterMajor::firstOrCreate(['name' => 'Teknik Kelautan']);
+		App\MasterMajor::firstOrCreate(['name' => 'Teknik Lingkungan']);
+		App\MasterMajor::firstOrCreate(['name' => 'Teknik Metalurgi']);
+		App\MasterMajor::firstOrCreate(['name' => 'Teknik Sipil']);
+		App\MasterMajor::firstOrCreate(['name' => 'Arsitektur']);
+		App\MasterMajor::firstOrCreate(['name' => 'Teknik Geodesi']);
+		App\MasterMajor::firstOrCreate(['name' => 'Teknik Elektro']);
+		App\MasterMajor::firstOrCreate(['name' => 'Teknik Mesin']);
+		App\MasterMajor::firstOrCreate(['name' => 'Teknik Industri']);
+		App\MasterMajor::firstOrCreate(['name' => 'Teknik Perkapalan']);
+		App\MasterMajor::firstOrCreate(['name' => 'Teknik Nuklir']);
+		App\MasterMajor::firstOrCreate(['name' => 'Teknik Geologi']);
+		App\MasterMajor::firstOrCreate(['name' => 'Teknik Fisika']);
+		App\MasterMajor::firstOrCreate(['name' => 'Teknik Kimia']);
+		App\MasterMajor::firstOrCreate(['name' => 'Teknik Perminyakan']);
+		App\MasterMajor::firstOrCreate(['name' => 'Teknik Geologi']);
+		App\MasterMajor::firstOrCreate(['name' => 'Teknik Geologi']);
+		App\MasterMajor::firstOrCreate(['name' => 'Tekniologi Pangan']);
+		App\MasterMajor::firstOrCreate(['name' => 'Teknologi Pangan']);
+		App\MasterMajor::firstOrCreate(['name' => 'Teknologi Industri Pertanian']);
+		App\MasterMajor::firstOrCreate(['name' => 'Peternakan']);
+		App\MasterMajor::firstOrCreate(['name' => 'Kehutanan']);
 		
 
 		App\MasterSkillSet::firstOrCreate(['name' => 'PHP']);
 		App\MasterSkillSet::firstOrCreate(['name' => 'MySQL']);
 		App\MasterSkillSet::firstOrCreate(['name' => 'Scripting']);
 		App\MasterSkillSet::firstOrCreate(['name' => 'COBOL']);
-		App\MasterSkillSet::firstOrCreate(['name' => 'Microsoft Word']);
+		App\MasterSkillSet::firstOrCreate(['name' => 'Office']);
+		App\MasterSkillSet::firstOrCreate(['name' => 'Adobe Illustrator']);
+		App\MasterSkillSet::firstOrCreate(['name' => 'Account Management']);
+		App\MasterSkillSet::firstOrCreate(['name' => 'Office']);
+		App\MasterSkillSet::firstOrCreate(['name' => 'Office']);
+		App\MasterSkillSet::firstOrCreate(['name' => 'Office']);
+		App\MasterSkillSet::firstOrCreate(['name' => 'Office']);
+		App\MasterSkillSet::firstOrCreate(['name' => 'Office']);
 
 
 		App\MasterLocation::firstOrCreate(['name' => 'Banda Aceh']);
