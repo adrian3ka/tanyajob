@@ -28,56 +28,52 @@
 .last_degree_id{
 	background-color: DodgerBlue;
 }
-background-color: DodgerBlue;
 
-#wrapper #dashboard .pnlTitle{
-	background-color: #afceff;
-	padding-top: 20px;
-	padding-bottom: 10px;
-	text-align: left;
-	
+.editProfil{
+
 }
 
-#wrapper #dashboard .pnlUserInfo{
-	background-color: white;
-	padding-top: 20px;
-	padding-bottom: 10px;
-	text-align: left;
-	border-bottom: 6px solid #afceff;
-	border-right: 6px solid #afceff;
-	border-left: 6px solid #afceff;
-}
-
-#wrapper #dashboard .pnlExpInfo{
-	background-color: none;
-	/*padding-top: 20px;
-	padding-bottom: 10px;
-	*/
-	text-align: left;
-	/*border-right: 6px solid #afceff;
-	border-left: 6px solid #afceff;
-	border-bottom: 6px solid #afceff;*/
-}
-
-
-#wrapper #dashboard .title {
+#wrapper #dashboard .editProfil .title {
 	font-weight: bold;
 	font-size: 25px;
-	/*border-right: 6px solid black;
-	border-left: 6px solid black;
-	border-top: 6px solid black;
-	border-bottom: 6px solid black;
-	*/
+	border-right:10px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	background-color: #005b96;
+	color: white;
 }
 
-#wrapper #dashboard .detail {
+#wrapper #dashboard .editProfil .detail {
 	padding-top: 10px;
 	padding-bottom: 10px;
+	padding-left: 20px;
+	padding-right: 20px;
 	text-align: left;
-	/*border-right: 6px solid #afceff;
-	border-left: 6px solid #afceff;*/
+	min-height: 34px;
+	line-height: 34px;
+	background-color: rgb(179,205,224, 0.3);
+	font-size: 15px;
+	border-right: 1px solid #005b96;
+	border-left: 1px solid #005b96;
+
 }
 
+#wrapper #dashboard .detailProfil {
+	/*padding-top: 10px;
+	padding-bottom: 10px;
+	text-align: left;
+	border-right: 6px solid #afceff;
+	border-left: 6px solid #afceff;
+
+	text-align: left;
+	min-height: 34px;
+	line-height: 34px;
+	background-color: rgb(179,205,224, 0.3);
+	font-size: 15px;
+	border-right: 1px solid #005b96;
+	border-left: 1px solid #005b96;
+	border-bottom: 1px solid #005b96;*/
+}
 
 #dashboard .user-info {
 	font-size: 18px;
@@ -109,3 +105,4 @@ hr{
 	color: #3a00ff;
 	
 }
+
