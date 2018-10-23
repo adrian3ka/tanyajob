@@ -22,11 +22,11 @@
 		</div>
 		<div class="row user-info">
 			<div class="col-sm-4">Pendidikan Terakhir</div>
-			<div class="col-sm-8">{{ Auth::user()->lastDegree->name }}</div>
+			<div class="col-sm-8">{{ Auth::user()->lastDegree? Auth::user()->lastDegree->name : "-" }}</div>
 		</div>
 		<div class="row user-info">
 			<div class="col-sm-4">Jurusan</div>
-			<div class="col-sm-8">{{ Auth::user()->major->name }}</div>
+			<div class="col-sm-8">{{ Auth::user()->major? Auth::user()->major->name : "-" }}</div>
 		</div>
 		<div class="row user-info">
 			<div class="col-sm-4">Kemampuan</div>
