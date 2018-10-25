@@ -20,7 +20,31 @@
     </head>
     <body>
 		<div id="wrapper">
-			<div id="header">                   
+			<nav class="navbar navbar-inverse">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span> 
+						</button>
+						<a href="{{ url('/home') }}"><img src="{{  asset('img/logo-main.png') }}" width="70px"></a>
+					</div>
+					<div class="collapse navbar-collapse" id="myNavbar">
+						<ul class="nav navbar-nav">
+							<li><a href="#">Home</a></li>
+							<li><a href="#">Page 1</a></li>
+							<li><a href="#">Page 2</a></li> 
+							<li><a href="#">Page 3</a></li> 
+						</ul>
+						<ul class="nav navbar-nav navbar-right">
+							<li><a class = "header-button" href="{{ route('register') }}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+							<li><a href="{{ route('login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+			<!--div id="header">                   
 				@auth
 					<a class = "header-button main-logo pull-left" href="{{ url('/home') }}"><img src="{{  asset('img/logo-main.png') }}" width="90px"></a>
 					<a class = "header-button" href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -36,7 +60,7 @@
 					<a class = "header-button" href="{{ route('login') }}">MASUK</a>
 					<a class = "header-button" href="{{ route('register') }}">DAFTAR</a>
 				@endauth
-			</div>
+			</div-->
 
             <div id="content">
 				@yield('content')
