@@ -39,7 +39,17 @@
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
 							<li><a class = "header-button" href="{{ route('register') }}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-							<li><a href="{{ route('login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+							              
+							@auth
+								<li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" >
+									<span class="glyphicon glyphicon-log-in"></span> Logout
+								</a></li>
+								<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+									{{ csrf_field() }}
+								</form>
+							@else
+								<li><a href="{{ route('login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+							@endauth
 						</ul>
 					</div>
 				</div>
