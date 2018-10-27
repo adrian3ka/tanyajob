@@ -6,8 +6,10 @@ use App\MasterIndustry;
 use App\MasterJobLevel;
 use App\MasterLocation;
 use App\MasterField;
-
+use App\WorkExperience;
+use App\Http\Requests;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class WorkExperienceController extends Controller
 {
@@ -42,9 +44,25 @@ class WorkExperienceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Requests\WorkExperienceRequest $request)
     {
         //
+        echo "store";
+        $workExperience = new WorkExperience();
+        $input = $request->all();
+        echo json_encode($input);
+        $workExperience->user_id = Auth::user()->id;
+        $workExperience->company_name = $input['company_name'];
+        $workExperience->industry_id = $input['industry_id'];
+        $workExperience->field_id = $input['field_id'];
+        $workExperience->job_position = $input['job_position'];
+        $workExperience->job_level_id = $input['job_level_id'];
+        $workExperience->salary_lower = $input['salary_lower'];
+        $workExperience->salary_upper = $input['salary_upper'];
+        $workExperience->location_id = $input['location_id'];
+        $workExperience->started_work_at = $input['started_work_at'];
+        $workExperience->save();
+        dd($workExperience);
     }
 
     /**

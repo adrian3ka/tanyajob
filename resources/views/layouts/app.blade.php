@@ -54,32 +54,17 @@
 					</div>
 				</div>
 			</nav>
-			<!--div id="header">                   
-				@auth
-					<a class = "header-button main-logo pull-left" href="{{ url('/home') }}"><img src="{{  asset('img/logo-main.png') }}" width="90px"></a>
-					<a class = "header-button" href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-						KELUAR
-					</a>
-
-					<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-						{{ csrf_field() }}
-					</form>
-				@else
-					<a class = "header-button main-logo pull-left" href="{{ url('/') }}"><img src="{{  asset('img/logo-main.png') }}" width="90px"></a>
-					<a class = "header-button company" href="#">PERUSAHAAN</a>
-					<a class = "header-button" href="{{ route('login') }}">MASUK</a>
-					<a class = "header-button" href="{{ route('register') }}">DAFTAR</a>
-				@endauth
-			</div-->
-
             <div id="content">
 				@yield('content')
             </div>
             
 			
         </div>
-        <div id="footer">
-			&copy; Tanya Job
-		</div>
+		<nav class="navbar-wrapper navbar-inverse">
+			<div class="container-fluid">
+				<p class="navbar-text pull-left">&copy; Tanyajob</p>
+				<a href="#" class="btn navbar-btn btn-danger pull-right">Subscribe</a> 
+			</div>
+		</nav>
     </body>
 </html>
