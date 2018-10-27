@@ -18,7 +18,8 @@ class CreateWorkExperiencesTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->string('company_name');
             $table->integer('industry_id')->unsigned();
-            $table->integer('job_position');
+            $table->integer('field_id')->unsigned();
+            $table->string('job_position');
             $table->integer('job_level_id')->unsigned();
             $table->integer('salary_lower');
             $table->integer('salary_upper');
@@ -31,6 +32,7 @@ class CreateWorkExperiencesTable extends Migration
             
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('industry_id')->references('id')->on('master_industries')->onDelete('cascade');
+            $table->foreign('field_id')->references('id')->on('master_fields')->onDelete('cascade');
             $table->foreign('job_level_id')->references('id')->on('master_job_levels')->onDelete('cascade');
             $table->foreign('location_id')->references('id')->on('master_locations')->onDelete('cascade');
         });
