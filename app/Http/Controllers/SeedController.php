@@ -316,7 +316,7 @@ class SeedController extends Controller
 		App\MasterSkillSet::firstOrCreate(['name' => 'Ekonomi']);
 		App\MasterSkillSet::firstOrCreate(['name' => 'E-Commerce']);
 		App\MasterSkillSet::firstOrCreate(['name' => 'Edukasi']);
-		App\MasterSkillSeet::firstOrCreate(['name' => 'Edge Cam']);
+		App\MasterSkillSet::firstOrCreate(['name' => 'Edge Cam']);
 		App\MasterSkillSet::firstOrCreate(['name' => 'Desain Listrik/Elektrik']);
 		App\MasterSkillSet::firstOrCreate(['name' => 'Teknik Elektro']);
 		App\MasterSkillSet::firstOrCreate(['name' => 'Pemasangan Listrik/Elektrik']);
