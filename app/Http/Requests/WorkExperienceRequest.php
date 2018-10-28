@@ -30,7 +30,7 @@ class WorkExperienceRequest extends FormRequest
 			'salary_lower' => 'required',
 			'salary_upper' => 'required|gte :salary_lower',
 			'started_work_at' => 'required',
-			'ended_work_at' => 'required_without :current|gte :started_work_at',
+			'ended_work_at' => 'required_without :current|after :started_work_at',
 			'current' => 'required_without :ended_work_at',
 			'location_id'    => 'required',
 			'industry_id'    => 'required',
