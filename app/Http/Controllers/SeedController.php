@@ -985,7 +985,12 @@ class SeedController extends Controller
 		
 		
 		
-
+		App\MasterField::firstOrCreate(['name' => 'Aktor']);
+		App\MasterField::firstOrCreate(['name' => 'Aktris']);
+		App\MasterField::firstOrCreate(['name' => 'Gitaris']);
+		App\MasterField::firstOrCreate(['name' => 'Pemain Drum']);
+		App\MasterField::firstOrCreate(['name' => 'Pemain Keyboard']);
+		App\MasterField::firstOrCreate(['name' => 'Vokalis']);
 		App\MasterField::firstOrCreate(['name' => 'Dokter Umum']);
 		App\MasterField::firstOrCreate(['name' => 'Dokter Gigi']);
 		App\MasterField::firstOrCreate(['name' => 'Administrasi']);
