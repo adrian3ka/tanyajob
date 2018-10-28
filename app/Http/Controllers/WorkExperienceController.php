@@ -43,13 +43,17 @@ class WorkExperienceController extends Controller
         $workExperience->salary_upper = $input['salary_upper'];
         $workExperience->location_id = $input['location_id'];
         $workExperience->started_work_at = $input['started_work_at'];
+        
         if (isset($input['ended_work_at'])) {
            $workExperience->ended_work_at = $input['ended_work_at'];
-        } else if (isset($input['current'])) {
-           $workExperience->current = $input['current'];
-        }
+        } 
+        
+        if (isset($input['current'])) {
+           $workExperience->current = true;
+        } else {
+			$workExperience->current = false ;
+		}
         $workExperience->save();
-		return redirect ('home');
     }
 
     public function show($id)
@@ -88,9 +92,9 @@ class WorkExperienceController extends Controller
         } 
         
         if (isset($input['current'])) {
-           $workExperience->current = $input['current'];
+           $workExperience->current = true;
         } else {
-			$workExperience->current = 0 ;
+			$workExperience->current = false ;
 		}
         $workExperience->save();
 		return redirect ('home');

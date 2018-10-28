@@ -115,7 +115,7 @@
 				<div class="row detail">
 					<div class="col-sm-4">Tanggal Selesai</div>
 					<div class="col-sm-5"><input id ="ended_work_at" class="form-control" type="date" name="ended_work_at" value="{{ old('ended_work_at') }}"></div>
-					<div class="col-sm-3"><input id="current" type="checkbox" name="current" value="1" {{ old('current') == "1" ? "checked" : ""}} >Masih Bekerja Di Sini</div>
+					<div class="col-sm-3"><input id="current[]" type="checkbox" name="current" value="1" {{ old('current') == "1" ? "checked" : ""}} >Masih Bekerja Di Sini</div>
 				</div>
 				<div class="row detail" style="text-align:center; padding-top:50px; border-bottom:1px solid #005b96"><button type="submit" class="btn btn-primary">Submit</button></div>
 			</form>
