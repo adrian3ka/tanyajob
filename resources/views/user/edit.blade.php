@@ -51,14 +51,14 @@
 				{{ method_field('PUT')}}
 				<div class="row detail form-group {{ $errors->has('date_of_birth') ? 'has-error' : '' }}" style="padding-top:50px">
 					<div class="col-sm-4">Tanggal Lahir</div>	
-					<div class="col-sm-8"><input required class="form-control has-error" type="date" name="date_of_birth" value="{{ Auth::user()->date_of_birth != null ? Auth::user()->date_of_birth->format('Y-m-d') : ''}}"></div>
+					<div class="col-sm-8"><input required class="form-control has-error" type="date" name="date_of_birth" value="{{ old('date_of_birth') ? old('date_of_birth') : (Auth::user()->date_of_birth != null ? Auth::user()->date_of_birth->format('Y-m-d') : '') }}"></div>
 				</div>
 				<div class="row detail form-group {{ $errors->has('last_degree_id') ? 'has-error' : '' }}">
 					<div class="col-sm-4">Pendidikan Terakhir</div>
 					<div class="col-sm-8">
 						<select class="form-control" name="last_degree_id">
 							@for ($i = 0; $i < $master_degree->count() ; $i++)
-								<option value="{{ $master_degree[$i]->id }}">{{ $master_degree[$i]->name }} </option>
+								<option value="{{ $master_degree[$i]->id }}" {{ old('last_degree_id') == $master_degree[$i]->id ? "selected" : (Auth::user()->last_degree_id == $master_degree[$i]->id? "selected" : "") }} >{{ $master_degree[$i]->name }} </option>
 							@endfor
 						</select>
 					</div>
@@ -68,7 +68,7 @@
 					<div class="col-sm-8">
 						<select required class="form-control" name="major_id">
 							@for ($i = 0; $i < $master_major->count() ; $i++)
-								<option value="{{ $master_major[$i]->id }}">{{ $master_major[$i]->name }} </option>
+								<option value="{{ $master_major[$i]->id }}" {{ old('major_id') == $master_major[$i]->id ? "selected" : (Auth::user()->major_id == $master_major[$i]->id? "selected" : "") }}>{{ $master_major[$i]->name }} </option>
 							@endfor
 						</select>
 					</div>
