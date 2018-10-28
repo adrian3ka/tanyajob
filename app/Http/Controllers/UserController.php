@@ -105,7 +105,6 @@ class UserController extends Controller
         $user->skillSets()->sync($input['skill_set_id']);
         $user->expectedFacilities()->sync($input['facility_id']);
         echo $user->save();
-        echo json_encode($input);
 		return redirect ('home');
     }
 

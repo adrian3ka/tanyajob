@@ -69,25 +69,23 @@
 				</div>
 			</div>
 		<div class="pnlExpInfo">
-			@for ($i = 0; $i < 2; $i++)
+			@foreach (Auth::user()->workExperiences as $exp)
 				<div id="dashboard-detail">
 					<div class ="incCompany">
 					<div class="row company-info">
 						<div class="col-sm-12">
 							<button class="building"><img class ="building-icon" src="{{  asset('img/home/asset gedung.png') }}" width="20px"></button>
-							<div class="col-sm-8">PT. Bank Central Asia Tbk.</div>
+							<div class="col-sm-8">{{ $exp->company_name }}</div>
 							<button class="btnEditExp"><img class ="edit-icon" src="{{  asset('img/home/edit.png') }}" width="20px"></button>
 						</div>
-						<!--div class="col-sm-4">Perusahaan</div-->
-						
 					</div>
 					<div class="row user-info">
 						<div class="col-sm-4">Bidang Industri</div>
-						<div class="col-sm-8">Perbankan</div>
+						<div class="col-sm-8">{{ $exp->industry->name }}</div>
 					</div>
 					<div class="row user-info">
 						<div class="col-sm-4">Posisi</div>
-						<div class="col-sm-8">IT Specialist</div>
+						<div class="col-sm-8">{{ $exp->job_position }}</div>
 					</div>
 					<div class="row user-info">
 						<div class="col-sm-4">Jenjang Karir</div>
@@ -96,19 +94,44 @@
 					
 					<div class="row user-info">
 						<div class="col-sm-4">Gaji</div>
-						<div class="col-sm-8">Rp 5.750.000,-</div>
+						<div class="col-sm-8">{{ $exp->salary_lower }} - {{ $exp->salary_upper }}</div>
 					</div>
 					<div class="row user-info">
 						<div class="col-sm-4">Lokasi</div>
-						<div class="col-sm-8">Jakarta</div>
+						<div class="col-sm-8">{{ $exp->location->name }}</div>
 					</div>
 					<div class="row user-info">
-						<div class="col-sm-4">Lama Bekerja</div>
-						<div class="col-sm-8">1 Tahun 8 Bulan</div>
+						<div class="col-sm-4">Mulai Bekerja</div>
+						<div class="col-sm-8">{{ $exp->started_work_at }}</div>
 					</div>
+					@if($exp->current)
+						<div class="row user-info">
+							<div class="col-sm-4">Masih Bekerja Disini</div>
+						</div>
+						@php
+							$now = now();
+							$diff = Carbon\Carbon::parse($exp->started_work_at)->diff($now)->format('%y Tahun, %m Bulan and %d Hari');
+						@endphp
+						<div class="row user-info">
+							<div class="col-sm-4">Lama Bekerja</div>
+							<div class="col-sm-8">{{ $diff }}</div>
+						</div>
+					@else
+						<div class="row user-info">
+							<div class="col-sm-4">Selesai Bekerja</div>
+							<div class="col-sm-8">{{ $exp->ended_work_at }}</div>
+						</div>
+						@php
+							$diff = Carbon\Carbon::parse($exp->started_work_at)->diff( Carbon\Carbon::parse($exp->ended_work_at))->format('%y Tahun, %m Bulan and %d Hari');
+						@endphp
+						<div class="row user-info">
+							<div class="col-sm-4">Lama Bekerja</div>
+							<div class="col-sm-8">{{ $diff }}</div>
+						</div>
+					@endif
 				</div>
 				</div>
-			@endfor
+			@endforeach
 			<br>
 			
 		</div>

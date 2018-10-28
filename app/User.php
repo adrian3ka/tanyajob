@@ -31,6 +31,10 @@ class User extends \TCG\Voyager\Models\User
     
 	protected $dates = ['date_of_birth'];
 	
+	public function workExperiences()
+    {
+        return $this->hasMany('App\WorkExperience');
+    }
 	public function expectedLocations() {
 		return $this->belongsToMany('App\MasterLocation', 'user_expected_locations', 'user_id','location_id');
 	}
@@ -42,8 +46,7 @@ class User extends \TCG\Voyager\Models\User
 	}
 	public function lastDegree() {
 		return $this->belongsTo('App\MasterDegree','last_degree_id');
-	}
-	
+	}	
 	public function major() {
 		return $this->belongsTo('App\MasterMajor','major_id');
 	}

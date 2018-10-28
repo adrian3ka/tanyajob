@@ -61,8 +61,14 @@ class WorkExperienceController extends Controller
         $workExperience->salary_upper = $input['salary_upper'];
         $workExperience->location_id = $input['location_id'];
         $workExperience->started_work_at = $input['started_work_at'];
+        if (isset($input['ended_work_at'])) {
+			$workExperience->ended_work_at = $input['ended_work_at'];
+		}
+        if (isset($input['current'])) {
+			$workExperience->current = $input['current'];
+		}
         $workExperience->save();
-        dd($workExperience);
+		return redirect ('home');
     }
 
     /**
