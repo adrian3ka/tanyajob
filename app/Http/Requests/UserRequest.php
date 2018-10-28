@@ -30,7 +30,7 @@ class UserRequest extends FormRequest
 			'expected_salary_lower' => 'required|numeric',
 			'expected_salary_upper' => 'required|numeric',
 			'location_id'    => 'required|array|min:1',
-			'skill_set'    => 'required|array|min:1',
+			'skill_set_id'    => 'required|array|min:1',
 			'facility_id'    => 'required|array|min:1',
 		];
     }
