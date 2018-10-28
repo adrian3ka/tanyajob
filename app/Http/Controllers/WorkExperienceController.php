@@ -54,6 +54,7 @@ class WorkExperienceController extends Controller
 			$workExperience->current = false ;
 		}
         $workExperience->save();
+		return redirect ('home');
     }
 
     public function show($id)
