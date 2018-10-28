@@ -38,6 +38,7 @@ class UserRequest extends FormRequest
     public function messages () {
 		return [
 			'location_id.required' => 'Harap Isi Lokasi Yang Anda Inginkan',
+			'location_id.max' => 'Harap Isi Lokasi Maximal 5 Item',
 		];
 	}
 }
