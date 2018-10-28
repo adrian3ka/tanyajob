@@ -100,13 +100,13 @@
 				<div class="row detail form-group {{ $errors->has('expected_salary_lower') ? 'has-error' : '' }}">
 					<div class="col-sm-4">Gaji Minimal Yang Diharapkan</div>
 					<div class="col-sm-8">
-							<input type="number" class="form-control" name="expected_salary_lower" Placeholder="Minimal" value="{{ Auth::user()->expected_salary_lower }}" required>
+							<input type="number" class="form-control" name="expected_salary_lower" Placeholder="Minimal" value="{{ old('expected_salary_lower') ? old('expected_salary_lower') : Auth::user()->expected_salary_lower }}" required>
 					</div>
 				</div>
 				
 				<div class="row detail form-group {{ $errors->has('expected_salary_upper') ? 'has-error' : '' }}">
 					<div class="col-sm-4">Gaji Maximal Yang Diharapkan</div>
-					<div class="col-sm-8"><input class="form-control" type="number" name="expected_salary_upper" Placeholder="Maksimal" value="{{ Auth::user()->expected_salary_upper }}" required></div>
+					<div class="col-sm-8"><input class="form-control" type="number" name="expected_salary_upper" Placeholder="Maksimal" value="{{ old('expected_salary_upper') ? old('expected_salary_upper') : Auth::user()->expected_salary_upper }}" required></div>
 				</div>
 				
 				
