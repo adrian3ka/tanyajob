@@ -28,10 +28,10 @@ class UserRequest extends FormRequest
 			'last_degree_id' => 'required|numeric',
 			'major_id' => 'required|numeric',
 			'expected_salary_lower' => 'required|numeric',
-			'expected_salary_upper' => 'required|numeric',
-			'location_id'    => 'required|array|min:1',
-			'skill_set_id'    => 'required|array|min:1',
-			'facility_id'    => 'required|array|min:1',
+			'expected_salary_upper' => 'required|numeric|gte :expected_salary_lower',
+			'location_id'    => 'required|array|min:1|max:5',
+			'skill_set_id'    => 'required|array|min:1|max:30',
+			'facility_id'    => 'required|array|min:1|max:5',
 		];
     }
 }

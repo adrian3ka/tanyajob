@@ -38,7 +38,13 @@
 							<li><a href="#">Page 3</a></li--> 
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
-							<li><a class = "header-button" href="{{ route('register') }}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+							<li>       
+								@auth
+									<a class = "header-button" href="{{ route('home') }}"><span class="glyphicon glyphicon-user"></span> {{ Auth::user()->name }}</a>
+								@else
+									<a class = "header-button" href="{{ route('register') }}"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
+								@endauth
+							</li>
 							              
 							@auth
 								<li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" >
