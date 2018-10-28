@@ -49,7 +49,7 @@
 					<div class="col-sm-4">Bidang Industri</div>
 					<div class="col-sm-8">
 						<select class="form-control" name="industry_id">
-							<option value="" disabled selected>Select your option</option>
+							<option value="" disabled selected>--Pilih--</option>
 							@for ($i = 0; $i < $master_industry->count() ; $i++)
 								<option value="{{ $master_industry[$i]->id }}" {{ old('industry_id') ==  $master_industry[$i]->id ? "selected" : ""}}>{{ $master_industry[$i]->name }} </option>
 							@endfor
@@ -61,7 +61,7 @@
 					<div class="col-sm-4">Bidang Pekerjaan</div>
 					<div class="col-sm-8">
 						<select class="form-control" name="field_id">
-							<option value="" disabled selected>Select your option</option>
+							<option value="" disabled selected>--Pilih--</option>
 							@for ($i = 0; $i < $master_field->count() ; $i++)
 								<option value="{{ $master_field[$i]->id }}" {{ old('field_id') ==  $master_field[$i]->id ? "selected" : ""}}>{{ $master_field[$i]->name }} </option>
 							@endfor
@@ -77,7 +77,7 @@
 					<div class="col-sm-4">Jenjang Karir</div>
 					<div class="col-sm-8">
 						<select class="form-control" name="job_level_id">
-							<option value="" disabled selected>Select your option</option>
+							<option value="" disabled selected>--Pilih--</option>
 							@for ($i = 0; $i < $master_job_level->count() ; $i++)
 								<option value="{{ $master_job_level[$i]->id }}" {{ old('job_level_id') ==  $master_job_level[$i]->id ? "selected" : ""}}>{{ $master_job_level[$i]->name }} </option>
 							@endfor
@@ -97,7 +97,7 @@
 					<div class="col-sm-4">Lokasi</div>
 					<div class="col-sm-8">
 						<select class="form-control" name="location_id">
-							<option value="" disabled selected>Select your option</option>
+							<option value="" disabled selected>--Pilih--</option>
 							@for ($i = 0; $i < $master_location->count() ; $i++)
 								
 								<option value="{{ $master_location[$i]->id }}" {{ old('location_id') ==  $master_location[$i]->id ? "selected" : ""}}>{{ $master_location[$i]->name }} </option>

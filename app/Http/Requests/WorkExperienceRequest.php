@@ -26,6 +26,7 @@ class WorkExperienceRequest extends FormRequest
        	return [
 			'company_name' => 'required',
 			'job_position' => 'required',
+			'job_level_id' => 'required|numeric'
 			'salary_lower' => 'required',
 			'salary_upper' => 'required|gte :salary_lower',
 			'started_work_at' => 'required',
@@ -50,7 +51,7 @@ class WorkExperienceRequest extends FormRequest
 			'industry_id.required' => 'Bidang industri harus diisi',
 			'job_position.required' => 'Posisi pekerjaan harus diisi',
 			'field_id.required' => 'Bidang pekerjaan harus diisi',
-			
+			'job_level_id.required' => 'Jenjang karir harus diisi',
 		];
 	}
 }
