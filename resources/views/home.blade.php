@@ -78,7 +78,9 @@
 						<div class="col-sm-12">
 							<button class="building"><img class ="building-icon" src="{{  asset('img/home/asset gedung.png') }}" width="20px"></button>
 							<div class="col-sm-8">{{ $exp->company_name }}</div>
-							<button class="btnEditExp"><img class ="edit-icon" src="{{  asset('img/home/edit.png') }}" width="20px"></button>
+							<a href=" {{  url('/workexperiences/'. $exp->id . '/edit') }} ">
+								<button class="btnEditExp"><img class ="edit-icon" src="{{  asset('img/home/edit.png') }}" width="20px"></button>
+							</a>
 						</div>
 					</div>
 					<div class="row user-info">

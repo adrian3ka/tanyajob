@@ -13,21 +13,11 @@ use Illuminate\Support\Facades\Auth;
 
 class WorkExperienceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('workexperience/create',[
@@ -38,19 +28,11 @@ class WorkExperienceController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Requests\WorkExperienceRequest $request)
     {
-        //
-        echo "store";
         $workExperience = new WorkExperience();
         $input = $request->all();
-        echo json_encode($input);
+        
         $workExperience->user_id = Auth::user()->id;
         $workExperience->company_name = $input['company_name'];
         $workExperience->industry_id = $input['industry_id'];
@@ -62,57 +44,56 @@ class WorkExperienceController extends Controller
         $workExperience->location_id = $input['location_id'];
         $workExperience->started_work_at = $input['started_work_at'];
         if (isset($input['ended_work_at'])) {
-			$workExperience->ended_work_at = $input['ended_work_at'];
-		}
-        if (isset($input['current'])) {
-			$workExperience->current = $input['current'];
-		}
+           $workExperience->ended_work_at = $input['ended_work_at'];
+        } else if (isset($input['current'])) {
+           $workExperience->current = $input['current'];
+        }
         $workExperience->save();
 		return redirect ('home');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $workExp = WorkExperience::FindOrFail($id);
+        return view('workexperience/edit',[
+			'workExp' => $workExp,
+			'master_industry' => MasterIndustry::orderBy('name')->get(),
+			'master_job_level' => MasterJobLevel::all(),
+			'master_location' => MasterLocation::orderBy('name')->get(),
+			'master_field' => MasterField::orderBy('name')->get(),
+		]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Requests\WorkExperienceRequest $request, $id)
+    {     
+        $workExperience = WorkExperience::FindOrFail($id);
+        $input = $request->all();
+        
+        $workExperience->user_id = Auth::user()->id;
+        $workExperience->company_name = $input['company_name'];
+        $workExperience->industry_id = $input['industry_id'];
+        $workExperience->field_id = $input['field_id'];
+        $workExperience->job_position = $input['job_position'];
+        $workExperience->job_level_id = $input['job_level_id'];
+        $workExperience->salary_lower = $input['salary_lower'];
+        $workExperience->salary_upper = $input['salary_upper'];
+        $workExperience->location_id = $input['location_id'];
+        $workExperience->started_work_at = $input['started_work_at'];
+        if (isset($input['ended_work_at'])) {
+           $workExperience->ended_work_at = $input['ended_work_at'];
+        } else if (isset($input['current'])) {
+           $workExperience->current = $input['current'];
+        }
+        $workExperience->save();
+        dd($workExperience);
+		return redirect ('home');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
     }
 }
