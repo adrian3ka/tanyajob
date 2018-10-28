@@ -26,7 +26,7 @@ class WorkExperienceRequest extends FormRequest
        	return [
 			'company_name' => 'required',
 			'job_position' => 'required',
-			'job_level_id' => 'required|numeric'
+			'job_level_id' => 'required|numeric',
 			'salary_lower' => 'required',
 			'salary_upper' => 'required|gte :salary_lower',
 			'started_work_at' => 'required',
