@@ -89,7 +89,9 @@ class WorkExperienceController extends Controller
         
         if (isset($input['current'])) {
            $workExperience->current = $input['current'];
-        }
+        } else {
+			$workExperience->current = 0 ;
+		}
         $workExperience->save();
 		return redirect ('home');
     }
