@@ -89,7 +89,6 @@ class WorkExperienceController extends Controller
            $workExperience->current = $input['current'];
         }
         $workExperience->save();
-        dd($workExperience);
 		return redirect ('home');
     }
 
