@@ -34,4 +34,11 @@ class UserRequest extends FormRequest
 			'facility_id'    => 'required|array|min:1|max:5',
 		];
     }
+    
+    public function messages () {
+		return [
+			'location_id.required' => 'Harap Isi Lokasi Yang Anda Inginkan',
+		];
+	}
 }
+

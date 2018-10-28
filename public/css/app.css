@@ -41,7 +41,7 @@ body {
 
 #wrapper #content .row .info{
 	margin-top: 50px;
-	font-size: 42px;
+	font-size: 30px;
 	font-weight: 600;
 }
 
@@ -62,4 +62,11 @@ body {
 	font-size: 20px;
 	width: 100%;
     margin-top: -20px;
+}
+
+
+@media only screen and (max-width: 600px) {
+    #dashboard {
+        background-color: red;
+    }
 }
