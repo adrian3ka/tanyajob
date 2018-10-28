@@ -78,9 +78,8 @@
 					<div class="col-sm-4">Kemampuan yang dimiliki</div>
 					<div class="col-sm-8">
 						<select class="multiple-select" style="width:95%;" name="skill_set_id[]" multiple="multiple">
-								<!--option selected>Pilih satu atau lebih</option-->
 								@for ($i = 0; $i < $skill_set->count() ; $i++)
-									<option value="{{ $skill_set[$i]->id }}">{{ $skill_set[$i]->name }} </option> 
+									<option value="{{ $skill_set[$i]->id }}" {{ !Auth::user()->skillSets->pluck('id')->intersect($skill_set[$i]->id)->isEmpty() ? "selected" : ""}}>{{ $skill_set[$i]->name }} </option> 
 								@endfor
 						</select>
 												
@@ -91,9 +90,8 @@
 					<div class="col-sm-4">Lokasi Yang di Inginkan</div>
 					<div class="col-sm-8">
 						<select class="multiple-select" style="width:95%;" name="location_id[]" multiple="multiple">
-								<!--option selected>Pilih satu atau lebih</option-->
 								@for ($i = 0; $i < $master_location->count() ; $i++)
-									<option value="{{ $master_location[$i]->id }}">{{ $master_location[$i]->name }} </option> 
+									<option value="{{ $master_location[$i]->id }}" {{ !Auth::user()->expectedLocations->pluck('id')->intersect($master_location[$i]->id)->isEmpty() ? "selected" : ""}}>{{ $master_location[$i]->name }} </option> 
 								@endfor
 						</select>
 					</div>
@@ -117,7 +115,7 @@
 					<div class="col-sm-8">
 						<select class="multiple-select" style="width:95%;" name="facility_id[]" multiple="multiple">
 								@for ($i = 0; $i < $facility->count() ; $i++)
-									<option value="{{ $facility[$i]->id }}">{{ $facility[$i]->name }} </option>
+									<option value="{{ $facility[$i]->id }}" {{ !Auth::user()->expectedFacilities->pluck('id')->intersect($facility[$i]->id)->isEmpty() ? "selected" : ""}} >{{ $facility[$i]->name }} </option>
 								@endfor
 						</select>
 					</div>

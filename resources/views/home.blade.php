@@ -93,7 +93,7 @@
 					</div>
 					<div class="row user-info">
 						<div class="col-sm-4">Jenjang Karir</div>
-						<div class="col-sm-8">Staff</div>
+						<div class="col-sm-8">{{ $exp->job_level->name }}</div>
 					</div>
 					
 					<div class="row user-info">

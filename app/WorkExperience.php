@@ -15,4 +15,9 @@ class WorkExperience extends Model
     {
         return $this->hasOne('App\MasterLocation','id','location_id');
     }
+    
+    public function job_level()
+    {
+        return $this->hasOne('App\MasterJobLevel','id','job_level_id');
+    }
 }
