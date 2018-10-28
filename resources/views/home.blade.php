@@ -7,6 +7,7 @@
 @endsection
 
 @section('content')
+
 <div class="wrapper">
 	<div id="dashboard">
 		<div class ="pnlTitle">	
