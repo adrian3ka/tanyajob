@@ -36,4 +36,21 @@ class WorkExperienceRequest extends FormRequest
 			'field_id'    => 'required',
 		];
     }
+    
+    public function messages () {
+		return [
+			'location_id.required' => 'Lokasi harus diisi',
+			'company_name.required' => 'Nama perusahaan harus diisi',
+			'salary_lower.required' => 'Gaji minimal harus diisi',
+			'salary_upper.required' => 'Gaji maksimal harus diisi',
+			'expected_salary_upper.gte' => 'Gaji maksimal harus lebih besar dari gaji minimal',
+			'started_work_at.required' => 'Tanggal masuk harus diisi',
+			'ended_work_at.required_without' => 'Tanggal keluar harus diisi',
+			'current.required_without' => 'Harap memberi checklist jika Anda masih bekerja di perusahaan tersebut atau mengisi tanggal selesai bekerja',
+			'industry_id.required' => 'Bidang industri harus diisi',
+			'job_position.required' => 'Posisi pekerjaan harus diisi',
+			'field_id.required' => 'Bidang pekerjaan harus diisi',
+			
+		];
+	}
 }
