@@ -14,7 +14,7 @@
 			<div class="row title">
 				<div class="col-sm-4">PROFIL DIRI</div>
 				<a href=" {{  url('/users/'. Auth::user()->id . '/edit') }} ">
-					<button class="btnEdit">Edit<img class ="edit-icon" src="{{  asset('img/home/edit.png') }}" width="30px"></button>
+					<button class="btnEdit">Edit<img class ="edit-icon" src="{{  asset('img/home/edit.png') }}" width="15px"></button>
 				</a>
 			</div>
 		</div>
@@ -67,7 +67,7 @@
 			<div class="row title">
 				<div class="col-sm-4">PENGALAMAN</div>
 					<a href="{{  url('/workexperiences/create') }} ">
-						<button class="btnAdd">Add<img class ="add-icon" src="{{  asset('img/home/add.png') }}" width="25px"></button>
+						<button class="btnAdd">Tambah<img class ="add-icon" src="{{  asset('img/home/add.png') }}" width="10px"></button>
 					</a>
 				</div>
 			</div>
