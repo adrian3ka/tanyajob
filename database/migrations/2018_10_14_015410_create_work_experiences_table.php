@@ -21,8 +21,8 @@ class CreateWorkExperiencesTable extends Migration
             $table->integer('field_id')->unsigned();
             $table->string('job_position');
             $table->integer('job_level_id')->unsigned();
-            $table->integer('salary_lower');
-            $table->integer('salary_upper');
+            $table->bigInteger('salary_lower');
+            $table->bigInteger('salary_upper');
             $table->integer('location_id')->unsigned();
             $table->timestamp('started_work_at');
             $table->timestamp('ended_work_at')->nullable();
