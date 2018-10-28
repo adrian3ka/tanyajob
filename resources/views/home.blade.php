@@ -21,7 +21,7 @@
 		<div class="pnlUserInfo">
 		<div class="row user-info">
 			<div class="col-sm-4">Tanggal Lahir</div>
-			<div class="col-sm-8">{{ Auth::user()->date_of_birth->format("d M Y") }}</div>
+			<div class="col-sm-8">{{ isset(Auth::user()->date_of_birth) ? Auth::user()->date_of_birth->format("d M Y") : ""}}</div>
 		</div>
 		<div class="row user-info">
 			<div class="col-sm-4">Pendidikan Terakhir</div>
@@ -124,7 +124,7 @@
 					@else
 						<div class="row user-info">
 							<div class="col-sm-4">Selesai Bekerja</div>
-							<div class="col-sm-8">{{ $exp->ended_work_at->format("d M Y") }}</div>
+							<div class="col-sm-8">{{ isset($exp->ended_work_at) ? $exp->ended_work_at->format("d M Y") : "" }}</div>
 						</div>
 						@php
 							$diff = Carbon\Carbon::parse($exp->started_work_at)->diff( Carbon\Carbon::parse($exp->ended_work_at))->format('%y Tahun, %m Bulan and %d Hari');
