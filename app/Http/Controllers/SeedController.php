@@ -593,7 +593,7 @@ class SeedController extends Controller
 		App\MasterIndustry::firstOrCreate(['name' => 'Biro Perjalanan']);
 		App\MasterIndustry::firstOrCreate(['name' => 'Kertas']);
 		App\MasterIndustry::firstOrCreate(['name' => 'Furnitur']);
-		App\MasterIndustry::firstOrCreate(['name' => 'Perhotelan']); .
+		App\MasterIndustry::firstOrCreate(['name' => 'Perhotelan']);
 		App\MasterIndustry::firstOrCreate(['name' => 'Perbankan']);
 		App\MasterIndustry::firstOrCreate(['name' => 'Jasa Pengamanan']);
 		App\MasterIndustry::firstOrCreate(['name' => 'Kecantikan']);
