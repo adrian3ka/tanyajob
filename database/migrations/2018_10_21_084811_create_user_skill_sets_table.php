@@ -13,7 +13,8 @@ class CreateUserSkillSetsTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_skill_sets', function (Blueprint $table) {			
+        Schema::create('user_skill_sets', function (Blueprint $table) {		
+			$table->engine = 'InnoDB';	
 			$table->integer('user_id')->unsigned();
 			$table->integer('skill_set_id')->unsigned();
 			$table->unique(['user_id', 'skill_set_id']);

@@ -7,55 +7,137 @@
 @endsection
 
 @section('content')
-<div class ="dashboard">
-<div class="row container-fluid h-100">
-  <div class="col-sm-3"style="background-color:yellow;">.col-sm-3</div>
-  <div class="col-sm-6"style="background-color:pink;">
-	  <!--button class="btn">Add<img class ="icon" src="{{  asset('img/home/profile.png') }}" width="200px"></button-->
-  <div class="pnlUserInfo">
-		<div class="row user-info text-left h-100">
-			<div class="classWithPad">Widget 1</div>
-			<!--div class="col-sm-6 text-left">Tanggal Lahir</div-->
-			<div class="col-sm-6">24 Juli 1997</div>
-		</div>
-		<div class="row user-info text-left">
-			<div class="col-sm-6 text-left">Pendidikan Terakhir</div>
-			<div class="col-sm-6">S1</div>
-		</div>
-		<div class="row user-info text-left">
-			<div class="col-sm-6 text-left">Jurusan</div>
-			<div class="col-sm-6">Computer Science</div>
-		</div>
-		<div class="row user-info text-left">
-			<div class="col-sm-6 text-left">Kemampuan</div>
-			<div class="col-sm-6">
-				<span class="label label-primary">PHP</span>
-				<span class="label label-primary">Javascript</span>
-				<span class="label label-primary">MySQL</span>
-				<span class="label label-primary">COBOL</span>
+<div class="wrapper">
+	<div id="dashboard">
+		<div class ="pnlTitle">	
+			<div class="row title">
+				<div class="col-sm-4">PROFIL DIRI</div>
+				<a href=" {{  url('/users/'. Auth::user()->id . '/edit') }} ">
+					<button class="btnEdit">Edit<img class ="edit-icon" src="{{  asset('img/home/edit.png') }}" width="30px"></button>
+				</a>
 			</div>
 		</div>
-		<div class="row user-info mt-5 md-2 text-left">
-			<div class="col-sm-6 text-left">Bersedia Ditempatkan</div>
-			<!--div class="col-sm-6">Widget 2</div-->
-			<div class="col-sm-6">DKI-Jakarta</div>
+		<div class="pnlUserInfo">
+		<div class="row user-info">
+			<div class="col-sm-4">Tanggal Lahir</div>
+			<div class="col-sm-8">{{ Auth::user()->date_of_birth }}</div>
 		</div>
-		<div class="row user-info text-left">
-			<div class="col-sm-6 mr-2 text-left ">Ekspetasi Gaji</div>
-			<div class="col-sm-6">Rp 15.000.000,- hingga Rp 25.000.000,-</div>
+		<div class="row user-info">
+			<div class="col-sm-4">Pendidikan Terakhir</div>
+			<div class="col-sm-8">{{ Auth::user()->lastDegree? Auth::user()->lastDegree->name : "-" }}</div>
 		</div>
-		<div class="row user-info text-left" >
-			<div class="col-sm-6 text-left">Fasilitas Yang Diharapkan</div>
-			<div class="col-sm-6">
-				<span class="label label-success">Makan Siang</span>
-				<span class="label label-success">Makan Malam</span>
-				<span class="label label-success">Gaji Net</span>
-				<span class="label label-success">Asuransi Kesehatan</span>
+		<div class="row user-info">
+			<div class="col-sm-4">Jurusan</div>
+			<div class="col-sm-8">{{ Auth::user()->major? Auth::user()->major->name : "-" }}</div>
+		</div>
+		<div class="row user-info">
+			<div class="col-sm-4">Kemampuan</div>
+			<div class="col-sm-8">
+				@foreach (Auth::user()->skillSets as $skill)
+					<span class="label label-primary">{{ $skill->name }}</span>
+				@endforeach
 			</div>
 		</div>
-  </div>
-  </div>
-  <div class="col-sm-3"style="background-color:yellow;">.col-sm-3</div>
+		<div class="row user-info">
+			<div class="col-sm-4">Bersedia Ditempatkan</div>
+			<div class="col-sm-8">
+				@foreach (Auth::user()->expectedLocations as $loc)
+					<span class="label label-primary">{{ $loc->name }}</span>
+				@endforeach</div>
+		</div>
+		<div class="row user-info">
+			<div class="col-sm-4">Ekspetasi Gaji</div>
+			<div class="col-sm-8">Rp. {{ Auth::user()->expected_salary_lower}}, -  hingga Rp. {{ Auth::user()->expected_salary_upper }}, -</div>
+		</div>
+		<div class="row user-info">
+			<div class="col-sm-4">Fasilitas Yang Diharapkan</div>
+			<div class="col-sm-8">
+				@foreach (Auth::user()->expectedFacilities as $f)
+					<span class="label label-success">{{ $f->name }}</span>
+				@endforeach</div>
+			</div>
+		</div>
+		</div>
+	</div>
+		
+		
+	<div id="dashboard">
+		<div class ="pnlTitle">	
+			<div class="row title">
+				<div class="col-sm-4">PENGALAMAN</div>
+					<a href="{{  url('/workexperiences/create') }} ">
+						<button class="btnAdd">Add<img class ="add-icon" src="{{  asset('img/home/add.png') }}" width="25px"></button>
+					</a>
+				</div>
+			</div>
+		<div class="pnlExpInfo">
+			@foreach (Auth::user()->workExperiences as $exp)
+				<div id="dashboard-detail">
+					<div class ="incCompany">
+					<div class="row company-info">
+						<div class="col-sm-12">
+							<button class="building"><img class ="building-icon" src="{{  asset('img/home/asset gedung.png') }}" width="20px"></button>
+							<div class="col-sm-8">{{ $exp->company_name }}</div>
+							<button class="btnEditExp"><img class ="edit-icon" src="{{  asset('img/home/edit.png') }}" width="20px"></button>
+						</div>
+					</div>
+					<div class="row user-info">
+						<div class="col-sm-4">Bidang Industri</div>
+						<div class="col-sm-8">{{ $exp->industry->name }}</div>
+					</div>
+					<div class="row user-info">
+						<div class="col-sm-4">Posisi</div>
+						<div class="col-sm-8">{{ $exp->job_position }}</div>
+					</div>
+					<div class="row user-info">
+						<div class="col-sm-4">Jenjang Karir</div>
+						<div class="col-sm-8">Staff</div>
+					</div>
+					
+					<div class="row user-info">
+						<div class="col-sm-4">Gaji</div>
+						<div class="col-sm-8">{{ $exp->salary_lower }} - {{ $exp->salary_upper }}</div>
+					</div>
+					<div class="row user-info">
+						<div class="col-sm-4">Lokasi</div>
+						<div class="col-sm-8">{{ $exp->location->name }}</div>
+					</div>
+					<div class="row user-info">
+						<div class="col-sm-4">Mulai Bekerja</div>
+						<div class="col-sm-8">{{ $exp->started_work_at }}</div>
+					</div>
+					@if($exp->current)
+						<div class="row user-info">
+							<div class="col-sm-4">Masih Bekerja Disini</div>
+						</div>
+						@php
+							$now = now();
+							$diff = Carbon\Carbon::parse($exp->started_work_at)->diff($now)->format('%y Tahun, %m Bulan and %d Hari');
+						@endphp
+						<div class="row user-info">
+							<div class="col-sm-4">Lama Bekerja</div>
+							<div class="col-sm-8">{{ $diff }}</div>
+						</div>
+					@else
+						<div class="row user-info">
+							<div class="col-sm-4">Selesai Bekerja</div>
+							<div class="col-sm-8">{{ $exp->ended_work_at }}</div>
+						</div>
+						@php
+							$diff = Carbon\Carbon::parse($exp->started_work_at)->diff( Carbon\Carbon::parse($exp->ended_work_at))->format('%y Tahun, %m Bulan and %d Hari');
+						@endphp
+						<div class="row user-info">
+							<div class="col-sm-4">Lama Bekerja</div>
+							<div class="col-sm-8">{{ $diff }}</div>
+						</div>
+					@endif
+				</div>
+				</div>
+			@endforeach
+			<br>
+			
+		</div>
+	</div>
 </div>
 </div>
 

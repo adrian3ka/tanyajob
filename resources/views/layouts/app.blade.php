@@ -20,32 +20,51 @@
     </head>
     <body>
 		<div id="wrapper">
-			<div id="header">                   
-				@auth
-					<a class = "header-button main-logo pull-left" href="{{ url('/home') }}"><img src="{{  asset('img/logo-main.png') }}" width="90px"></a>
-					<a class = "header-button" href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-						KELUAR
-					</a>
-
-					<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-						{{ csrf_field() }}
-					</form>
-				@else
-					<a class = "header-button main-logo pull-left" href="{{ url('/') }}"><img src="{{  asset('img/logo-main.png') }}" width="90px"></a>
-					<a class = "header-button company" href="#">PERUSAHAAN</a>
-					<a class = "header-button" href="{{ route('login') }}">MASUK</a>
-					<a class = "header-button" href="{{ route('register') }}">DAFTAR</a>
-				@endauth
-			</div>
-
+			<nav class="navbar navbar-inverse">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span> 
+						</button>
+						<a href="{{ url('/home') }}"><img src="{{  asset('img/logo-main.png') }}" width="70px"></a>
+					</div>
+					<div class="collapse navbar-collapse" id="myNavbar">
+						<ul class="nav navbar-nav">
+							<li><a href="#">Home</a></li>
+							<li><a href="#">Page 1</a></li>
+							<li><a href="#">Page 2</a></li> 
+							<li><a href="#">Page 3</a></li> 
+						</ul>
+						<ul class="nav navbar-nav navbar-right">
+							<li><a class = "header-button" href="{{ route('register') }}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+							              
+							@auth
+								<li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" >
+									<span class="glyphicon glyphicon-log-in"></span> Logout
+								</a></li>
+								<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+									{{ csrf_field() }}
+								</form>
+							@else
+								<li><a href="{{ route('login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+							@endauth
+						</ul>
+					</div>
+				</div>
+			</nav>
             <div id="content">
 				@yield('content')
             </div>
             
 			
         </div>
-        <div id="footer">
-			&copy; Tanya Job
-		</div>
+		<nav class="navbar-wrapper navbar-inverse">
+			<div class="container-fluid">
+				<p class="navbar-text pull-left">&copy; Tanyajob</p>
+				<a href="#" class="btn navbar-btn btn-danger pull-right">Subscribe</a> 
+			</div>
+		</nav>
     </body>
 </html>
