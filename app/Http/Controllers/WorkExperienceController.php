@@ -85,7 +85,9 @@ class WorkExperienceController extends Controller
         $workExperience->started_work_at = $input['started_work_at'];
         if (isset($input['ended_work_at'])) {
            $workExperience->ended_work_at = $input['ended_work_at'];
-        } else if (isset($input['current'])) {
+        } 
+        
+        if (isset($input['current'])) {
            $workExperience->current = $input['current'];
         }
         $workExperience->save();
