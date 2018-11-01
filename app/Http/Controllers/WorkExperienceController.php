@@ -77,7 +77,6 @@ class WorkExperienceController extends Controller
     {     
         $workExperience = WorkExperience::FindOrFail($id);
         $input = $request->all();
-        
         $workExperience->user_id = Auth::user()->id;
         $workExperience->company_name = $input['company_name'];
         $workExperience->industry_id = $input['industry_id'];
@@ -87,6 +86,11 @@ class WorkExperienceController extends Controller
         $workExperience->salary_lower = $input['salary_lower'];
         $workExperience->salary_upper = $input['salary_upper'];
         $workExperience->location_id = $input['location_id'];
+
+        // for fixing bug started work update to current time
+        //TODO:: Fixing this
+		$workExperience->update(['started_work_at' => now()]);
+
         $workExperience->started_work_at = $input['started_work_at'];
         if (isset($input['ended_work_at'])) {
            $workExperience->ended_work_at = $input['ended_work_at'];
