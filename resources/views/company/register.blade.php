@@ -10,16 +10,23 @@
 	<img src="{{  asset('img/register/register_icon.png') }}" width=60px>
 </div>
 <div class="row register-form">
-	<form method="POST" action="{{ route('register') }}">
+	<form method="POST" action="{{ route('companies') }}">
 		@csrf
 		<div class="form-group">
-			<input placeholder="Nama" id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+			<input placeholder="Nama Perusahaan" id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
 
 			@if ($errors->has('name'))
 				<span class="invalid-feedback" role="alert">
 					<strong>{{ $errors->first('name') }}</strong>
 				</span>
 			@endif
+		</div>
+		<div class="form-group">
+			<select class="form-control" name="industry_id">
+				@for ($i = 0; $i < $master_industries->count() ; $i++)
+					<option value="{{ $master_industries[$i]->id }}" {{ old('industry_id') ==  $master_industries[$i]->id ? "selected" : ""}}>{{ $master_industries[$i]->name }} </option>
+				@endfor
+			</select>
 		</div>
 
 		<div class="form-group">
