@@ -52,24 +52,11 @@ class UserController extends Controller
         echo $request;
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        //
         echo $id;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         return view('user/edit',[
@@ -81,21 +68,14 @@ class UserController extends Controller
 		]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(UserRequest $request, $id)
     {
-        //
         $user = User::findOrFail($id);
         $input = $request->all();
         
         $user->update($request->all());
         $user->date_of_birth = $input['date_of_birth'];
+        $user->gender = $input['gender'];
         $user->last_degree_id = $input['last_degree_id'];
         $user->major_id = $input['major_id'];
         $user->expected_salary_lower = $input['expected_salary_lower'];
@@ -108,15 +88,9 @@ class UserController extends Controller
 		return redirect ('home');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
-        //
         echo "destroy";
     }
 }

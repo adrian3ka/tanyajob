@@ -50,4 +50,10 @@ class User extends \TCG\Voyager\Models\User
 	public function major() {
 		return $this->belongsTo('App\MasterMajor','major_id');
 	}
+	public function getGender($value) {
+		if ($this->gender == "1" ) {
+			return "Laki - laki";
+		}
+		return "Perempuan";
+	}
 }

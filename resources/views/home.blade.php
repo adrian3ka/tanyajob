@@ -23,6 +23,11 @@
 			<div class="col-sm-4">Tanggal Lahir</div>
 			<div class="col-sm-8">{{ isset(Auth::user()->date_of_birth) ? Auth::user()->date_of_birth->format("d M Y") : ""}}</div>
 		</div>
+		
+		<div class="row user-info">
+			<div class="col-sm-4">Gender</div>
+			<div class="col-sm-8">{{ isset(Auth::user()->gender) ? Auth::user()->getGender(Auth::user()->gender) : ""}}</div>
+		</div>
 		<div class="row user-info">
 			<div class="col-sm-4">Pendidikan Terakhir</div>
 			<div class="col-sm-8">{{ Auth::user()->lastDegree? Auth::user()->lastDegree->name : "-" }}</div>

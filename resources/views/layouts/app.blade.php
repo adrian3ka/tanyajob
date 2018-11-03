@@ -55,7 +55,7 @@
 								</form>
 							@else
 								<li><a href="{{ route('login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-								<li><a href="{{ route('companies/register') }}"><span class="glyphicon glyphicon-home"></span> Perusahaan</a></li>
+								<!--li><a href="{{ route('companies/register') }}"><span class="glyphicon glyphicon-home"></span> Perusahaan</a></li-->
 							@endauth
 						</ul>
 					</div>

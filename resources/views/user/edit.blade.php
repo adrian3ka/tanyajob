@@ -49,9 +49,19 @@
 			<form action=" {{ url('users/' . Auth::user()->id ) }}" method="POST">
 				{{ csrf_field() }}
 				{{ method_field('PUT')}}
+				
 				<div class="row detail form-group {{ $errors->has('date_of_birth') ? 'has-error' : '' }}" style="padding-top:50px">
 					<div class="col-sm-4">Tanggal Lahir</div>	
 					<div class="col-sm-8"><input required class="form-control has-error" type="date" name="date_of_birth" value="{{ old('date_of_birth') ? old('date_of_birth') : (Auth::user()->date_of_birth != null ? Auth::user()->date_of_birth->format('Y-m-d') : '') }}"></div>
+				</div>
+				<div class="row detail form-group {{ $errors->has('gender') ? 'has-error' : '' }}">
+					<div class="col-sm-4">Gender</div>
+					<div class="col-sm-8">
+						<select class="form-control" name="gender" required>
+							<option value="0"> Perempuan</option>
+							<option value="1"> Laki - laki</option>
+						</select>
+					</div>
 				</div>
 				<div class="row detail form-group {{ $errors->has('last_degree_id') ? 'has-error' : '' }}">
 					<div class="col-sm-4">Pendidikan Terakhir</div>
