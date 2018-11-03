@@ -81,7 +81,7 @@
 					<div class="col-sm-8">
 						<select class="form-control" name="job_level_id">
 							@for ($i = 0; $i < $master_job_level->count() ; $i++)
-								<option value="{{ $master_job_level[$i]->id }}" {{ $workExp->job_level_id ==  $master_job_level[$i]->id ? "selected" : ""}}>{{ $master_job_level[$i]->name }} </option>
+								<option value="{{ $master_job_level[$i]->id }}" {{ $workExp->job_level_id == $master_job_level[$i]->id ? "selected" : ""}}>{{ $master_job_level[$i]->name }} </option>
 							@endfor
 						</select>
 					</div>
@@ -100,7 +100,7 @@
 					<div class="col-sm-8">
 						<select class="form-control" name="location_id">
 							@for ($i = 0; $i < $master_location->count() ; $i++)
-								<option value="{{ $master_location[$i]->id }}" {{ $workExp->location_id ==  $master_location[$i]->id ? "selected" : ""}}>{{ $master_location[$i]->name }} </option>
+								<option value="{{ $master_location[$i]->id }}" {{ $workExp->location_id == $master_location[$i]->id ? "selected" : ""}}>{{ $master_location[$i]->name }} </option>
 							@endfor
 						</select>
 					</div>

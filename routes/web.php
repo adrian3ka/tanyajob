@@ -28,6 +28,12 @@ Route::resources([
     'workexperiences' => 'WorkExperienceController'
 ]);
 
+Route::get('companies/register','CompanyController@register')->name('companies/register');
+
+Route::resources([
+    'companies' => 'CompanyController'
+]);
+
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });

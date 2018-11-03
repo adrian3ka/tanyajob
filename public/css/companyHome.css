@@ -1,0 +1,215 @@
+.container-fluid {
+    display: table; /* Make the container element behave like a table */
+    width: 100%; /* Set full-width to expand the whole page */
+    height: 100%;
+}
+.classWithPad { margin-top:100px; padding:100px; }
+.col {
+    display: table-cell; /* Make elements inside the container behave like table cells */
+    margin-top: 100px;
+}
+.user-info { margin-top:20px; }
+.pnlUserInfo {
+	height: 100%;
+}
+
+#wrapper {
+	background-color: #eff2f7;
+	background-image: none;
+	background-size: cover;
+	
+}
+#dashboard {
+	background-color: none;
+	margin: 0 10%;
+	padding-top: 20px;
+	padding-bottom: 30px;
+	text-align: left;
+	border-radius: 25px;
+	margin-bottom: 20px;
+	margin-top: 20px;
+}
+
+#wrapper #dashboard .pnlTitle{
+	background-color: /*#afceff*/ #005b96;
+	padding-top: 20px;
+	padding-bottom: 10px;
+	text-align: left;
+	color: white;
+	
+}
+
+#wrapper #dashboard .pnlUserInfo{
+	background-color: white;
+	padding-top: 20px;
+	padding-bottom: 10px;
+	text-align: left;
+	border-bottom: 6px solid #005b96;
+	border-right: 6px solid #005b96;
+	border-left: 6px solid #005b96;
+	height: 100%;
+}
+
+#wrapper #dashboard .pnlExpInfo{
+	background-color: none;
+	text-align: left;
+}
+
+#wrapper #dashboard .title .btnEdit .edit-icon {
+	background-color: none;
+	margin-left: 5px;
+	margin-bottom: 10px;
+	margin-top: 5px;
+
+}
+
+
+#wrapper #dashboard .title .btnAdd .add-icon {
+	margin-left: 5px;
+	margin-bottom: 5px;
+	margin-bottom: 5px;
+	
+}
+
+#dashboard-detail {
+	margin: 0%;
+	padding-top: 40px;
+	padding-left: 10px;
+	padding-bottom: 30px;
+	text-align: left;
+	height: 100%;
+	background-color : white;
+	border-left: 6px solid #005b96;
+	border-right: 6px solid #005b96;
+	border-bottom: 6px solid #005b96;
+}
+
+
+#dashboard .user-info {
+	font-size: 15px;
+	margin-bottom: 15px;
+}
+
+#wrapper #dashboard .pnlExpInfo #dashboard-detail .company-info {
+	font-size: 18px;
+	margin-bottom: 15px;
+	color: black;
+	font-weight: bold;
+	background-color: none;
+	padding-top:2px;
+	padding-bottom:2px;
+}
+
+#wrapper #dashboard .pnlExpInfo #dashboard-detail .company-info .building {
+	background-color: white;
+	border: none;
+	float:left;
+}
+
+#wrapper #dashboard .pnlExpInfo #dashboard-detail .incCompany {
+	background-color: none;
+	border: none;
+}
+
+#dashboard .title {
+	font-weight: bold;
+	font-size: 25px;
+	
+}
+
+hr{
+	border-width: 3px;
+}
+
+.btnEdit {
+	float:right;
+	display:inline-block;
+	border:0.16em solid #FFFFFF;
+	font-size: 15px;
+	box-sizing: border-box;
+	text-decoration:none;
+	text-transform:uppercase;
+	font-weight:100;
+	color:#FFFFFF;
+	background-color: #005B96;
+	text-align:center;
+	transition: all 0.15s;
+}
+
+.btnEditExp {
+	float: right;
+	background-color: white;
+	border: none;
+}
+
+.btnEdit:hover {
+	/*background-color: #afceff;
+	color: #3a00ff;
+	*/
+	color:#005b96;
+	border-color:#FFFFFF;
+	Background-color: #FFFFFF;
+	
+}
+
+.btnEdit:active {
+
+	color:#005b96;
+	border-color:#FFFFFF;
+	Background-color: #FFFFFF;
+	box-shadow: 0 3px #666;
+	transform: translateY(4px);
+	
+}
+
+.btnAdd {
+	float:right;
+	display:inline-block;
+	border:0.16em solid #FFFFFF;
+	font-size: 15px;
+	box-sizing: border-box;
+	text-decoration:none;
+	text-transform:uppercase;
+	font-weight:100;
+	color:#FFFFFF;
+	background-color: #005B96;
+	text-align:center;
+	transition: all 0.15s;
+	font-size: 15px;
+}
+
+.btnAdd:hover{
+	color:#005b96;
+	border-color:#FFFFFF;
+	Background-color: #FFFFFF;
+}
+.btnAdd:active {
+	color:#005b96;
+	border-color:#FFFFFF;
+	Background-color: #FFFFFF;
+	box-shadow: 0 3px #666;
+	transform: translateY(4px);
+	
+	
+}
+.pengalaman{
+	border-bottom: 6px solid red;
+	color: red;
+	height:100%;	
+}
+
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 1000px) {
+	#dashboard .user-info {
+		font-size: 13px;
+		margin-bottom: 15px;
+	}
+}
