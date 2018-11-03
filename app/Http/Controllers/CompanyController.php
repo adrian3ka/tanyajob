@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
+use App\MasterIndustry;
 
 class CompanyController extends Controller
 {
 	public function register() {
-		return view('company.register');
+		return view('company.register',[
+			'master_industries' => MasterIndustry::orderBy('name')->get(),
+		]);
 	}
     /**
      * Display a listing of the resource.
@@ -24,10 +28,10 @@ class CompanyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+   /* public function create()
     {
         //
-    }
+    }*/
 
     /**
      * Store a newly created resource in storage.
@@ -84,4 +88,7 @@ class CompanyController extends Controller
     {
         //
     }
+    
+    
 }
+
