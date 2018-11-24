@@ -12,6 +12,8 @@
 @section('script')
 	<script type="text/javascript">
 		$(document).ready(function() {
+			var salary_range = {{ json_encode($salary_range) }} ;
+
 			var checkbox = $('#current');
 			function toggleCheckBox() {
 				if (checkbox.is(':checked')) {
@@ -25,6 +27,17 @@
 				toggleCheckBox();
 			});
 			toggleCheckBox();
+			
+			function update_salary () {
+				var index = $('#salary_range').children('option:selected').index();
+				$('#salary_lower').val(salary_range[index-1][0]);
+				$('#salary_upper').val(salary_range[index-1][1]);	
+			}
+			$('#salary_range').change(function() {
+				update_salary ();
+			});
+			update_salary ();
+
 		});
 	</script>
 @endsection
@@ -86,14 +99,27 @@
 						</select>
 					</div>
 				</div>
+			
 				<div class="row detail">
-					<div class="col-sm-4">Gaji Awal</div>
-					<div class="col-sm-8"><input class="form-control" type="number" name="salary_lower" value="{{ $workExp->salary_lower }}"></div>
+					<div class="col-sm-4">Gaji per bulan</div>
+					<div class="col-sm-8">
+						<select class="form-control" id="salary_range">
+							<option value="" disabled selected>--Pilih--</option>
+							@for ( $i = 0 ; $i < count($salary_range) ; $i ++ ) 
+								<option {{$workExp->salary_upper == $salary_range[$i][1] ? "selected" : ""}} > 
+									Rp {{ number_format($salary_range[$i][0],2,',','.') }} - Rp {{ number_format($salary_range[$i][1],2,',','.')}}
+								</option>
+							@endfor
+						</select>
+					</div>
 				</div>
-				
-				<div class="row detail">
+				<div class="row detail hidden">
+					<div class="col-sm-4">Gaji Awal</div>
+					<div class="col-sm-8"><input id="salary_lower" class="form-control" type="number" name="salary_lower" value="{{ old('salary_lower') }}"></div>
+				</div>
+				<div class="row detail hidden">
 					<div class="col-sm-4">Gaji Akhir</div>
-					<div class="col-sm-8"><input class="form-control" type="number" name="salary_upper" value="{{ $workExp->salary_upper }}"></div>
+					<div class="col-sm-8"><input id="salary_upper" class="form-control" type="number" name="salary_upper" value="{{ old('salary_upper') }}"></div>
 				</div>
 				<div class="row detail">
 					<div class="col-sm-4">Lokasi</div>

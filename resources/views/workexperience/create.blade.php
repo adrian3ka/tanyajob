@@ -12,6 +12,7 @@
 @section('script')
 	<script type="text/javascript">
 		$(document).ready(function() {
+			var salary_range = {{ json_encode($salary_range) }} ;
 			var checkbox = $('#current');    
 			$('#current').on('click',function () {
 				if (checkbox.is(':checked')) {
@@ -21,7 +22,13 @@
 					$('#ended_work_at').prop('disabled', false);
 				}
 			});
+			$('#salary_range').change(function() {
+				var index = $(this).children('option:selected').index();
+				$('#salary_lower').val(salary_range[index-1][0]);
+				$('#salary_upper').val(salary_range[index-1][1]);
+			});
 		});
+		
 	</script>
 @endsection
 
@@ -85,13 +92,25 @@
 					</div>
 				</div>
 				<div class="row detail">
-					<div class="col-sm-4">Gaji Awal</div>
-					<div class="col-sm-8"><input class="form-control" type="number" name="salary_lower" value="{{ old('salary_lower') }}"></div>
+					<div class="col-sm-4">Gaji per bulan</div>
+					<div class="col-sm-8">
+						<select class="form-control" id="salary_range">
+							<option value="" disabled selected>--Pilih--</option>
+							@for ( $i = 0 ; $i < count($salary_range) ; $i ++ ) 
+								<option {{old('salary_upper') == $salary_range[$i][1] ? "selected" : ""}} > 
+									Rp {{ number_format($salary_range[$i][0],2,',','.') }} - Rp {{ number_format($salary_range[$i][1],2,',','.')}}
+								</option>
+							@endfor
+						</select>
+					</div>
 				</div>
-				
-				<div class="row detail">
+				<div class="row detail hidden">
+					<div class="col-sm-4">Gaji Awal</div>
+					<div class="col-sm-8"><input id="salary_lower" class="form-control" type="number" name="salary_lower" value="{{ old('salary_lower') }}"></div>
+				</div>
+				<div class="row detail hidden">
 					<div class="col-sm-4">Gaji Akhir</div>
-					<div class="col-sm-8"><input class="form-control" type="number" name="salary_upper" value="{{ old('salary_upper') }}"></div>
+					<div class="col-sm-8"><input id="salary_upper" class="form-control" type="number" name="salary_upper" value="{{ old('salary_upper') }}"></div>
 				</div>
 				<div class="row detail">
 					<div class="col-sm-4">Lokasi</div>
@@ -99,7 +118,6 @@
 						<select class="form-control" name="location_id">
 							<option value="" disabled selected>--Pilih--</option>
 							@for ($i = 0; $i < $master_location->count() ; $i++)
-								
 								<option value="{{ $master_location[$i]->id }}" {{ old('location_id') ==  $master_location[$i]->id ? "selected" : ""}}>{{ $master_location[$i]->name }} </option>
 							@endfor
 						</select>
@@ -115,7 +133,7 @@
 				<div class="row detail">
 					<div class="col-sm-4">Tanggal Selesai</div>
 					<div class="col-sm-5"><input id ="ended_work_at" class="form-control" type="date" name="ended_work_at" value="{{ old('ended_work_at') }}"></div>
-					<div class="col-sm-3"><input id="current[]" type="checkbox" name="current" value="1" {{ old('current') == "1" ? "checked" : ""}} >Masih Bekerja Di Sini</div>
+					<div class="col-sm-3"><input id="current" type="checkbox" name="current" value="1" {{ old('current') == "1" ? "checked" : ""}} >Masih Bekerja Di Sini</div>
 				</div>
 				<div class="row detail" style="text-align:center; padding-top:50px; border-bottom:1px solid #005b96"><button type="submit" class="btn btn-primary">Submit</button></div>
 			</form>

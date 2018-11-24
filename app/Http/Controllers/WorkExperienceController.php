@@ -13,6 +13,14 @@ use Illuminate\Support\Facades\Auth;
 
 class WorkExperienceController extends Controller
 {
+	
+	const SALARY_RANGE = [
+		[0, 5000000],
+		[5000000, 10000000],
+		[10000000, 20000000],
+		[20000000, 30000000],
+	];
+	
     public function index()
     {
         //
@@ -25,6 +33,7 @@ class WorkExperienceController extends Controller
 			'master_job_level' => MasterJobLevel::all(),
 			'master_location' => MasterLocation::orderBy('name')->get(),
 			'master_field' => MasterField::orderBy('name')->get(),
+			'salary_range' => self::SALARY_RANGE,
         ]);
     }
 
@@ -70,6 +79,7 @@ class WorkExperienceController extends Controller
 			'master_job_level' => MasterJobLevel::all(),
 			'master_location' => MasterLocation::orderBy('name')->get(),
 			'master_field' => MasterField::orderBy('name')->get(),
+			'salary_range' => self::SALARY_RANGE,
 		]);
     }
 

@@ -53,7 +53,7 @@
 		</div>
 		<div class="row user-info">
 			<div class="col-sm-4">Ekspetasi Gaji</div>
-			<div class="col-sm-8">Rp. {{ Auth::user()->expected_salary_lower}}, -  hingga Rp. {{ Auth::user()->expected_salary_upper }}, -</div>
+			<div class="col-sm-8">Rp {{ number_format(Auth::user()->expected_salary_lower,2,',','.')}}  hingga Rp {{ number_format(Auth::user()->expected_salary_upper,2,',','.')}}</div>
 		</div>
 		<div class="row user-info">
 			<div class="col-sm-4">Fasilitas Yang Diharapkan</div>
@@ -104,7 +104,7 @@
 					
 					<div class="row user-info">
 						<div class="col-sm-4">Gaji</div>
-						<div class="col-sm-8">{{ $exp->salary_lower }} - {{ $exp->salary_upper }}</div>
+						<div class="col-sm-8">Rp {{ number_format($exp->salary_lower,2,',','.')}} - Rp {{ number_format($exp->salary_upper,2,',','.') }}</div>
 					</div>
 					<div class="row user-info">
 						<div class="col-sm-4">Lokasi</div>
