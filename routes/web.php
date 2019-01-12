@@ -34,6 +34,10 @@ Route::resources([
     'companies' => 'CompanyController'
 ]);
 
+Route::resources([
+    'consultations' => 'ConsultationController'
+]);
+
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
