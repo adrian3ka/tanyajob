@@ -1,0 +1,57 @@
+#wrapperq {
+	background-color: red;
+	background-image: none;
+	background-size: cover;
+	
+	
+}
+#header-chatbot {
+	background-color: none !important;
+	background-image: none;
+	background-size: cover;
+	height: 100%;
+	padding-top: 0px;
+	padding-bottom: 100px;
+	padding-left: 100px;
+	padding-right: 100px;
+}
+
+#wrapper #content {
+	margin-top:0px;
+}
+
+#content-chatbot {
+	background-color: blue;
+	
+	min-height:100px;
+	margin-left:10%; 
+	margin-right:10%;
+	padding-bottom: 10px;
+	padding-top: 20px;
+}
+
+#content-chatbot .chat {
+	margin-right:10px;
+	margin-left:10px;
+	background-color: white;
+	margin-bottom: 30px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	width:max-content;
+}
+
+#content-chatbot .user-chat {
+	text-align: right;
+	margin-left: auto;
+}
+
+#content-chatbot .bot-chat {
+	text-align: left;
+}
+
+
+#content-chatbot .chat .txt-message {
+  width: 100%;
+  box-sizing: border-box;
+}
+
