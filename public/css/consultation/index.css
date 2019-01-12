@@ -22,7 +22,8 @@
 
 #content-chatbot {
 	background-color: blue;
-	
+	padding-left: 20px;
+	margin-right: 20px;
 	min-height:100px;
 	margin-left:10%; 
 	margin-right:10%;
@@ -31,8 +32,6 @@
 }
 
 #content-chatbot .chat {
-	margin-right:10px;
-	margin-left:10px;
 	background-color: white;
 	margin-bottom: 30px;
 	padding-top: 10px;
