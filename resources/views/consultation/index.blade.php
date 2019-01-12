@@ -19,11 +19,16 @@
 		<p class="user-chat chat"> Lagi mainnnnnnnnnnnnnnnnnnnn</p>
 		
 		
-		<form class="form-inline" action="/action_page.php">
+		<form class="form-horizontal" action="/action_page.php">
 			<div class="form-group">
-				<input type="text" class="form-control" id="email" placeholder="Type your message here" name="txt-message">
+				
+				<div class="col-sm-11"> 
+					<input type="text" class="form-control" id="email" placeholder="Type your message here" name="txt-message">
+				</div>
+				<div class="col-sm-1">
+					<button type="submit" class="btn btn-default" style="width:100%;">Send</button>
+				</div>
 			</div>
-			<button type="submit" class="btn btn-default">Send</button>
 		</form>
 
 	
