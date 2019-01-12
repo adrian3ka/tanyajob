@@ -37,15 +37,19 @@
 	padding-top: 10px;
 	padding-bottom: 10px;
 	width:max-content;
+	border-radius: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
 #content-chatbot .user-chat {
-	text-align: right;
+	
 	margin-left: auto;
 }
 
 #content-chatbot .bot-chat {
-	text-align: left;
+	margin-right: auto;
+	
 }
 
 
