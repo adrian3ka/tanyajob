@@ -34,9 +34,16 @@ Route::resources([
     'companies' => 'CompanyController'
 ]);
 
-Route::resources([
+/*Route::resources([
     'consultations' => 'ConsultationController'
-]);
+]);*/
+
+Route::get('consultations', 'ConsultationController@index'); // halaman index
+Route::get('consultations/create', 'ConsultationController@create'); // halaman create
+Route::post('consultations', 'ConsultationController@store'); // halaman create
+
+
+Route::get('/consultations/get/question','ConsultationController@getQuestion');
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
