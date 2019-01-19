@@ -89,27 +89,23 @@ class ConsultationController extends Controller
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_PORT => "8000",
-		  CURLOPT_URL => "http://localhost:8000/api/v1/ask/question/",
-		  CURLOPT_RETURNTRANSFER => true,
+		  CURLOPT_PORT => config ('api.port'),
+		  CURLOPT_URL => config ('api.getQuestion'),
+		  CURLOPT_RETURNTRANSFER => config ('api.returnTransfer'),
 		  CURLOPT_ENCODING => "",
-		  CURLOPT_MAXREDIRS => 10,
-		  CURLOPT_TIMEOUT => 30,
-		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-		  CURLOPT_CUSTOMREQUEST => "POST",
+		  CURLOPT_MAXREDIRS => config ('api.maxRedirs'),
+		  CURLOPT_TIMEOUT => config ('api.timeOut'),
+		  CURLOPT_HTTP_VERSION => config ('api.httpVersion'),
+		  CURLOPT_CUSTOMREQUEST => config ('api.request'),
 		  CURLOPT_POSTFIELDS => "{\n    \"category\": \"Major\"\n}",
-		  CURLOPT_HTTPHEADER => array(
-			"Content-Type: application/json",
-			"Postman-Token: 99cfa4d0-2d50-4c0d-a711-8d685c97fedb",
-			"cache-control: no-cache"
-		  ),
+		  CURLOPT_HTTPHEADER => config ('api.header'),
 		));
 
 		$response = curl_exec($curl);
 		$err = curl_error($curl);
 
 		curl_close($curl);
-
+		
 		if ($err) {
 		  echo "cURL Error #:" . $err;
 		} else {

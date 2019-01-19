@@ -18,6 +18,8 @@
 				e.preventDefault();
 				$("#content-chat").append('<p class="user-chat chat">'+message+'</p>'); 
 				var url = "{{ url("/consultations/get/question") }}"; 
+				var con="{{config ('api.ask')}}";
+				console.log ("config: " + con);
 				$.get(url, function(data, status){
 					console.log("Data: " + data + "\nStatus: " + status);
 					var jsonData = JSON.parse(data);
