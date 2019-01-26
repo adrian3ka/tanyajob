@@ -96,20 +96,20 @@ class ConsultationController extends Controller
     {
         //
     }
-    
-    public function getQuestion(){
+		
+	private function curlTanyaJob($url, $data){
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
 			CURLOPT_PORT => config ('api.port'),
-			CURLOPT_URL => config ('api.getQuestion'),
+			CURLOPT_URL => $url,
 			CURLOPT_RETURNTRANSFER => config ('api.returnTransfer'),
 			CURLOPT_ENCODING => "",
 			CURLOPT_MAXREDIRS => config ('api.maxRedirs'),
 			CURLOPT_TIMEOUT => config ('api.timeOut'),
 			CURLOPT_HTTP_VERSION => config ('api.httpVersion'),
 			CURLOPT_CUSTOMREQUEST => config ('api.request'),
-			CURLOPT_POSTFIELDS => "{\n    \"category\": \"Major\"\n}",
+			CURLOPT_POSTFIELDS => json_encode($data),
 			CURLOPT_HTTPHEADER => config ('api.header'),
 		));
 
@@ -117,6 +117,18 @@ class ConsultationController extends Controller
 		$err = curl_error($curl);
 
 		curl_close($curl);
+		
+		return [
+			'response' => $response,
+			'err' => $err
+		];
+		
+	}
+	
+    public function getQuestion(){
+		$x = $this->curlTanyaJob(config('api.getQuestion'), ['category'=> self::MAJOR]);
+		$err = $x['err'];
+		$response = $x['response'];	
 		
 		if ($err) {
 			echo json_encode([
@@ -126,6 +138,7 @@ class ConsultationController extends Controller
 			
 			$consultation = Consultation::firstOrNew(['user_id' => Auth::user()->id],['last_topic' => self::MAJOR]);
 			$consultation->save();
+			$consultation->last_topic;
 			
 			echo $response;
 		}
