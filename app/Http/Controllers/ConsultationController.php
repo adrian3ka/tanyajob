@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Consultation;
 
 class ConsultationController extends Controller
 {
@@ -11,6 +13,16 @@ class ConsultationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+	const MAJOR = "major";
+	
+	
+	
+	/*kalo ga login ga bisa masuk*/
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+     
     public function index()
     {
         //
@@ -111,6 +123,9 @@ class ConsultationController extends Controller
 				"question" => "Server can't be reach now"
 			]);
 		} else {
+			
+			$consultation = Consultation::firstOrNew(['user_id' => Auth::user()->id],['last_topic' => self::MAJOR]);
+			$consultation->save();
 			
 			echo $response;
 		}

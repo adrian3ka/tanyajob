@@ -14,6 +14,8 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+	
+	/*kalo ga login ga bisa masuk*/
     public function __construct()
     {
         $this->middleware('auth');
