@@ -89,16 +89,16 @@ class ConsultationController extends Controller
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_PORT => config ('api.port'),
-		  CURLOPT_URL => config ('api.getQuestion'),
-		  CURLOPT_RETURNTRANSFER => config ('api.returnTransfer'),
-		  CURLOPT_ENCODING => "",
-		  CURLOPT_MAXREDIRS => config ('api.maxRedirs'),
-		  CURLOPT_TIMEOUT => config ('api.timeOut'),
-		  CURLOPT_HTTP_VERSION => config ('api.httpVersion'),
-		  CURLOPT_CUSTOMREQUEST => config ('api.request'),
-		  CURLOPT_POSTFIELDS => "{\n    \"category\": \"Major\"\n}",
-		  CURLOPT_HTTPHEADER => config ('api.header'),
+			CURLOPT_PORT => config ('api.port'),
+			CURLOPT_URL => config ('api.getQuestion'),
+			CURLOPT_RETURNTRANSFER => config ('api.returnTransfer'),
+			CURLOPT_ENCODING => "",
+			CURLOPT_MAXREDIRS => config ('api.maxRedirs'),
+			CURLOPT_TIMEOUT => config ('api.timeOut'),
+			CURLOPT_HTTP_VERSION => config ('api.httpVersion'),
+			CURLOPT_CUSTOMREQUEST => config ('api.request'),
+			CURLOPT_POSTFIELDS => "{\n    \"category\": \"Major\"\n}",
+			CURLOPT_HTTPHEADER => config ('api.header'),
 		));
 
 		$response = curl_exec($curl);
@@ -107,10 +107,11 @@ class ConsultationController extends Controller
 		curl_close($curl);
 		
 		if ($err) {
-		  echo json_encode([
-			"question" => "Server can't be reach now"
-		  ]);
+			echo json_encode([
+				"question" => "Server can't be reach now"
+			]);
 		} else {
+			
 			echo $response;
 		}
 	}
