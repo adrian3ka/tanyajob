@@ -11,20 +11,47 @@
 
 @section('script')
 	<script type="text/javascript">
-		$(document).ready(function() {
+		var getQuestionUrl = "{{ url("/consultations/get/question") }}";
+		var extractInformationUrl = "{{ url("/consultations/extract/information") }}";
+		function getNextQuestion(url){
+			var jsonData;
+			$.ajax({
+				async: false,
+				type: "GET",
+				url: url,
+				success : function(data) {
+					jsonData = JSON.parse(data);
+				}
+			});
+			$("#content-chat").append('<p class="bot-chat chat">'+jsonData['question']+'</p>'); 
+			return ;
+		}
+		
+		function extractInformation(url, data){
+			console.log(data);
+			$('meta[name="csrf-token"]').attr('content');
+			$.ajax({
+				async: false,
+				type: "POST",
+				url: url,
+				data: data,
+				success : function(data) {
+					console.log(data);
+				}
+			});
+			return ;
+		}
+		
+		window.addEventListener('load', function () {
+			getNextQuestion(getQuestionUrl);
 			$("#form-chat-bot").submit(function(e){
 				var message = $("#txt-message").val();
-				console.log(message);
 				e.preventDefault();
-				$("#content-chat").append('<p class="user-chat chat">'+message+'</p>'); 
-				var url = "{{ url("/consultations/get/question") }}"; 
-				var con="{{config ('api.ask')}}";
-				console.log ("config: " + con);
-				$.get(url, function(data, status){
-					console.log("Data: " + data + "\nStatus: " + status);
-					var jsonData = JSON.parse(data);
-					console.log(jsonData);
-					$("#content-chat").append('<p class="bot-chat chat">'+jsonData['question']+'</p>'); 
+				$("#content-chat").append('<p class="user-chat chat">' + message + '</p>');
+				getNextQuestion(getQuestionUrl);
+				extractInformation(extractInformationUrl, {
+					"_token": "{{ csrf_token() }}",
+					'text' : message
 				});
 				return false;
 			});

@@ -2,6 +2,7 @@
 use Illuminate\Support\Facades\Config;
 return [
 	 'getQuestion' => 'http://localhost:8000/api/v1/ask/question/',
+	 'extractInformation' => 'http://localhost:8000/api/v1/extract/information/',
 	 'port' => '8000',
 	 'maxRedirs' => 10,
 	 'timeOut' => 30,

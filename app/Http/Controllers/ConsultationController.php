@@ -13,8 +13,9 @@ class ConsultationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-	const MAJOR = "major";
-	
+    const NIL = "Null";
+	const MAJOR = "Major";
+	const DEGREE = "Degree";
 	
 	
 	/*kalo ga login ga bisa masuk*/
@@ -125,8 +126,22 @@ class ConsultationController extends Controller
 		
 	}
 	
+	public function extractInformation(Request $request) {
+		$consultation = Consultation::where(['user_id' => Auth::user()->id])->first();
+		echo $consultation->last_topic;
+		
+        $input = $request->all();
+		$x = $this->curlTanyaJob(config('api.extractInformation'), [
+			'category'=> self::DEGREE,
+			'text' => $input['text'],
+		]);
+		
+		print_r($x);
+	}
+	
+	
     public function getQuestion(){
-		$x = $this->curlTanyaJob(config('api.getQuestion'), ['category'=> self::MAJOR]);
+		$x = $this->curlTanyaJob(config('api.getQuestion'), ['category'=> self::DEGREE]);
 		$err = $x['err'];
 		$response = $x['response'];	
 		
@@ -135,11 +150,9 @@ class ConsultationController extends Controller
 				"question" => "Server can't be reach now"
 			]);
 		} else {
-			
-			$consultation = Consultation::firstOrNew(['user_id' => Auth::user()->id],['last_topic' => self::MAJOR]);
+			$consultation = Consultation::firstOrNew(['user_id' => Auth::user()->id]);
+			$consultation->last_topic = self::DEGREE;
 			$consultation->save();
-			$consultation->last_topic;
-			
 			echo $response;
 		}
 	}
