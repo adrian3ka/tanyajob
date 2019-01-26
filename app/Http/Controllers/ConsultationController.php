@@ -107,9 +107,11 @@ class ConsultationController extends Controller
 		curl_close($curl);
 		
 		if ($err) {
-		  echo "cURL Error #:" . $err;
+		  echo json_encode([
+			"question" => "Server can't be reach now"
+		  ]);
 		} else {
-		  echo $response;
+			echo $response;
 		}
 	}
 }
