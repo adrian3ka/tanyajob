@@ -24,11 +24,12 @@
 	background-color: blue;
 	padding-left: 20px;
 	padding-right: 20px;
-	min-height:100px;
+	height:300px;
 	margin-left:10%; 
 	margin-right:10%;
 	padding-bottom: 10px;
 	padding-top: 20px;
+	overflow-y:auto;
 }
 
 #content-chatbot .chat {
