@@ -17,7 +17,6 @@ class ConsultationController extends Controller
 	const MAJOR = "Major";
 	const DEGREE = "Degree";
 	
-	
 	/*kalo ga login ga bisa masuk*/
     public function __construct()
     {
@@ -128,30 +127,50 @@ class ConsultationController extends Controller
 	
 	public function extractInformation(Request $request) {
 		$consultation = Consultation::where(['user_id' => Auth::user()->id])->first();
-		echo $consultation->last_topic;
-		
         $input = $request->all();
 		$x = $this->curlTanyaJob(config('api.extractInformation'), [
-			'category'=> self::DEGREE,
-			'text' => $input['text'],
+			'category'=> $consultation->last_topic,
+			'text' => $input['text'], //Saya Lulusan SMK
 		]);
-		
-		print_r($x);
+		$user = Auth::user();
+		if ($consultation->last_topic == self::DEGREE) {
+			//$x['response'] = SMK
+			//$id = MasterDegree::where(['name' => x['response']]);
+			//if $id == null {
+			//	$id = 0; //default
+			//}
+			//$user->last_degree_id = $id
+		}
+		$user->save();
 	}
 	
+	public function decideNextTopic() {
+		$rules = [
+			self::DEGREE => Auth::user()->last_degree_id,
+			self::MAJOR => Auth::user()->major_id,
+		];
+		$nextTopic = null;
+		foreach ($rules as $key => $value) {
+			if ($value == null) {
+				$nextTopic = $key;
+				break;
+			}
+		}
+		return $nextTopic;
+	}
 	
     public function getQuestion(){
-		$x = $this->curlTanyaJob(config('api.getQuestion'), ['category'=> self::DEGREE]);
+		$nextTopic = $this->decideNextTopic();
+		$x = $this->curlTanyaJob(config('api.getQuestion'), ['category'=> $nextTopic]);
 		$err = $x['err'];
-		$response = $x['response'];	
-		
+		$response = $x['response'];
 		if ($err) {
 			echo json_encode([
 				"question" => "Server can't be reach now"
 			]);
 		} else {
 			$consultation = Consultation::firstOrNew(['user_id' => Auth::user()->id]);
-			$consultation->last_topic = self::DEGREE;
+			$consultation->last_topic = $nextTopic;
 			$consultation->save();
 			echo $response;
 		}

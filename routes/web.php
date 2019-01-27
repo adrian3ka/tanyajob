@@ -45,6 +45,7 @@ Route::post('consultations', 'ConsultationController@store'); // halaman create
 
 Route::get('/consultations/get/question','ConsultationController@getQuestion');
 Route::post('/consultations/extract/information','ConsultationController@extractInformation');
+Route::get('/consultations/decide/topic','ConsultationController@decideNextTopic');
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
