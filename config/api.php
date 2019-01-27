@@ -1,8 +1,8 @@
 <?php
 use Illuminate\Support\Facades\Config;
 return [
-	 'getQuestion' => env('API_GET_QUESTION', ''),
-	 'extractInformation' => env('API_EXTRACT_INFORMATION', ''),
+	 'getQuestion' => env('API_TANYA_JOB', '') . "/api/v1/ask/question/",
+	 'extractInformation' => env('API_TANYA_JOB', '') . "/api/v1/extract/information/",
 	 'port' => env('API_PORT', ''),
 	 'maxRedirs' => env('API_MAXREDIRS', ''),
 	 'timeOut' => env('API_TIMEOUT', ''),
