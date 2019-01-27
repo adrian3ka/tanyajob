@@ -68,25 +68,22 @@
 	<div id ="header-chatbot">Start your consultation!</div>
 	<div id ="content-chatbot">
 		<div id="content-chat">
-			<p class="bot-chat chat"> Haiii kantikaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-			<p class="user-chat chat"> Haiii juga bot</p>
-			<p class="bot-chat chat"> Lagi apa?</p>
-			<p class="user-chat chat"> Lagi mainnnnnnnnnnnnnnnnnnnn</p>
+			
 		</div>
 		
-		
-		<form class="form-horizontal"  id="form-chat-bot">
-			<div class="form-group">
-				<div class="col-sm-11"> 
-					<input type="text" class="form-control" id="txt-message" placeholder="Type your message here" name="txt-message">
-				</div>
-				<div class="col-sm-1">
-					<button type="submit" class="btn btn-default" style="width:100%;">Send</button>
-				</div>
-			</div>
-		</form>
-
-	
 	</div>
+	<form class="form-horizontal"  id="form-chat-bot">
+		<div class="form-group">
+			<div class="col-sm-11"> 
+				<input type="text" class="form-control" id="txt-message" placeholder="Type your message here" name="txt-message">
+			</div>
+			<div class="col-sm-1">
+				<button type="submit" class="btn btn-default" style="width:100%;">Send</button>
+			</div>
+		</div>
+	</form>
+		
+	
+	
 		
 @endsection
