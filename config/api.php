@@ -14,4 +14,5 @@ return [
 		  ),
 	 'httpVersion' => CURL_HTTP_VERSION_1_1,
 	 'returnTransfer' => true,
+	 
 	 ];

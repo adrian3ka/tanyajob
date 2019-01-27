@@ -23,7 +23,7 @@
 					jsonData = JSON.parse(data);
 				}
 			});
-			$("#content-chat").append('<p class="bot-chat chat">'+jsonData['question']+'</p>'); 
+			$("#content-chat").append('<p class="bot-chat chat">'+jsonData['question']+'</p>');
 			return ;
 		}
 		
@@ -43,6 +43,7 @@
 		}
 		
 		window.addEventListener('load', function () {
+			$("#txt-message").val('');
 			getNextQuestion(getQuestionUrl);
 			$("#form-chat-bot").submit(function(e){
 				var message = $("#txt-message").val();
@@ -53,7 +54,10 @@
 					"_token": "{{ csrf_token() }}",
 					'text' : message
 				});
+				
+				$("#txt-message").val('');
 				return false;
+				
 			});
 		});
 	</script>
