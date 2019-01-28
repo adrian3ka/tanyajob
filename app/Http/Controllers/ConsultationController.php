@@ -135,11 +135,11 @@ class ConsultationController extends Controller
 		$user = Auth::user();
 		if ($consultation->last_topic == self::DEGREE) {
 			//$x['response'] = SMK
-			//$id = MasterDegree::where(['name' => x['response']]);
-			//if $id == null {
-			//	$id = 0; //default
-			//}
-			//$user->last_degree_id = $id
+			$id = MasterDegree::where(['name' => x['response']]);
+			if ($id == null) {
+				$id = 0; //default
+			}
+			$user->last_degree_id = $id;
 		}
 		$user->save();
 	}
@@ -148,6 +148,11 @@ class ConsultationController extends Controller
 		$rules = [
 			self::DEGREE => Auth::user()->last_degree_id,
 			self::MAJOR => Auth::user()->major_id,
+			self::INDUSTRY => Auth::user()->industry_id,
+			self::FIELD => Auth::user()->field_id,
+			self::JOBLEVEL => Auth::user()->job_level_id,
+			self::LOCATION => Auth::user()->location_id,
+			self::SKILLSET => Auth::user()->skill_set_id,
 		];
 		$nextTopic = null;
 		foreach ($rules as $key => $value) {
