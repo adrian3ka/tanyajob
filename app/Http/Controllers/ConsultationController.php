@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Consultation;
 use App\MasterDegree;
+use App\MasterMajor;
 
 class ConsultationController extends Controller
 {
@@ -136,20 +137,18 @@ class ConsultationController extends Controller
         $input = $request->all();
 		$x = $this->curlTanyaJob(config('api.extractInformation'), [
 			'category'=> $consultation->last_topic,
-			'text' => $input['text'], //Saya Lulusan SMK
+			'text' => $input['text'],
 		]);
 		$user = Auth::user();
+		echo $consultation->last_topic."\n";
 		if ($consultation->last_topic == self::DEGREE) {
-			//$x['response'] = SMK
-			$degree = $x['response'];
-			foreach ($degree as $key => $value) {
-				echo $key;
-			}
-			
-			$master_degree = MasterDegree::where(['name' => "SMK"]);
-			echo $master_degree->first();
-			//echo $degreeJson;
-			echo "SMK";
+			$data = json_decode($x['response']);
+			$master_degree = MasterDegree::where(['name' => $data->message])->first();
+			$user->last_degree_id = $master_degree->id;
+		} else if ($consultation->last_topic == self::MAJOR) {
+			$data = json_decode($x['response']);
+			$master_data = MasterMajor::where(['name' => $data->message])->first();
+			$user->major_id = $master_data->id;
 		}
 		$user->save();
 	}

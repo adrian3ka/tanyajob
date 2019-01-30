@@ -49,12 +49,11 @@
 				var message = $("#txt-message").val();
 				e.preventDefault();
 				$("#content-chat").append('<p class="user-chat chat">' + message + '</p>');
-				getNextQuestion(getQuestionUrl);
 				extractInformation(extractInformationUrl, {
 					"_token": "{{ csrf_token() }}",
 					'text' : message
 				});
-				
+				getNextQuestion(getQuestionUrl);
 				$("#txt-message").val('');
 				return false;
 				
