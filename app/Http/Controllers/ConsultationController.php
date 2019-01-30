@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Consultation;
+use App\MasterDegree;
 
 class ConsultationController extends Controller
 {
@@ -16,6 +17,11 @@ class ConsultationController extends Controller
     const NIL = "Null";
 	const MAJOR = "Major";
 	const DEGREE = "Degree";
+	const INDUSTRY = "Industry";
+	const FIELD = "Field";
+	const JOBLEVEL = "Job_Level";
+	const LOCATION = "Location";
+	const SKILLSET = "Skill_Set";
 	
 	/*kalo ga login ga bisa masuk*/
     public function __construct()
@@ -135,11 +141,15 @@ class ConsultationController extends Controller
 		$user = Auth::user();
 		if ($consultation->last_topic == self::DEGREE) {
 			//$x['response'] = SMK
-			$id = MasterDegree::where(['name' => x['response']]);
-			if ($id == null) {
-				$id = 0; //default
+			$degree = $x['response'];
+			foreach ($degree as $key => $value) {
+				echo $key;
 			}
-			$user->last_degree_id = $id;
+			
+			$master_degree = MasterDegree::where(['name' => "SMK"]);
+			echo $master_degree->first();
+			//echo $degreeJson;
+			echo "SMK";
 		}
 		$user->save();
 	}
