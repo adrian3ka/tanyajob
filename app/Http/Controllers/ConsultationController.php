@@ -7,6 +7,11 @@ use Illuminate\Support\Facades\Auth;
 use App\Consultation;
 use App\MasterDegree;
 use App\MasterMajor;
+use App\MasterJobLevel;
+use App\MasterLocation;
+use App\MasterSkillSet;
+use App\MasterField;
+use App\MasterIndustry;
 
 class ConsultationController extends Controller
 {
@@ -145,11 +150,38 @@ class ConsultationController extends Controller
 			$data = json_decode($x['response']);
 			$master_degree = MasterDegree::where(['name' => $data->message])->first();
 			$user->last_degree_id = $master_degree->id;
-		} else if ($consultation->last_topic == self::MAJOR) {
+		} 
+		else if ($consultation->last_topic == self::MAJOR) {
 			$data = json_decode($x['response']);
 			$master_data = MasterMajor::where(['name' => $data->message])->first();
 			$user->major_id = $master_data->id;
+		} 
+		else if ($consultation->last_topic == self::INDUSTRY) {
+			$data = json_decode($x['response']);
+			echo $data->message;
+			$master_data = MasterIndustry::where(['name' => $data->message])->first();
+			$user->industry_id = $master_data->id;
 		}
+		else if ($consultation->last_topic == self::FIELD) {
+			$data = json_decode($x['response']);
+			$master_data = MasterField::where(['name' => $data->message])->first();
+			$user->major_id = $master_data->id;
+		} 
+		else if ($consultation->last_topic == self::JOBLEVEL) {
+			$data = json_decode($x['response']);
+			$master_data = MasterJobLevel::where(['name' => $data->message])->first();
+			$user->job_level_id = $master_data->id;
+		} 
+		else if ($consultation->last_topic == self::LOCATION) {
+			$data = json_decode($x['response']);
+			$master_data = MasterLocation::where(['name' => $data->message])->first();
+			$user->location_id = $master_data->id;
+		} 
+		else if ($consultation->last_topic == self::SKILLSET) {
+			$data = json_decode($x['response']);
+			$master_data = MasterSkillSet::where(['name' => $data->message])->first();
+			$user->skill_set_id = $master_data->id;
+		} 
 		$user->save();
 	}
 	
