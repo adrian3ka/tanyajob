@@ -29,6 +29,7 @@ class ConsultationController extends Controller
 	const JOBLEVEL = "JobLevel";
 	const EXPECTED_LOCATION = "ExpectedLocation";
 	const SKILLSET = "SkillSet";
+	const COMPLETED = "Completed";
 	
 	/*kalo ga login ga bisa masuk*/
     public function __construct()
@@ -198,12 +199,12 @@ class ConsultationController extends Controller
 			$data = json_decode($x['response']);
 			$master_data = MasterLocation::where(['name' => $data->message])->first();
 			$user->expectedLocations()->attach([$master_data->id]);
-		} /*
+		} 
 		else if ($consultation->last_topic == self::SKILLSET) {
 			$data = json_decode($x['response']);
 			$master_data = MasterSkillSet::where(['name' => $data->message])->first();
-			$user->skill_set_id = $master_data->id;
-		} */
+			$user->skillSets()-> attach([$master_data->id]);
+		}
 		$user->save();
 	}
 	
@@ -240,7 +241,6 @@ class ConsultationController extends Controller
 			self::JOBLEVEL => $job_level,
 			self::EXPECTED_LOCATION => $expected_location,
 			self::SKILLSET => $skill_set,
-		
 		];
 		$nextTopic = null;
 		foreach ($rules as $key => $value) {
@@ -249,14 +249,20 @@ class ConsultationController extends Controller
 				break;
 			}
 		}
+		
 		return $nextTopic;
 	}
 	
     public function getQuestion(){
 		$nextTopic = $this->decideNextTopic();
-		$x = $this->curlTanyaJob(config('api.getQuestion'), ['category'=> $nextTopic]);
-		$err = $x['err'];
-		$response = $x['response'];
+		$err = null;
+		if ($nextTopic == null) {
+			$nextTopic = self::COMPLETED;
+		} else {
+			$x = $this->curlTanyaJob(config('api.getQuestion'), ['category'=> $nextTopic]);
+			$err = $x['err'];
+			$response = $x['response'];
+		}
 		if ($err) {
 			echo json_encode([
 				"question" => "Server can't be reach now"
@@ -264,8 +270,16 @@ class ConsultationController extends Controller
 		} else {
 			$consultation = Consultation::firstOrNew(['user_id' => Auth::user()->id]);
 			$consultation->last_topic = $nextTopic;
+			
 			$consultation->save();
-			echo $response;
+			
+			if ($nextTopic == self::COMPLETED) {
+				echo json_encode([
+					"question" => "Rekomendasi Pekerjaan untuk kamu adalah"
+				]);
+			} else {
+				echo $response;
+			}
 		}
 	}
 }
