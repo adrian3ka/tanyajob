@@ -161,25 +161,28 @@ class ConsultationController extends Controller
 		} 
 		else if ($consultation->last_topic == self::INDUSTRY) {
 			$data = json_decode($x['response']);
-			echo "ASAS";
 			$master_industry = MasterIndustry::where(['name' => $data->message])->first();
 			if ($workExp == null) {
 				$newWorkExp = new WorkExperience();
 				$newWorkExp->industry_id = $master_industry->id;
 				Auth::user()->workExperiences()->save($newWorkExp);
-				echo "SAVED";
 			} else {
 				$workExp->industry_id = $master_industry->id;
 				$workExp->save();
 			}
-		}/*
+		}
 		else if ($consultation->last_topic == self::FIELD) {
-			$work = new workExperience();
 			$data = json_decode($x['response']);
 			$master_data = MasterField::where(['name' => $data->message])->first();
-			//$user->major_id = $master_data->id;
-			$work->field_id = $master_data->id;
-		} 
+			if ($workExp == null) {
+				$newWorkExp = new WorkExperience();
+				$newWorkExp->field_id = $master_data->id;
+				Auth::user()->workExperiences()->save($newWorkExp);
+			} else {
+				$workExp->field_id = $master_data->id;
+				$workExp->save();
+			}
+		} /*
 		else if ($consultation->last_topic == self::JOBLEVEL) {
 			$data = json_decode($x['response']);
 			$master_data = MasterJobLevel::where(['name' => $data->message])->first();
