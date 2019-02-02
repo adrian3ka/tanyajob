@@ -27,7 +27,7 @@ class ConsultationController extends Controller
 	const INDUSTRY = "Industry";
 	const FIELD = "Field";
 	const JOBLEVEL = "JobLevel";
-	const LOCATION = "Location";
+	const EXPECTED_LOCATION = "ExpectedLocation";
 	const SKILLSET = "SkillSet";
 	
 	/*kalo ga login ga bisa masuk*/
@@ -147,7 +147,6 @@ class ConsultationController extends Controller
 		]);
 		$user = Auth::user();
 		$workExp = Auth::user()->workExperiences()->first();
-		echo $workExp;
 		echo $consultation->last_topic."\n";
 		if ($consultation->last_topic == self::DEGREE) {
 			$data = json_decode($x['response']);
@@ -165,7 +164,7 @@ class ConsultationController extends Controller
 			if ($workExp == null) {
 				$newWorkExp = new WorkExperience();
 				$newWorkExp->industry_id = $master_industry->id;
-				Auth::user()->workExperiences()->save($newWorkExp);
+				$user->workExperiences()->save($newWorkExp);
 			} else {
 				$workExp->industry_id = $master_industry->id;
 				$workExp->save();
@@ -177,7 +176,7 @@ class ConsultationController extends Controller
 			if ($workExp == null) {
 				$newWorkExp = new WorkExperience();
 				$newWorkExp->field_id = $master_data->id;
-				Auth::user()->workExperiences()->save($newWorkExp);
+				$user->workExperiences()->save($newWorkExp);
 			} else {
 				$workExp->field_id = $master_data->id;
 				$workExp->save();
@@ -189,17 +188,17 @@ class ConsultationController extends Controller
 			if ($workExp == null) {
 				$newWorkExp = new WorkExperience();
 				$newWorkExp->job_level_id = $master_joblevel->id;
-				Auth::user()->workExperiences()->save($newWorkExp);
+				$user->workExperiences()->save($newWorkExp);
 			} else {
 				$workExp->job_level_id = $master_joblevel->id;
 				$workExp->save();
 			}
-		} /*
-		else if ($consultation->last_topic == self::LOCATION) {
+		}
+		else if ($consultation->last_topic == self::EXPECTED_LOCATION) {
 			$data = json_decode($x['response']);
 			$master_data = MasterLocation::where(['name' => $data->message])->first();
-			$user->location_id = $master_data->id;
-		} 
+			$user->expectedLocations()->attach([$master_data->id]);
+		} /*
 		else if ($consultation->last_topic == self::SKILLSET) {
 			$data = json_decode($x['response']);
 			$master_data = MasterSkillSet::where(['name' => $data->message])->first();
@@ -212,12 +211,25 @@ class ConsultationController extends Controller
 		$field = null;
 		$industry = null;
 		$job_level = null;
+		$expected_location = null;
+		$skill_set = null;
+		
 		$workExp = Auth::user()->workExperiences()->first();
+		$user_expected_location = Auth::user()->expectedLocations()->first();
+		$user_skill_set = Auth::user()->skillSets()->first();
 		
 		if($workExp != null) {
 			$industry = $workExp->industry_id;
 			$field = $workExp->field_id;
 			$job_level =  $workExp->job_level_id;
+		}
+		
+		if($user_expected_location != null) {
+			$expected_location = $user_expected_location->id;
+		}
+		
+		if($user_skill_set != null) {
+			$skill_set = $user_skill_set->id;
 		}
 		
 		$rules = [
@@ -226,8 +238,8 @@ class ConsultationController extends Controller
 			self::INDUSTRY => $industry ,
 			self::FIELD => $field,
 			self::JOBLEVEL => $job_level,
-			self::LOCATION => Auth::user()->location_id,
-			self::SKILLSET => Auth::user()->skill_set_id,
+			self::EXPECTED_LOCATION => $expected_location,
+			self::SKILLSET => $skill_set,
 		
 		];
 		$nextTopic = null;
