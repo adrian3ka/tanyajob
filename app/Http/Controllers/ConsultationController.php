@@ -12,7 +12,7 @@ use App\MasterLocation;
 use App\MasterSkillSet;
 use App\MasterField;
 use App\MasterIndustry;
-use App\WorkExperiences;
+use App\WorkExperience;
 
 class ConsultationController extends Controller
 {
@@ -146,6 +146,8 @@ class ConsultationController extends Controller
 			'text' => $input['text'],
 		]);
 		$user = Auth::user();
+		$workExp = Auth::user()->workExperiences()->first();
+		echo $workExp;
 		echo $consultation->last_topic."\n";
 		if ($consultation->last_topic == self::DEGREE) {
 			$data = json_decode($x['response']);
@@ -159,9 +161,17 @@ class ConsultationController extends Controller
 		} 
 		else if ($consultation->last_topic == self::INDUSTRY) {
 			$data = json_decode($x['response']);
+			echo "ASAS";
 			$master_industry = MasterIndustry::where(['name' => $data->message])->first();
-			$workExp = new WorkExperience();
-			$workExp->industry_id = $master_industry->id;
+			if ($workExp == null) {
+				$newWorkExp = new WorkExperience();
+				$newWorkExp->industry_id = $master_industry->id;
+				Auth::user()->workExperiences()->save($newWorkExp);
+				echo "SAVED";
+			} else {
+				$workExp->industry_id = $master_industry->id;
+				$workExp->save();
+			}
 		}/*
 		else if ($consultation->last_topic == self::FIELD) {
 			$work = new workExperience();
@@ -191,10 +201,13 @@ class ConsultationController extends Controller
 	public function decideNextTopic() {
 		$field = null;
 		$industry = null;
-		$workExp = Auth::user()->workExperiences()->get();
+		$job_level = null;
+		$workExp = Auth::user()->workExperiences()->first();
 		
-		if(is_array($workExp) && count($workExp) != 0) {
-			$workExps = Auth::user()->workExperiences()->get();
+		if($workExp != null) {
+			$industry = $workExp->industry_id;
+			$field = $workExp->field_id;
+			$job_level =  $workExp->job_level_id;
 		}
 		
 		$rules = [
@@ -202,7 +215,7 @@ class ConsultationController extends Controller
 			self::MAJOR => Auth::user()->major_id,
 			self::INDUSTRY => $industry ,
 			self::FIELD => $field,
-			self::JOBLEVEL => Auth::user()->job_level_id,
+			self::JOBLEVEL => $job_level,
 			self::LOCATION => Auth::user()->location_id,
 			self::SKILLSET => Auth::user()->skill_set_id,
 		
