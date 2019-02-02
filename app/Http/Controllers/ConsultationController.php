@@ -26,9 +26,9 @@ class ConsultationController extends Controller
 	const DEGREE = "Degree";
 	const INDUSTRY = "Industry";
 	const FIELD = "Field";
-	const JOBLEVEL = "Job_Level";
+	const JOBLEVEL = "JobLevel";
 	const LOCATION = "Location";
-	const SKILLSET = "Skill_Set";
+	const SKILLSET = "SkillSet";
 	
 	/*kalo ga login ga bisa masuk*/
     public function __construct()
@@ -182,12 +182,19 @@ class ConsultationController extends Controller
 				$workExp->field_id = $master_data->id;
 				$workExp->save();
 			}
-		} /*
+		}
 		else if ($consultation->last_topic == self::JOBLEVEL) {
 			$data = json_decode($x['response']);
-			$master_data = MasterJobLevel::where(['name' => $data->message])->first();
-			$user->job_level_id = $master_data->id;
-		} 
+			$master_joblevel = MasterJobLevel::where(['name' => $data->message])->first();
+			if ($workExp == null) {
+				$newWorkExp = new WorkExperience();
+				$newWorkExp->job_level_id = $master_joblevel->id;
+				Auth::user()->workExperiences()->save($newWorkExp);
+			} else {
+				$workExp->job_level_id = $master_joblevel->id;
+				$workExp->save();
+			}
+		} /*
 		else if ($consultation->last_topic == self::LOCATION) {
 			$data = json_decode($x['response']);
 			$master_data = MasterLocation::where(['name' => $data->message])->first();
