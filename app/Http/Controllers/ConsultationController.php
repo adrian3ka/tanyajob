@@ -160,8 +160,8 @@ class ConsultationController extends Controller
 		else if ($consultation->last_topic == self::INDUSTRY) {
 			$data = json_decode($x['response']);
 			$master_industry = MasterIndustry::where(['name' => $data->message])->first();
-			echo $master_industry;
-			//$user->industry_id = $master_industry->id;
+			$workExp = new WorkExperience();
+			$workExp->industry_id = $master_industry->id;
 		}/*
 		else if ($consultation->last_topic == self::FIELD) {
 			$work = new workExperience();
@@ -191,16 +191,16 @@ class ConsultationController extends Controller
 	public function decideNextTopic() {
 		$field = null;
 		$industry = null;
-		echo "OKE";
-		if(exists(Auth::user()->workExperiences())) {
+		$workExp = Auth::user()->workExperiences()->get();
+		
+		if(is_array($workExp) && count($workExp) != 0) {
 			$workExps = Auth::user()->workExperiences()->get();
 		}
 		
-		exit();
 		$rules = [
 			self::DEGREE => Auth::user()->last_degree_id,
 			self::MAJOR => Auth::user()->major_id,
-			self::INDUSTRY => Auth::user()->industry_id,
+			self::INDUSTRY => $industry ,
 			self::FIELD => $field,
 			self::JOBLEVEL => Auth::user()->job_level_id,
 			self::LOCATION => Auth::user()->location_id,
