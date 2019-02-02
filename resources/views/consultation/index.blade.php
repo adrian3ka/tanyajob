@@ -20,7 +20,12 @@
 				type: "GET",
 				url: url,
 				success : function(data) {
-					jsonData = JSON.parse(data);
+					try {
+						jsonData = JSON.parse(data);
+					} catch {
+						console.log(data);
+						jsonData = JSON.parse('{"question" : "Server can\'t be reach now"}');
+					}
 				}
 			});
 			$("#content-chat").append('<p class="bot-chat chat">'+jsonData['question']+'</p>');
