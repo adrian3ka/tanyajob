@@ -12,6 +12,7 @@ use App\MasterLocation;
 use App\MasterSkillSet;
 use App\MasterField;
 use App\MasterIndustry;
+use App\WorkExperiences;
 
 class ConsultationController extends Controller
 {
@@ -159,13 +160,15 @@ class ConsultationController extends Controller
 		else if ($consultation->last_topic == self::INDUSTRY) {
 			$data = json_decode($x['response']);
 			echo $data->message;
-			$master_data = MasterIndustry::where(['name' => $data->message])->first();
-			$user->industry_id = $master_data->id;
-		}
+			$master_industry = MasterIndustry::where(['name' => $data->message])->first();
+			$user->industry_id = $master_industry->id;
+		}/*
 		else if ($consultation->last_topic == self::FIELD) {
+			$work = new workExperience();
 			$data = json_decode($x['response']);
 			$master_data = MasterField::where(['name' => $data->message])->first();
-			$user->major_id = $master_data->id;
+			//$user->major_id = $master_data->id;
+			$work->field_id = $master_data->id;
 		} 
 		else if ($consultation->last_topic == self::JOBLEVEL) {
 			$data = json_decode($x['response']);
@@ -181,19 +184,27 @@ class ConsultationController extends Controller
 			$data = json_decode($x['response']);
 			$master_data = MasterSkillSet::where(['name' => $data->message])->first();
 			$user->skill_set_id = $master_data->id;
-		} 
+		} */
 		$user->save();
 	}
 	
 	public function decideNextTopic() {
+		$field = null;
+		if(Auth::user()->workExperiences()) {
+			$workExps = Auth::user()->workExperiences()->get();
+			print_r($workExps);
+			exit();
+		}
+		
 		$rules = [
 			self::DEGREE => Auth::user()->last_degree_id,
 			self::MAJOR => Auth::user()->major_id,
 			self::INDUSTRY => Auth::user()->industry_id,
-			self::FIELD => Auth::user()->field_id,
+			self::FIELD => $field,
 			self::JOBLEVEL => Auth::user()->job_level_id,
 			self::LOCATION => Auth::user()->location_id,
 			self::SKILLSET => Auth::user()->skill_set_id,
+		
 		];
 		$nextTopic = null;
 		foreach ($rules as $key => $value) {
