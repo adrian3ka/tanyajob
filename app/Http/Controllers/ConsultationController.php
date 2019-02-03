@@ -27,7 +27,7 @@ class ConsultationController extends Controller
 	const INDUSTRY = "Industry";
 	const FIELD = "Field";
 	const JOBLEVEL = "JobLevel";
-	const FACILITES = "Facilities";
+	const FACILITES = "Facility";
 	const EXPECTED_LOCATION = "ExpectedLocation";
 	const SKILLSET = "SkillSet";
 	const COMPLETED = "Completed";
