@@ -206,6 +206,11 @@ class ConsultationController extends Controller
 			$master_data = MasterSkillSet::where(['name' => $data->message])->first();
 			$user->skillSets()-> attach([$master_data->id]);
 		}
+		else if ($consultation->last_topic == self::FACILITES) {
+			$data = json_decode($x['response']);
+			$master_data = MasterFacilities::where(['name' => $data->message])->first();
+			$user->expectedFacilities()-> attach([$master_data->id]);
+		}
 		$user->save();
 	}
 	
