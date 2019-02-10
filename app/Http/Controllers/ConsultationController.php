@@ -29,6 +29,9 @@ class ConsultationController extends Controller
 	const JOBLEVEL = "JobLevel";
 	const FACILITES = "Facility";
 	const EXPECTED_LOCATION = "ExpectedLocation";
+	const AGE = "Age";
+	const SALARY_UPPER = "SalaryUpper";
+	const SALARY_LOWER = "SalaryLower";
 	const SKILLSET = "SkillSet";
 	const COMPLETED = "Completed";
 	
@@ -149,7 +152,6 @@ class ConsultationController extends Controller
 		]);
 		$user = Auth::user();
 		$workExp = Auth::user()->workExperiences()->first();
-		echo $consultation->last_topic."\n";
 		if ($consultation->last_topic == self::DEGREE) {
 			$data = json_decode($x['response']);
 			$master_degree = MasterDegree::where(['name' => $data->message])->first();
@@ -211,6 +213,24 @@ class ConsultationController extends Controller
 			$master_data = MasterFacilities::where(['name' => $data->message])->first();
 			$user->expectedFacilities()-> attach([$master_data->id]);
 		}
+		
+		else if ($consultation->last_topic == self::AGE) {
+			$data = json_decode($x['response']);
+			$current_year = date ("Y");
+			$age = $data->message;
+			$date_year = $current_year - $age;
+			$dob = mktime(0,0,0,01,01, $date_year);
+			$dob_format = date ("Y-m-d H:i:s", $dob);
+			$user->date_of_birth = $dob_format;
+		}
+		else if ($consultation->last_topic == self::SALARY_UPPER) {
+			$data = json_decode($x['response']);
+			$user->expected_salary_upper = $data->message;
+		}
+		else if ($consultation->last_topic == self::SALARY_LOWER) {
+			$data = json_decode($x['response']);
+			$user->expected_salary_lower = $data->message;
+		}
 		$user->save();
 	}
 	
@@ -220,6 +240,9 @@ class ConsultationController extends Controller
 		$job_level = null;
 		$expected_location = null;
 		$skill_set = null;
+		$age = null;
+		$salary_upper = null;
+		$salary_lower = null;
 		
 		$workExp = Auth::user()->workExperiences()->first();
 		$user_expected_location = Auth::user()->expectedLocations()->first();
@@ -240,6 +263,7 @@ class ConsultationController extends Controller
 		}
 		
 		$rules = [
+			self::AGE => Auth::user()->date_of_birth,
 			self::DEGREE => Auth::user()->last_degree_id,
 			self::MAJOR => Auth::user()->major_id,
 			self::INDUSTRY => $industry ,
@@ -247,6 +271,9 @@ class ConsultationController extends Controller
 			self::JOBLEVEL => $job_level,
 			self::EXPECTED_LOCATION => $expected_location,
 			self::SKILLSET => $skill_set,
+			self::SALARY_UPPER => Auth::user()->expected_salary_upper,
+			self::SALARY_LOWER => Auth::user()->expected_salary_lower,
+
 		];
 		$nextTopic = null;
 		foreach ($rules as $key => $value) {
@@ -280,12 +307,46 @@ class ConsultationController extends Controller
 			$consultation->save();
 			
 			if ($nextTopic == self::COMPLETED) {
+				$job_title = $this->getJobRecommendation();
 				echo json_encode([
-					"question" => "Rekomendasi Pekerjaan untuk kamu adalah"
+					"question" => "Rekomendasi Pekerjaan untuk kamu adalah " . $job_title
 				]);
 			} else {
 				echo $response;
 			}
+		}
+	}
+	
+	public function getJobRecommendation(){
+		$current_year = date ("Y");
+		$birth_year = date('Y', strtotime(Auth::user()->date_of_birth));
+		
+		$data = [
+			'max_age'=> $current_year-$birth_year,
+			'major' => Auth::user()->major->name,
+			'degree' => MasterDegree::find(Auth::user()->last_degree_id)->name,
+			'industry' => MasterIndustry::find (Auth::user()->workExperiences()->first()->industry_id)->name, 
+			'min_age' => $current_year-$birth_year,
+			'field' => MasterField::find (Auth::user()->workExperiences()->first()->field_id)->name,
+			'location' => Auth::user()->expectedLocations()->first()->name,
+			'max_salary'=> Auth::user()->expected_salary_upper,
+			'job_level'=> MasterJobLevel::find (Auth::user()->workExperiences()->first()->job_level_id)->name,
+			'work_exp'=> 0,
+			'min_salary'=> Auth::user()->expected_salary_lower,
+		];		
+		
+		$x = $this->curlTanyaJob(config('api.getJobRecommendation'), $data);
+		
+		$err = $x['err'];
+		$response = $x['response'];
+		if ($err) {
+			echo json_encode([
+				"question" => "Server can't be reach now"
+			]);
+		} else {
+			$data = json_decode($response);
+			return $data->job_title[0];
+		
 		}
 	}
 }
