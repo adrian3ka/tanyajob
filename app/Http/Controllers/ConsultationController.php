@@ -34,18 +34,18 @@ class ConsultationController extends Controller
 	const SALARY_LOWER = "SalaryLower";
 	const SKILLSET = "SkillSet";
 	const COMPLETED = "Completed";
-	
-	/*kalo ga login ga bisa masuk*/
+
+    /*kalo ga login ga bisa masuk*/
     public function __construct()
     {
         $this->middleware('auth');
     }
-     
+
     public function index()
     {
         //
         return view('consultation/index',[
-        
+
         ]);
     }
 
@@ -114,7 +114,7 @@ class ConsultationController extends Controller
     {
         //
     }
-		
+
 	private function curlTanyaJob($url, $data){
 		$curl = curl_init();
 
@@ -128,14 +128,14 @@ class ConsultationController extends Controller
 			CURLOPT_HTTP_VERSION => config ('api.httpVersion'),
 			CURLOPT_CUSTOMREQUEST => config ('api.request'),
 			CURLOPT_POSTFIELDS => json_encode($data),
-			CURLOPT_HTTPHEADER => config ('api.header'),
+			//CURLOPT_HTTPHEADER => config ('api.header'),
 		));
 
 		$response = curl_exec($curl);
 		$err = curl_error($curl);
 
 		curl_close($curl);
-		
+
 		return [
 			'response' => $response,
 			'err' => $err
