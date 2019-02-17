@@ -20,7 +20,12 @@
 				type: "GET",
 				url: url,
 				success : function(data) {
-					jsonData = JSON.parse(data);
+					try {
+						jsonData = JSON.parse(data);
+					} catch {
+						console.log(data);
+						jsonData = JSON.parse('{"question" : "Server can\'t be reach now"}');
+					}
 				}
 			});
 			$("#content-chat").append('<p class="bot-chat chat">'+jsonData['question']+'</p>');
@@ -49,12 +54,11 @@
 				var message = $("#txt-message").val();
 				e.preventDefault();
 				$("#content-chat").append('<p class="user-chat chat">' + message + '</p>');
-				getNextQuestion(getQuestionUrl);
 				extractInformation(extractInformationUrl, {
 					"_token": "{{ csrf_token() }}",
 					'text' : message
 				});
-				
+				getNextQuestion(getQuestionUrl);
 				$("#txt-message").val('');
 				return false;
 				
