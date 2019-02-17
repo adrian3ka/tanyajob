@@ -11,6 +11,7 @@ class SeedController extends Controller
 		
 		App\MasterDegree::firstOrCreate(['name' => 'SMA']);
 		App\MasterDegree::firstOrCreate(['name' => 'SMK']);
+		App\MasterDegree::firstOrCreate(['name' => 'Diploma (D3)']);
 		App\MasterDegree::firstOrCreate(['name' => 'Sarjana (S1)']);
 		App\MasterDegree::firstOrCreate(['name' => 'Magister (S2)']);
 		App\MasterDegree::firstOrCreate(['name' => 'Doktor (S3)']);
