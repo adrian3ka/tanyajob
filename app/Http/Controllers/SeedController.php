@@ -160,7 +160,6 @@ class SeedController extends Controller
 		App\MasterMajor::firstOrCreate(['name' => 'Pertanian']);
 		App\MasterMajor::firstOrCreate(['name' => 'Peternakan']);
 		App\MasterMajor::firstOrCreate(['name' => 'Kehutanan']);
-		
 
 		App\MasterSkillSet::firstOrCreate(['name' => 'PHP']);
 		App\MasterSkillSet::firstOrCreate(['name' => 'MySQL']);
@@ -831,7 +830,8 @@ class SeedController extends Controller
 		App\MasterSkillSet::firstOrCreate(['name' => 'XML']);
 		App\MasterSkillSet::firstOrCreate(['name' => 'Zbrush']);
 		App\MasterSkillSet::firstOrCreate(['name' => 'Golang']);
-		
+		App\MasterSkillSet::firstOrCreate(['name' => '3D Max']);
+		App\MasterSkillSet::firstOrCreate(['name' => 'V-ray']);
 		
 		
 		
@@ -985,7 +985,8 @@ class SeedController extends Controller
 		App\MasterIndustry::firstOrCreate(['name' => 'Permata dan Perhiasan']);
 		App\MasterIndustry::firstOrCreate(['name' => 'Teknologi Finansial']);
 		App\MasterIndustry::firstOrCreate(['name' => 'Sekuritas']);
-		
+		App\MasterIndustry::firstOrCreate(['name' => 'Pendidikan']);
+		App\MasterIndustry::firstOrCreate(['name' => 'Servis']);
 		
 		
 		App\MasterField::firstOrCreate(['name' => 'Aktor']);
@@ -1018,6 +1019,7 @@ class SeedController extends Controller
 		App\MasterField::firstOrCreate(['name' => 'Apoteker']);
 		App\MasterField::firstOrCreate(['name' => 'Teknik Jaringan']);
 		App\MasterField::firstOrCreate(['name' => 'Pramugari']);
+		App\MasterField::firstOrCreate(['name' => 'Pemasaran']);
 		App\MasterField::firstOrCreate(['name' => 'Pilot']);
 		App\MasterField::firstOrCreate(['name' => 'Supir']);
 		App\MasterField::firstOrCreate(['name' => 'HRD']);
@@ -1225,6 +1227,10 @@ class SeedController extends Controller
 		App\MasterField::firstOrCreate(['name' => 'Bartender']);
 		App\MasterField::firstOrCreate(['name' => 'Barista']);				
 		App\MasterField::firstOrCreate(['name' => 'Pegawai Restoran']);
+		App\MasterField::firstOrCreate(['name' => 'Desain Kemasan']);
+		App\MasterField::firstOrCreate(['name' => 'Guru']);
+		App\MasterField::firstOrCreate(['name' => 'Drafter']);
+		
 		
 		App\MasterFacility::firstOrCreate(['name' => 'Makan Siang']);
 		App\MasterFacility::firstOrCreate(['name' => 'Makan Malam']);
