@@ -1221,7 +1221,10 @@ class SeedController extends Controller
 		App\MasterField::firstOrCreate(['name' => 'Teknisi Struktural']);
 		App\MasterField::firstOrCreate(['name' => 'Helpdesk IT']);
 		App\MasterField::firstOrCreate(['name' => 'Ahli Gizi']);
-		App\MasterField::firstOrCreate(['name' => 'Ahli Pangan']);		
+		App\MasterField::firstOrCreate(['name' => 'Ahli Pangan']);
+		App\MasterField::firstOrCreate(['name' => 'Bartender']);
+		App\MasterField::firstOrCreate(['name' => 'Barista']);				
+		App\MasterField::firstOrCreate(['name' => 'Pegawai Restoran']);
 		
 		App\MasterFacility::firstOrCreate(['name' => 'Makan Siang']);
 		App\MasterFacility::firstOrCreate(['name' => 'Makan Malam']);
