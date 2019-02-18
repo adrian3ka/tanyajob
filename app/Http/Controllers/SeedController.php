@@ -888,7 +888,8 @@ class SeedController extends Controller
 		App\MasterLocation::firstOrCreate(['name' => 'Tanjung Selor']);
 		App\MasterLocation::firstOrCreate(['name' => 'Ambon']);
 		App\MasterLocation::firstOrCreate(['name' => 'Manokwari']);
-	
+		App\MasterLocation::firstOrCreate(['name' => 'Cirebon']);
+	    App\MasterLocation::firstOrCreate(['name' => 'Kediri']);
 		
 		App\MasterIndustry::firstOrCreate(['name' => 'Operasional']);
 		App\MasterIndustry::firstOrCreate(['name' => 'Penerbangan']);
@@ -987,6 +988,7 @@ class SeedController extends Controller
 		App\MasterIndustry::firstOrCreate(['name' => 'Sekuritas']);
 		App\MasterIndustry::firstOrCreate(['name' => 'Pendidikan']);
 		App\MasterIndustry::firstOrCreate(['name' => 'Servis']);
+		App\MasterIndustry::firstOrCreate(['name' => 'Software Development']);
 		
 		
 		App\MasterField::firstOrCreate(['name' => 'Aktor']);
