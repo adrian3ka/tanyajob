@@ -1233,6 +1233,7 @@ class SeedController extends Controller
 		App\MasterField::firstOrCreate(['name' => 'Desain Kemasan']);
 		App\MasterField::firstOrCreate(['name' => 'Guru']);
 		App\MasterField::firstOrCreate(['name' => 'Drafter']);
+		App\MasterField::firstOrCreate(['name' => 'Quality Control']);
 		
 		
 		App\MasterFacility::firstOrCreate(['name' => 'Makan Siang']);
