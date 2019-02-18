@@ -165,7 +165,7 @@ class SeedController extends Controller
 		App\MasterSkillSet::firstOrCreate(['name' => 'MySQL']);
 		App\MasterSkillSet::firstOrCreate(['name' => 'Scripting']);
 		App\MasterSkillSet::firstOrCreate(['name' => 'COBOL']);
-		App\MasterSkillSet::firstOrCreate(['name' => 'Office']);
+		App\MasterSkillSet::firstOrCreate(['name' => 'Microsoft Office']);
 		App\MasterSkillSet::firstOrCreate(['name' => 'Adobe Illustrator']);
 		App\MasterSkillSet::firstOrCreate(['name' => 'Manajemen Akuntansi (Account Management)']);
 		App\MasterSkillSet::firstOrCreate(['name' => 'Microsoft Access']);
@@ -1163,6 +1163,7 @@ class SeedController extends Controller
 		App\MasterField::firstOrCreate(['name' => 'Manajemen Acara']);
 		App\MasterField::firstOrCreate(['name' => 'Riset Pasar']);
 		App\MasterField::firstOrCreate(['name' => 'Manajemen Brand']);
+		App\MasterField::firstOrCreate(['name' => 'Auditor']);
 		App\MasterField::firstOrCreate(['name' => 'Manajemen Produk']);
 		App\MasterField::firstOrCreate(['name' => 'Kontrol Inventoris']);
 		App\MasterField::firstOrCreate(['name' => 'Perencana Materi']);
