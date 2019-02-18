@@ -47,6 +47,7 @@ class SeedController extends Controller
 		App\MasterMajor::firstOrCreate(['name' => 'Geografi']);
 		App\MasterMajor::firstOrCreate(['name' => 'Biokimia']);
 		App\MasterMajor::firstOrCreate(['name' => 'Metrologi']);
+		App\MasterMajor::firstOrCreate(['name' => 'Manajemen Hotel']);
 		App\MasterMajor::firstOrCreate(['name' => 'Aktuaria']);
 		App\MasterMajor::firstOrCreate(['name' => 'Statistika Terapan']);
 		App\MasterMajor::firstOrCreate(['name' => 'Mikrobiologi']);
