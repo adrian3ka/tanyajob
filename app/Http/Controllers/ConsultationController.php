@@ -13,6 +13,7 @@ use App\MasterSkillSet;
 use App\MasterField;
 use App\MasterIndustry;
 use App\WorkExperience;
+use Exception;
 
 class ConsultationController extends Controller
 {
@@ -34,6 +35,8 @@ class ConsultationController extends Controller
 	const SALARY_LOWER = "SalaryLower";
 	const SKILLSET = "SkillSet";
 	const COMPLETED = "Completed";
+	
+	const NOT_FOUND_IN_DB = "NOT FOUND IN DB";
 
     /*kalo ga login ga bisa masuk*/
     public function __construct()
@@ -152,86 +155,122 @@ class ConsultationController extends Controller
 		]);
 		$user = Auth::user();
 		$workExp = Auth::user()->workExperiences()->first();
-		if ($consultation->last_topic == self::DEGREE) {
-			$data = json_decode($x['response']);
-			$master_degree = MasterDegree::where(['name' => $data->message])->first();
-			$user->last_degree_id = $master_degree->id;
-		} 
-		else if ($consultation->last_topic == self::MAJOR) {
-			$data = json_decode($x['response']);
-			$master_data = MasterMajor::where(['name' => $data->message])->first();
-			$user->major_id = $master_data->id;
-		} 
-		else if ($consultation->last_topic == self::INDUSTRY) {
-			$data = json_decode($x['response']);
-			$master_industry = MasterIndustry::where(['name' => $data->message])->first();
-			if ($workExp == null) {
-				$newWorkExp = new WorkExperience();
-				$newWorkExp->industry_id = $master_industry->id;
-				$user->workExperiences()->save($newWorkExp);
-			} else {
-				$workExp->industry_id = $master_industry->id;
-				$workExp->save();
-			}
-		}
-		else if ($consultation->last_topic == self::FIELD) {
-			$data = json_decode($x['response']);
-			$master_data = MasterField::where(['name' => $data->message])->first();
-			if ($workExp == null) {
-				$newWorkExp = new WorkExperience();
-				$newWorkExp->field_id = $master_data->id;
-				$user->workExperiences()->save($newWorkExp);
-			} else {
-				$workExp->field_id = $master_data->id;
-				$workExp->save();
-			}
-		}
-		else if ($consultation->last_topic == self::JOBLEVEL) {
-			$data = json_decode($x['response']);
-			$master_joblevel = MasterJobLevel::where(['name' => $data->message])->first();
-			if ($workExp == null) {
-				$newWorkExp = new WorkExperience();
-				$newWorkExp->job_level_id = $master_joblevel->id;
-				$user->workExperiences()->save($newWorkExp);
-			} else {
-				$workExp->job_level_id = $master_joblevel->id;
-				$workExp->save();
-			}
-		}
-		else if ($consultation->last_topic == self::EXPECTED_LOCATION) {
-			$data = json_decode($x['response']);
-			$master_data = MasterLocation::where(['name' => $data->message])->first();
-			$user->expectedLocations()->attach([$master_data->id]);
-		} 
-		else if ($consultation->last_topic == self::SKILLSET) {
-			$data = json_decode($x['response']);
-			$master_data = MasterSkillSet::where(['name' => $data->message])->first();
-			$user->skillSets()-> attach([$master_data->id]);
-		}
-		else if ($consultation->last_topic == self::FACILITES) {
-			$data = json_decode($x['response']);
-			$master_data = MasterFacilities::where(['name' => $data->message])->first();
-			$user->expectedFacilities()-> attach([$master_data->id]);
-		}
 		
-		else if ($consultation->last_topic == self::AGE) {
-			$data = json_decode($x['response']);
-			$current_year = date ("Y");
-			$age = $data->message;
-			$date_year = $current_year - $age;
-			$dob = mktime(0,0,0,01,01, $date_year);
-			$dob_format = date ("Y-m-d H:i:s", $dob);
-			$user->date_of_birth = $dob_format;
+		$data = json_decode($x['response']);
+		
+		if($data->typo_correction){
+		    $suggestion_word = $data->suggested_word;		
+		    $list_suggestion_word="";
+		    $list_suggestion_word = implode(", ", $suggestion_word);
+		   
+		    $consultation->suggested_word = $list_suggestion_word;
+		    $consultation->save();
+		    return;
 		}
-		else if ($consultation->last_topic == self::SALARY_UPPER) {
-			$data = json_decode($x['response']);
-			$user->expected_salary_upper = $data->message;
+        try{
+			if ($consultation->last_topic == self::DEGREE) {
+				$master_degree = MasterDegree::where(['name' => $data->message])->first();
+				if ($master_degree == null) {
+					throw new Exception("Cannot Find Data");	
+				}
+				$user->last_degree_id = $master_degree->id;
+			} 
+			else if ($consultation->last_topic == self::MAJOR) {
+				$master_data = MasterMajor::where(['name' => $data->message])->first();
+				if ($master_data == null) {
+					throw new Exception("Cannot Find Data");	
+				}
+				$user->major_id = $master_data->id;
+			} 
+			else if ($consultation->last_topic == self::INDUSTRY) {
+				$master_industry = MasterIndustry::where(['name' => $data->message])->first();
+				
+				if ($master_industry == null) {
+					throw new Exception("Cannot Find Data");	
+				}
+				if ($workExp == null) {
+					$newWorkExp = new WorkExperience();
+					$newWorkExp->industry_id = $master_industry->id;
+					$user->workExperiences()->save($newWorkExp);
+				} else {
+					$workExp->industry_id = $master_industry->id;
+					$workExp->save();
+				}
+			}
+			else if ($consultation->last_topic == self::FIELD) {
+				$master_data = MasterField::where(['name' => $data->message])->first();
+				
+				if ($master_data == null) {
+					throw new Exception("Cannot Find Data");	
+				}
+				if ($workExp == null) {
+					$newWorkExp = new WorkExperience();
+					$newWorkExp->field_id = $master_data->id;
+					$user->workExperiences()->save($newWorkExp);
+				} else {
+					$workExp->field_id = $master_data->id;
+					$workExp->save();
+				}
+			}
+			else if ($consultation->last_topic == self::JOBLEVEL) {
+				$master_joblevel = MasterJobLevel::where(['name' => $data->message])->first();
+				if ($master_joblevel == null) {
+					throw new Exception("Cannot Find Data");	
+				}
+				if ($workExp == null) {
+					$newWorkExp = new WorkExperience();
+					$newWorkExp->job_level_id = $master_joblevel->id;
+					$user->workExperiences()->save($newWorkExp);
+				} else {
+					$workExp->job_level_id = $master_joblevel->id;
+					$workExp->save();
+				}
+			}
+			else if ($consultation->last_topic == self::EXPECTED_LOCATION) {
+				$master_data = MasterLocation::where(['name' => $data->message])->first();
+				if ($master_data == null) {
+					throw new Exception("Cannot Find Data");	
+				}
+				$user->expectedLocations()->attach([$master_data->id]);
+			} 
+			else if ($consultation->last_topic == self::SKILLSET) {
+				$master_data = MasterSkillSet::where(['name' => $data->message])->first();
+				
+				if ($master_data == null) {
+					throw new Exception("Cannot Find Data");	
+				}
+				$user->skillSets()-> attach([$master_data->id]);
+			}
+			else if ($consultation->last_topic == self::FACILITES) {
+				$master_data = MasterFacilities::where(['name' => $data->message])->first();
+				
+				if ($master_data == null) {
+					throw new Exception("Cannot Find Data");	
+				}
+				$user->expectedFacilities()-> attach([$master_data->id]);
+			}
+			
+			else if ($consultation->last_topic == self::AGE) {
+				$current_year = date ("Y");
+				$age = $data->message;
+				$date_year = $current_year - $age;
+				$dob = mktime(0,0,0,01,01, $date_year);
+				$dob_format = date ("Y-m-d H:i:s", $dob);
+				$user->date_of_birth = $dob_format;
+			}
+			else if ($consultation->last_topic == self::SALARY_UPPER) {
+				$user->expected_salary_upper = $data->message;
+			}
+			else if ($consultation->last_topic == self::SALARY_LOWER) {
+				$user->expected_salary_lower = $data->message;
+			}
+			$user->save();
+	    }
+	    catch(exception $e){
+			echo $e;
+			$consultation->suggested_word = self::NOT_FOUND_IN_DB;
+		    $consultation->save();
 		}
-		else if ($consultation->last_topic == self::SALARY_LOWER) {
-			$data = json_decode($x['response']);
-			$user->expected_salary_lower = $data->message;
-		}
-		$user->save();
 	}
 	
 	public function decideNextTopic() {
@@ -289,6 +328,7 @@ class ConsultationController extends Controller
     public function getQuestion(){
 		$nextTopic = $this->decideNextTopic();
 		$err = null;
+		
 		if ($nextTopic == null) {
 			$nextTopic = self::COMPLETED;
 		} else {
@@ -302,9 +342,23 @@ class ConsultationController extends Controller
 			]);
 		} else {
 			$consultation = Consultation::firstOrNew(['user_id' => Auth::user()->id]);
-			$consultation->last_topic = $nextTopic;
-			
+			$consultation->last_topic = $nextTopic;	
 			$consultation->save();
+			
+			if($consultation->suggested_word != null){
+				if($consultation->suggested_word == self::NOT_FOUND_IN_DB){
+					echo json_encode([
+			            "question" => "Saya tidak mengerti apa yang kamu maksud. Coba lagi dong"
+		            ]);
+				} else{
+		            echo json_encode([
+			            "question" => "Apakah yang kamu maksud adalah " . $consultation->suggested_word . "?"
+		            ]);
+				}
+			        $consultation->suggested_word = null;
+		            $consultation->save();
+		            return;
+		    }
 			
 			if ($nextTopic == self::COMPLETED) {
 				$job_title = $this->getJobRecommendation();
