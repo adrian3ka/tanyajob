@@ -35,8 +35,10 @@ class ConsultationController extends Controller
 	const SALARY_LOWER = "SalaryLower";
 	const SKILLSET = "SkillSet";
 	const COMPLETED = "Completed";
-	
 	const NOT_FOUND_IN_DB = "NOT FOUND IN DB";
+	const NOT_FOUND_IN_DB_RESPONSE = array("Wah maaf ya. Saya belum mengerti yang kamu maksud. Coba kalimat lain", 
+											"Saat ini saya belum mengerti kalimatmu. Coba kalimat lain ya", 
+											"Sayang sekali saya belum mengerti maksud kamu. Mohon coba kata lain");
 
     /*kalo ga login ga bisa masuk*/
     public function __construct()
@@ -269,6 +271,7 @@ class ConsultationController extends Controller
 	    catch(exception $e){
 			echo $e;
 			$consultation->suggested_word = self::NOT_FOUND_IN_DB;
+			echo $consultation->suggested_word;
 		    $consultation->save();
 		}
 	}
@@ -347,8 +350,10 @@ class ConsultationController extends Controller
 			
 			if($consultation->suggested_word != null){
 				if($consultation->suggested_word == self::NOT_FOUND_IN_DB){
+					$randomRespon = array_rand(self::NOT_FOUND_IN_DB_RESPONSE,1);
+					$respon = self::NOT_FOUND_IN_DB_RESPONSE[$randomRespon];
 					echo json_encode([
-			            "question" => "Saya tidak mengerti apa yang kamu maksud. Coba lagi dong"
+			            "question" => $respon
 		            ]);
 				} else{
 		            echo json_encode([
