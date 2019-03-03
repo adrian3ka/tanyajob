@@ -36,9 +36,14 @@ class ConsultationController extends Controller
 	const SKILLSET = "SkillSet";
 	const COMPLETED = "Completed";
 	const NOT_FOUND_IN_DB = "NOT FOUND IN DB";
-	const NOT_FOUND_IN_DB_RESPONSE = array("Wah maaf ya. Saya belum mengerti yang kamu maksud. Coba kalimat lain", 
-											"Saat ini saya belum mengerti kalimatmu. Coba kalimat lain ya", 
-											"Sayang sekali saya belum mengerti maksud kamu. Mohon coba kata lain");
+	const CATEGORY_MISMATCH = "CATEGORY MISMATCH";
+	const NOT_FOUND_IN_DB_RESPONSE = array("Wah maaf ya. Saya belum mengerti yang kamu maksud. Coba kalimat lain.", 
+										   "Saat ini saya belum mengerti kalimatmu. Coba kalimat lain ya.", 
+										   "Sayang sekali saya belum mengerti maksud kamu. Mohon coba kata lain.");
+										   
+	const CATEGORY_MISMATCH_RESPONSE = array("Hmmm, Kayanya jawaban kamu ga nyambung sama pertanyaannya deh.", 
+										     "Kok jawabnya gak sesuai pertanyaan ya?", 
+										     "Wah jawaban kamu ngaco nih, ga menjawab pertanyaan.");
 
     /*kalo ga login ga bisa masuk*/
     public function __construct()
@@ -160,6 +165,13 @@ class ConsultationController extends Controller
 		
 		$data = json_decode($x['response']);
 		
+		echo $x['response'];
+		if(!$data->category){
+			$consultation->suggested_word = self::CATEGORY_MISMATCH;
+		    $consultation->save();
+		    return;
+		}
+		
 		if($data->typo_correction){
 		    $suggestion_word = $data->suggested_word;		
 		    $list_suggestion_word="";
@@ -269,9 +281,7 @@ class ConsultationController extends Controller
 			$user->save();
 	    }
 	    catch(exception $e){
-			echo $e;
 			$consultation->suggested_word = self::NOT_FOUND_IN_DB;
-			echo $consultation->suggested_word;
 		    $consultation->save();
 		}
 	}
@@ -349,7 +359,14 @@ class ConsultationController extends Controller
 			$consultation->save();
 			
 			if($consultation->suggested_word != null){
-				if($consultation->suggested_word == self::NOT_FOUND_IN_DB){
+				if($consultation->suggested_word == self::CATEGORY_MISMATCH){
+					$randomRespon = array_rand(self::CATEGORY_MISMATCH_RESPONSE,1);
+					$respon = self::CATEGORY_MISMATCH_RESPONSE[$randomRespon];
+					echo json_encode([
+			            "question" => $respon
+		            ]);
+					
+				} else if($consultation->suggested_word == self::NOT_FOUND_IN_DB){
 					$randomRespon = array_rand(self::NOT_FOUND_IN_DB_RESPONSE,1);
 					$respon = self::NOT_FOUND_IN_DB_RESPONSE[$randomRespon];
 					echo json_encode([
