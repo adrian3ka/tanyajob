@@ -3,6 +3,7 @@ use Illuminate\Support\Facades\Config;
 return [
 	 'getQuestion' => env('API_TANYA_JOB', '') . "/api/v1/ask/question/",
 	 'extractInformation' => env('API_TANYA_JOB', '') . "/api/v2/extract/information/",
+	 'extractFreshGraduate' => env('API_TANYA_JOB', '') . "/api/v1/fresh_graduate/extract/",
 	 'getJobRecommendation' => env('API_TANYA_JOB', '') . "/api/v1/job/reccomendation/",
 	 'port' => env('API_PORT', ''),
 	 'maxRedirs' => env('API_MAXREDIRS', ''),

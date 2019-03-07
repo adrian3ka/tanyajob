@@ -24,6 +24,7 @@ class ConsultationController extends Controller
      */
     const NIL = "Null";
 	const MAJOR = "Major";
+	const FRESH_GRADUATE = "FreshGraduate";
 	const DEGREE = "Degree";
 	const INDUSTRY = "Industry";
 	const FIELD = "Field";
@@ -138,7 +139,6 @@ class ConsultationController extends Controller
 			CURLOPT_HTTP_VERSION => config ('api.httpVersion'),
 			CURLOPT_CUSTOMREQUEST => config ('api.request'),
 			CURLOPT_POSTFIELDS => json_encode($data),
-			//CURLOPT_HTTPHEADER => config ('api.header'),
 		));
 
 		$response = curl_exec($curl);
@@ -153,9 +153,32 @@ class ConsultationController extends Controller
 		
 	}
 	
+	public function extractFreshGraduateInformation($text) {
+		$x = $this->curlTanyaJob(config('api.extractFreshGraduate'), [
+			'text' => $text,
+		]);
+		
+		$data = json_decode($x['response']);
+		return $data->fresh_graduate[0];
+	}
+	
 	public function extractInformation(Request $request) {
 		$consultation = Consultation::where(['user_id' => Auth::user()->id])->first();
         $input = $request->all();
+        
+        
+		if ($consultation->last_topic == self::FRESH_GRADUATE) {
+			$state = $this->extractFreshGraduateInformation($input['text']);
+            $user = Auth::user();
+			if ($state) {
+				$user->fresh_graduate = true; 
+			} else {
+				$user->fresh_graduate = false; 
+			}
+            $user->save();
+            return;
+		}
+        
 		$x = $this->curlTanyaJob(config('api.extractInformation'), [
 			'category'=> $consultation->last_topic,
 			'text' => $input['text'],
@@ -316,6 +339,7 @@ class ConsultationController extends Controller
 		
 		$rules = [
 			self::AGE => Auth::user()->date_of_birth,
+			self::FRESH_GRADUATE => Auth::user()->fresh_graduate,
 			self::DEGREE => Auth::user()->last_degree_id,
 			self::MAJOR => Auth::user()->major_id,
 			self::INDUSTRY => $industry ,
