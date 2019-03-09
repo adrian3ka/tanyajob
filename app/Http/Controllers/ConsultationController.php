@@ -265,6 +265,9 @@ class ConsultationController extends Controller
 					$workExp->save();
 				}
 			}
+			else if ($consultation->last_topic == self::WORK_EXPERIENCE) {
+				$user->total_work_experiences_in_month = $data->message;
+			}
 			else if ($consultation->last_topic == self::EXPECTED_LOCATION) {
 				$master_data = MasterLocation::where(['name' => $data->message])->first();
 				if ($master_data == null) {
@@ -348,6 +351,7 @@ class ConsultationController extends Controller
 		$rules = [
 			self::AGE => Auth::user()->date_of_birth,
 			self::FRESH_GRADUATE => Auth::user()->fresh_graduate,
+			self::WORK_EXPERIENCE => Auth::user()->total_work_experiences_in_month,
 			self::DEGREE => Auth::user()->last_degree_id,
 			self::MAJOR => Auth::user()->major_id,
 			self::INDUSTRY => $industry,
