@@ -29,6 +29,7 @@ class ConsultationController extends Controller
 	const INDUSTRY = "Industry";
 	const FIELD = "Field";
 	const JOBLEVEL = "JobLevel";
+	const WORK_EXPERIENCE = "WorkExp";
 	const FACILITES = "Facility";
 	const EXPECTED_LOCATION = "ExpectedLocation";
 	const AGE = "Age";
@@ -38,6 +39,7 @@ class ConsultationController extends Controller
 	const COMPLETED = "Completed";
 	const NOT_FOUND_IN_DB = "NOT FOUND IN DB";
 	const CATEGORY_MISMATCH = "CATEGORY MISMATCH";
+	const EXPERIENCED_CATEGORY = [self::INDUSTRY, self::FIELD, self::JOBLEVEL, self::WORK_EXPERIENCE];
 	const NOT_FOUND_IN_DB_RESPONSE = array("Wah maaf ya. Saya belum mengerti yang kamu maksud. Coba kalimat lain.", 
 										   "Saat ini saya belum mengerti kalimatmu. Coba kalimat lain ya.", 
 										   "Sayang sekali saya belum mengerti maksud kamu. Mohon coba kata lain.");
@@ -337,12 +339,18 @@ class ConsultationController extends Controller
 			$skill_set = $user_skill_set->id;
 		}
 		
+		//Null if not freshgraduate
+        if (Auth::user()->fresh_graduate == true) {
+        	$freshgraduate = 1;
+        } else {
+			$freshgraduate = 0;
+		}
 		$rules = [
 			self::AGE => Auth::user()->date_of_birth,
 			self::FRESH_GRADUATE => Auth::user()->fresh_graduate,
 			self::DEGREE => Auth::user()->last_degree_id,
 			self::MAJOR => Auth::user()->major_id,
-			self::INDUSTRY => $industry ,
+			self::INDUSTRY => $industry,
 			self::FIELD => $field,
 			self::JOBLEVEL => $job_level,
 			self::EXPECTED_LOCATION => $expected_location,
@@ -353,7 +361,12 @@ class ConsultationController extends Controller
 		];
 		$nextTopic = null;
 		foreach ($rules as $key => $value) {
-			if ($value == null) {
+			if (in_array($key, self::EXPERIENCED_CATEGORY) && $value == null && $freshgraduate == 0){
+				$nextTopic = $key;
+				break;
+			} else if (in_array($key, self::EXPERIENCED_CATEGORY) && $value == null && $freshgraduate == 1){
+                continue;				
+			} else if ($value === null) {
 				$nextTopic = $key;
 				break;
 			}
@@ -425,16 +438,16 @@ class ConsultationController extends Controller
 			'max_age'=> $current_year-$birth_year,
 			'major' => Auth::user()->major->name,
 			'degree' => MasterDegree::find(Auth::user()->last_degree_id)->name,
-			'industry' => MasterIndustry::find (Auth::user()->workExperiences()->first()->industry_id)->name, 
+			'industry' => (Auth::user()->fresh_graduate ? null : MasterIndustry::find (Auth::user()->workExperiences()->first()->industry_id)->name), 
 			'min_age' => $current_year-$birth_year,
-			'field' => MasterField::find (Auth::user()->workExperiences()->first()->field_id)->name,
+			'field' => (Auth::user()->fresh_graduate ? null : MasterField::find (Auth::user()->workExperiences()->first()->field_id)->name),
 			'location' => Auth::user()->expectedLocations()->first()->name,
 			'max_salary'=> Auth::user()->expected_salary_upper,
-			'job_level'=> MasterJobLevel::find (Auth::user()->workExperiences()->first()->job_level_id)->name,
+			'job_level'=> (Auth::user()->fresh_graduate ? null : MasterJobLevel::find (Auth::user()->workExperiences()->first()->job_level_id)->name),
 			'work_exp'=> 0,
 			'min_salary'=> Auth::user()->expected_salary_lower,
 		];		
-		
+
 		$x = $this->curlTanyaJob(config('api.getJobRecommendation'), $data);
 		
 		$err = $x['err'];
