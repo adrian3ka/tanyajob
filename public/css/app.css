@@ -3,7 +3,7 @@ body {
 }
 
 #wrapper {
-	background-image: url('../img/background-main.jpg');
+	background-image: url('../img/black.jpg');
 	background-size: cover;
 	min-height: 100vh;
     vertical-align:middle;

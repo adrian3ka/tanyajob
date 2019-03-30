@@ -47,7 +47,7 @@
 
 		<div class="form-group">
 			<button type="submit" class="btn btn-register">
-				{{ __('Register') }}
+				{{ __('Sign Up') }}
 			</button>
 		</div>
 	</form>

@@ -448,7 +448,7 @@ class ConsultationController extends Controller
 			'location' => Auth::user()->expectedLocations()->first()->name,
 			'max_salary'=> Auth::user()->expected_salary_upper,
 			'job_level'=> (Auth::user()->fresh_graduate ? null : MasterJobLevel::find (Auth::user()->workExperiences()->first()->job_level_id)->name),
-			'work_exp'=> 0,
+			'work_exp'=> (Auth::user()->total_work_experiences_in_month ? 0 : Auth::user()->total_work_experiences_in_month),
 			'min_salary'=> Auth::user()->expected_salary_lower,
 		];		
 

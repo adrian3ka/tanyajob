@@ -54,12 +54,15 @@
 				var message = $("#txt-message").val();
 				e.preventDefault();
 				$("#content-chat").append('<p class="user-chat chat">' + message + '</p>');
+
 				extractInformation(extractInformationUrl, {
 					"_token": "{{ csrf_token() }}",
 					'text' : message
 				});
 				getNextQuestion(getQuestionUrl);
-				$("#txt-message").val('');
+				$("#txt-message").val('');                 
+				
+				$("#content-chatbot").animate({ scrollTop: $("#content-chatbot")[0].scrollHeight}, 1000);
 				return false;
 				
 			});
@@ -69,7 +72,7 @@
 
 
 @section('content')
-	<div id ="header-chatbot">Start your consultation!</div>
+	<div id ="header-chatbot">Mulai Konsultasimu Disini</div>
 	<div id ="content-chatbot">
 		<div id="content-chat">
 			
