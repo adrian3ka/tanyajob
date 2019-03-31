@@ -887,13 +887,61 @@ class SeedController extends Controller
 		App\MasterSkillSet::firstOrCreate(['name' => 'V-ray']);
 		
 		
-		
-		
-		
-		
-		
-		
-		
+		App\MasterLocation::firstOrCreate(['name' => 'Banten']);
+		App\MasterLocation::firstOrCreate(['name' => 'Magelang']);
+		App\MasterLocation::firstOrCreate(['name' => 'Sulawesi Selatan']);
+		App\MasterLocation::firstOrCreate(['name' => 'Jayapura']);
+		App\MasterLocation::firstOrCreate(['name' => 'Ende']);
+		App\MasterLocation::firstOrCreate(['name' => 'Bali']);
+		App\MasterLocation::firstOrCreate(['name' => 'Kalimantan Timur']);
+		App\MasterLocation::firstOrCreate(['name' => 'Apa saja']);
+		App\MasterLocation::firstOrCreate(['name' => 'Lampung']);
+		App\MasterLocation::firstOrCreate(['name' => 'Riau Kepulauan']);
+		App\MasterLocation::firstOrCreate(['name' => 'Sumatera Utara']);
+		App\MasterLocation::firstOrCreate(['name' => 'Jawa Timur']);
+		App\MasterLocation::firstOrCreate(['name' => 'Riau']);
+		App\MasterLocation::firstOrCreate(['name' => 'Tulungagung']);
+		App\MasterLocation::firstOrCreate(['name' => 'Tuban']);
+		App\MasterLocation::firstOrCreate(['name' => 'Tanjung Pinang']);
+		App\MasterLocation::firstOrCreate(['name' => 'Kalimantan Barat']);
+		App\MasterLocation::firstOrCreate(['name' => 'Kalimantan Tengah']);
+		App\MasterLocation::firstOrCreate(['name' => 'Sulawesi Tengah']);
+		App\MasterLocation::firstOrCreate(['name' => 'Maumere']);
+		App\MasterLocation::firstOrCreate(['name' => 'Nusa Tenggara Barat']);
+		App\MasterLocation::firstOrCreate(['name' => 'Papua']);
+		App\MasterLocation::firstOrCreate(['name' => 'Sukabumi']);
+		App\MasterLocation::firstOrCreate(['name' => 'Sleman']);
+		App\MasterLocation::firstOrCreate(['name' => 'Sorong']);
+		App\MasterLocation::firstOrCreate(['name' => 'Jawa Barat']);
+		App\MasterLocation::firstOrCreate(['name' => 'Kudus']);
+		App\MasterLocation::firstOrCreate(['name' => 'Tasikmalaya']);
+		App\MasterLocation::firstOrCreate(['name' => 'Jawa Tengah']);
+		App\MasterLocation::firstOrCreate(['name' => 'Subang']);
+		App\MasterLocation::firstOrCreate(['name' => 'Probolinggo']);
+		App\MasterLocation::firstOrCreate(['name' => 'Banyuwangi']);
+		App\MasterLocation::firstOrCreate(['name' => 'Madiun']);
+		App\MasterLocation::firstOrCreate(['name' => 'Jember']);
+		App\MasterLocation::firstOrCreate(['name' => 'Jombang']);
+		App\MasterLocation::firstOrCreate(['name' => 'Mojokerto']);
+		App\MasterLocation::firstOrCreate(['name' => 'Lamongan']);
+		App\MasterLocation::firstOrCreate(['name' => 'Martapura']);
+		App\MasterLocation::firstOrCreate(['name' => 'Boyolali']);
+		App\MasterLocation::firstOrCreate(['name' => 'Balikpapan']);
+		App\MasterLocation::firstOrCreate(['name' => 'Solo']);
+		App\MasterLocation::firstOrCreate(['name' => 'Gresik']);
+		App\MasterLocation::firstOrCreate(['name' => 'Palangkaraya']);
+		App\MasterLocation::firstOrCreate(['name' => 'Sumatera Barat']);
+		App\MasterLocation::firstOrCreate(['name' => 'Blitar']);
+		App\MasterLocation::firstOrCreate(['name' => 'Gunung Kidul']);
+		App\MasterLocation::firstOrCreate(['name' => 'Purwokerto']);
+		App\MasterLocation::firstOrCreate(['name' => 'Bangka - Belitung']);
+		App\MasterLocation::firstOrCreate(['name' => 'Pati']);
+		App\MasterLocation::firstOrCreate(['name' => 'Pekalongan']);
+		App\MasterLocation::firstOrCreate(['name' => 'Jimbaran']);
+		App\MasterLocation::firstOrCreate(['name' => 'Purbalingga']);
+		App\MasterLocation::firstOrCreate(['name' => 'Sukoharjo']);
+		App\MasterLocation::firstOrCreate(['name' => 'Karanganyar']);
+
 		
 		App\MasterLocation::firstOrCreate(['name' => 'Banda Aceh']);
 		App\MasterLocation::firstOrCreate(['name' => 'Medan']);
