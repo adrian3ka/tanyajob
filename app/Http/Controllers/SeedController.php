@@ -1364,6 +1364,10 @@ class SeedController extends Controller
 		App\MasterJobLevel::firstOrCreate(['name' => 'Manajer']);
 		App\MasterJobLevel::firstOrCreate(['name' => 'Manajer Senior']);
 		App\MasterJobLevel::firstOrCreate(['name' => 'General Manajer']);
+		App\MasterJobLevel::firstOrCreate(['name' => 'Vice President']);
+		App\MasterJobLevel::firstOrCreate(['name' => 'Direktur']);
+		App\MasterJobLevel::firstOrCreate(['name' => 'Kepala Unit']);
+
 		echo "success";
 	}
 }
