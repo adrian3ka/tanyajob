@@ -213,6 +213,15 @@ class SeedController extends Controller
 		App\MasterMajor::firstOrCreate(['name' => 'Pertanian']);
 		App\MasterMajor::firstOrCreate(['name' => 'Peternakan']);
 		App\MasterMajor::firstOrCreate(['name' => 'Kehutanan']);
+		App\MasterMajor::firstOrCreate(['name' => 'Administrasi Negara']);
+		App\MasterMajor::firstOrCreate(['name' => 'Agronomi']);
+		App\MasterMajor::firstOrCreate(['name' => 'Fotografi']);
+		App\MasterMajor::firstOrCreate(['name' => 'Geologi']);
+		App\MasterMajor::firstOrCreate(['name' => 'Seni Drama']);
+		App\MasterMajor::firstOrCreate(['name' => 'Tata Rias']);
+		App\MasterMajor::firstOrCreate(['name' => 'Teknik Pertanian']);
+		App\MasterMajor::firstOrCreate(['name' => 'Tidak disebutkan']);
+
 
 		App\MasterSkillSet::firstOrCreate(['name' => 'PHP']);
 		App\MasterSkillSet::firstOrCreate(['name' => 'MySQL']);
