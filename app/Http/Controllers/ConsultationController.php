@@ -160,7 +160,7 @@ class ConsultationController extends Controller
 		$x = $this->curlTanyaJob(config('api.extractFreshGraduate'), [
 			'text' => $text,
 		]);
-		
+		echo $x['response'];
 		$data = json_decode($x['response']);
 		return $data->fresh_graduate[0];
 	}
