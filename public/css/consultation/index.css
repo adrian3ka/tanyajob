@@ -39,7 +39,7 @@
 	margin-bottom: 30px;
 	padding-top: 10px;
 	padding-bottom: 10px;
-	width:max-content;
+	width: 80%;
 	border-radius: 5px;
 	padding-left: 10px;
 	padding-right: 10px;
@@ -68,13 +68,13 @@
 }
 
 #content-chatbot .user-chat {
-	
 	margin-left: auto;
+	text-align: right;
 }
 
 #content-chatbot .bot-chat {
 	margin-right: auto;
-	
+	text-align: left;
 }
 
 
