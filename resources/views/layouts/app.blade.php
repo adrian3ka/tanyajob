@@ -32,8 +32,8 @@
 					</div>
 					<div class="collapse navbar-collapse" id="myNavbar">
 						<ul class="nav navbar-nav">
-							<li><a href="{{ url('/home') }}">Home</a></li>
-							<li><a href="{{ url('/consultations') }}">Consultation</a></li>
+							<!--li><a href="{{ url('/home') }}">Home</a></li-->
+							<li><a href="{{ url('/consultations') }}">Konsultasi</a></li>
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
 							<li>       
@@ -46,7 +46,7 @@
 							              
 							@auth
 								<li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" >
-									<span class="glyphicon glyphicon-log-in"></span> Logout
+									<span class="glyphicon glyphicon-log-in"></span> Keluar
 								</a></li>
 								<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
 									{{ csrf_field() }}

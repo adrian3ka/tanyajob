@@ -22,6 +22,7 @@ class ConsultationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    const AGE_RANGE = 5;
     const NIL = "Null";
 	const MAJOR = "Major";
 	const FRESH_GRADUATE = "FreshGraduate";
@@ -197,15 +198,6 @@ class ConsultationController extends Controller
 		    return;
 		}
 		
-		if($data->typo_correction){
-		    $suggestion_word = $data->suggested_word;		
-		    $list_suggestion_word="";
-		    $list_suggestion_word = implode(", ", $suggestion_word);
-		   
-		    $consultation->suggested_word = $list_suggestion_word;
-		    $consultation->save();
-		    return;
-		}
         try{
 			if ($consultation->last_topic == self::DEGREE) {
 				$master_degree = MasterDegree::where(['name' => $data->message])->first();
@@ -309,6 +301,15 @@ class ConsultationController extends Controller
 			$user->save();
 	    }
 	    catch(exception $e){
+			if($data->typo_correction){
+		        $suggestion_word = $data->suggested_word;		
+		        $list_suggestion_word="";
+		        $list_suggestion_word = implode(", ", $suggestion_word);
+		   
+		        $consultation->suggested_word = $list_suggestion_word;
+		        $consultation->save();
+		        return;
+		    }
 			$consultation->suggested_word = self::NOT_FOUND_IN_DB;
 		    $consultation->save();
 		}
@@ -358,7 +359,7 @@ class ConsultationController extends Controller
 			self::FIELD => $field,
 			self::JOBLEVEL => $job_level,
 			self::EXPECTED_LOCATION => $expected_location,
-			self::SKILLSET => $skill_set,
+			//self::SKILLSET => $skill_set,
 			self::SALARY_UPPER => Auth::user()->expected_salary_upper,
 			self::SALARY_LOWER => Auth::user()->expected_salary_lower,
 
@@ -437,20 +438,21 @@ class ConsultationController extends Controller
 	public function getJobRecommendation(){
 		$current_year = date ("Y");
 		$birth_year = date('Y', strtotime(Auth::user()->date_of_birth));
+		$current_age = $current_year-$birth_year;
 		
 		$data = [
-			'max_age'=> $current_year-$birth_year,
+			'max_age'=> $current_age + self::AGE_RANGE,
 			'major' => Auth::user()->major->name,
 			'degree' => MasterDegree::find(Auth::user()->last_degree_id)->name,
 			'industry' => (Auth::user()->fresh_graduate ? null : MasterIndustry::find (Auth::user()->workExperiences()->first()->industry_id)->name), 
-			'min_age' => $current_year-$birth_year,
+			'min_age' => $current_age - self::AGE_RANGE,
 			'field' => (Auth::user()->fresh_graduate ? null : MasterField::find (Auth::user()->workExperiences()->first()->field_id)->name),
 			'location' => Auth::user()->expectedLocations()->first()->name,
 			'max_salary'=> Auth::user()->expected_salary_upper,
 			'job_level'=> (Auth::user()->fresh_graduate ? null : MasterJobLevel::find (Auth::user()->workExperiences()->first()->job_level_id)->name),
 			'work_exp'=> (Auth::user()->total_work_experiences_in_month ? 0 : Auth::user()->total_work_experiences_in_month),
 			'min_salary'=> Auth::user()->expected_salary_lower,
-		];		
+		];
 
 		$x = $this->curlTanyaJob(config('api.getJobRecommendation'), $data);
 		
