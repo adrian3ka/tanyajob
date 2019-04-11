@@ -162,7 +162,7 @@ class ConsultationController extends Controller
 		]);
 		echo $x['response'];
 		$data = json_decode($x['response']);
-		return true;
+		return $data->fresh_graduate[0];
 	}
 	
 	public function extractInformation(Request $request) {
