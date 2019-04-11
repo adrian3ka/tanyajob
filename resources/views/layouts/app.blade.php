@@ -40,7 +40,7 @@
 								@auth
 									<a class = "header-button" href="{{ route('home') }}"><span class="glyphicon glyphicon-user"></span> {{ Auth::user()->name }}</a>
 								@else
-									<a class = "header-button" href="{{ route('register') }}"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
+									<a class = "header-button" href="{{ route('register') }}"><span class="glyphicon glyphicon-user"></span> Daftar</a>
 								@endauth
 							</li>
 							              
@@ -52,7 +52,7 @@
 									{{ csrf_field() }}
 								</form>
 							@else
-								<li><a href="{{ route('login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+								<li><a href="{{ route('login') }}"><span class="glyphicon glyphicon-log-in"></span> Masuk</a></li>
 								<!--li><a href="{{ route('companies/register') }}"><span class="glyphicon glyphicon-home"></span> Perusahaan</a></li-->
 							@endauth
 						</ul>
