@@ -23,6 +23,7 @@ class ConsultationController extends Controller
      * @return \Illuminate\Http\Response
      */
     const AGE_RANGE = 5;
+    const OPENING = "Opening";
     const NIL = "Null";
 	const MAJOR = "Major";
 	const FRESH_GRADUATE = "FreshGraduate";
@@ -49,17 +50,90 @@ class ConsultationController extends Controller
 										     "Kok jawabnya gak sesuai pertanyaan ya?", 
 										     "Wah jawaban kamu ngaco nih, ga menjawab pertanyaan.");
 
+
     /*kalo ga login ga bisa masuk*/
     public function __construct()
     {
         $this->middleware('auth');
     }
+    
+    protected function getRules () {
+		$field = null;
+		$industry = null;
+		$job_level = null;
+		$expected_location = null;
+		$skill_set = null;
+		$age = null;
+		$salary_upper = null;
+		$salary_lower = null;
+		
+		$workExp = Auth::user()->workExperiences()->first();
+		$user_expected_location = Auth::user()->expectedLocations()->first();
+		$user_skill_set = Auth::user()->skillSets()->first();
+		
+		if($workExp != null) {
+			$industry = $workExp->industry_id;
+			$field = $workExp->field_id;
+			$job_level =  $workExp->job_level_id;
+		}
+		
+		if($user_expected_location != null) {
+			$expected_location = $user_expected_location->id;
+		}
+		
+		if($user_skill_set != null) {
+			$skill_set = $user_skill_set->id;
+		}
+		
+		//Null if not freshgraduate
+        if (Auth::user()->fresh_graduate == true) {
+        	$freshgraduate = 1;
+        } else {
+			$freshgraduate = 0;
+		}
+		
+		$rules = [
+			self::AGE => Auth::user()->date_of_birth,
+			self::FRESH_GRADUATE => Auth::user()->fresh_graduate,
+			self::WORK_EXPERIENCE => Auth::user()->total_work_experiences_in_month,
+			self::DEGREE => Auth::user()->last_degree_id,
+			self::MAJOR => Auth::user()->major_id,
+			self::INDUSTRY => $industry,
+			self::FIELD => $field,
+			self::JOBLEVEL => $job_level,
+			self::EXPECTED_LOCATION => $expected_location,
+			//self::SKILLSET => $skill_set,
+			self::SALARY_UPPER => Auth::user()->expected_salary_upper,
+			self::SALARY_LOWER => Auth::user()->expected_salary_lower,
+		];
+		
+		return $rules;
+	}
 
     public function index()
     {
         //
+        
+		$rules = $this->getRules();
+		
+		$alreadyAnswered = false;
+		
+		foreach ($rules as $key => $value) {
+			if ($value !== null) {
+				$alreadyAnswered = true;
+				break;
+			}
+		}
+		
+		$greeting = null;
+		
+        if (!$alreadyAnswered) {
+			$x = $this->curlTanyaJob(config('api.getQuestion'), ['category'=> self::OPENING]);
+			$err = $x['err'];
+			$greeting = json_decode($x['response'], true);
+		}
         return view('consultation/index',[
-
+			'greeting' => $greeting,
         ]);
     }
 
@@ -364,7 +438,6 @@ class ConsultationController extends Controller
 			//self::SKILLSET => $skill_set,
 			self::SALARY_UPPER => Auth::user()->expected_salary_upper,
 			self::SALARY_LOWER => Auth::user()->expected_salary_lower,
-
 		];
 		$nextTopic = null;
 		foreach ($rules as $key => $value) {

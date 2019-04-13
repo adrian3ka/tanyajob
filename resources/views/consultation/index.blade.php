@@ -32,6 +32,13 @@
 			return ;
 		}
 		
+		function displayGreeting () {
+			var greeting = "{{ $greeting['question'] }}";
+			
+			if (greeting !== "") {
+				$("#content-chat").append('<p class="bot-chat chat">'+greeting+'</p>');
+			}
+		}
 		function extractInformation(url, data){
 			console.log(data);
 			$('meta[name="csrf-token"]').attr('content');
@@ -48,6 +55,7 @@
 		}
 		
 		window.addEventListener('load', function () {
+			displayGreeting ();
 			$("#txt-message").val('');
 			getNextQuestion(getQuestionUrl);
 			$("#form-chat-bot").submit(function(e){
