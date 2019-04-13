@@ -45,7 +45,7 @@
 
 		<div class="form-group">
 			<button type="submit" class="btn btn-login">
-				{{ __('Login') }}
+				{{ __('Masuk') }}
 			</button>
 
 			<!--a class="btn btn-link" href="{{ route('password.request') }}">
