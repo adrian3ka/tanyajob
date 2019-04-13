@@ -160,9 +160,8 @@ class ConsultationController extends Controller
 		$x = $this->curlTanyaJob(config('api.extractFreshGraduate'), [
 			'text' => $text,
 		]);
-		echo $x['response'];
-		$data = json_decode($x['response']);
-		return $data['fresh_graduate'][0];
+		$data = json_decode($x['response'], true);
+		return $data["fresh_graduate"][0];
 	}
 	
 	public function extractInformation(Request $request) {
@@ -174,8 +173,10 @@ class ConsultationController extends Controller
 			$state = $this->extractFreshGraduateInformation($input['text']);
             $user = Auth::user();
 			if ($state) {
+				echo "TRUE";
 				$user->fresh_graduate = true; 
 			} else {
+				echo "FALSE";
 				$user->fresh_graduate = false; 
 			}
             $user->save();
