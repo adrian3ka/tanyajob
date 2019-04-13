@@ -161,6 +161,7 @@ class ConsultationController extends Controller
 			'text' => $text,
 		]);
 		$data = json_decode($x['response'], true);
+		echo print_r($data);
 		return $data["fresh_graduate"][0];
 	}
 	
