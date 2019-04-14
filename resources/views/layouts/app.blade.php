@@ -28,7 +28,7 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span> 
 						</button>
-						<a href="{{ url('/home') }}"><img src="{{  asset('img/logo-main.png') }}" width="70px"></a>
+						<a href="{{ url('/consultations') }}"><img src="{{  asset('img/logo-main.png') }}" width="70px"></a>
 					</div>
 					<div class="collapse navbar-collapse" id="myNavbar">
 						<ul class="nav navbar-nav">
