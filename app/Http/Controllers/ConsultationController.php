@@ -22,6 +22,8 @@ class ConsultationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    const LIMIT = 10;
+    const OFFSET = 0;
     const AGE_RANGE = 5;
     const OPENING = "Opening";
     const NIL = "Null";
@@ -56,6 +58,20 @@ class ConsultationController extends Controller
     {
         $this->middleware('auth');
     }
+    
+    public function recommendation() {
+		$data = $this->getUserData();
+
+		$x = $this->curlTanyaJob(config('api.getJobRecommendation'), $data);
+		
+		$err = $x['err'];
+		$response = $x['response'];
+		
+		$data = json_decode($response);
+		//$title = $data->job_title[0];
+		echo print_r($response);
+		return "OKE";
+	}
     
     protected function getRules () {
 		$field = null;
@@ -108,6 +124,29 @@ class ConsultationController extends Controller
 		];
 		
 		return $rules;
+	}
+
+    protected function getUserData($page = 1) {
+		$current_year = date ("Y");
+		$birth_year = date('Y', strtotime(Auth::user()->date_of_birth));
+		$current_age = $current_year-$birth_year;
+		
+		$data = [
+			'max_age'=> $current_age + self::AGE_RANGE,
+			'major' => Auth::user()->major->name,
+			'degree' => MasterDegree::find(Auth::user()->last_degree_id)->name,
+			'industry' => (Auth::user()->fresh_graduate ? null : MasterIndustry::find (Auth::user()->workExperiences()->first()->industry_id)->name), 
+			'min_age' => $current_age - self::AGE_RANGE,
+			'field' => (Auth::user()->fresh_graduate ? null : MasterField::find (Auth::user()->workExperiences()->first()->field_id)->name),
+			'location' => Auth::user()->expectedLocations()->first()->name,
+			'max_salary'=> Auth::user()->expected_salary_upper,
+			'job_level'=> (Auth::user()->fresh_graduate ? null : MasterJobLevel::find (Auth::user()->workExperiences()->first()->job_level_id)->name),
+			'work_exp'=> (Auth::user()->total_work_experiences_in_month ? 0 : Auth::user()->total_work_experiences_in_month),
+			'min_salary'=> Auth::user()->expected_salary_lower,
+			'limit' => self::LIMIT,
+			'offset' => ($page - 1) * self::LIMIT,
+		];
+		return $data;
 	}
 
     public function index()
@@ -214,7 +253,7 @@ class ConsultationController extends Controller
 			CURLOPT_MAXREDIRS => config ('api.maxRedirs'),
 			CURLOPT_TIMEOUT => config ('api.timeOut'),
 			CURLOPT_HTTP_VERSION => config ('api.httpVersion'),
-			CURLOPT_CUSTOMREQUEST => config ('api.request'),
+			CURLOPT_CUSTOMREQUEST => "POST",
 			CURLOPT_POSTFIELDS => json_encode($data),
 		));
 
@@ -227,9 +266,8 @@ class ConsultationController extends Controller
 			'response' => $response,
 			'err' => $err
 		];
-		
 	}
-	
+		
 	public function extractFreshGraduateInformation($text) {
 		$x = $this->curlTanyaJob(config('api.extractFreshGraduate'), [
 			'text' => $text,
@@ -511,23 +549,7 @@ class ConsultationController extends Controller
 	}
 	
 	public function getJobRecommendation(){
-		$current_year = date ("Y");
-		$birth_year = date('Y', strtotime(Auth::user()->date_of_birth));
-		$current_age = $current_year-$birth_year;
-		
-		$data = [
-			'max_age'=> $current_age + self::AGE_RANGE,
-			'major' => Auth::user()->major->name,
-			'degree' => MasterDegree::find(Auth::user()->last_degree_id)->name,
-			'industry' => (Auth::user()->fresh_graduate ? null : MasterIndustry::find (Auth::user()->workExperiences()->first()->industry_id)->name), 
-			'min_age' => $current_age - self::AGE_RANGE,
-			'field' => (Auth::user()->fresh_graduate ? null : MasterField::find (Auth::user()->workExperiences()->first()->field_id)->name),
-			'location' => Auth::user()->expectedLocations()->first()->name,
-			'max_salary'=> Auth::user()->expected_salary_upper,
-			'job_level'=> (Auth::user()->fresh_graduate ? null : MasterJobLevel::find (Auth::user()->workExperiences()->first()->job_level_id)->name),
-			'work_exp'=> (Auth::user()->total_work_experiences_in_month ? 0 : Auth::user()->total_work_experiences_in_month),
-			'min_salary'=> Auth::user()->expected_salary_lower,
-		];
+		$data = $this->getUserData();
 
 		$x = $this->curlTanyaJob(config('api.getJobRecommendation'), $data);
 		
