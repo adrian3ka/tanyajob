@@ -1,0 +1,8 @@
+.recommendation-box {
+    color: black;
+    background: rgba(255,255,255, 0.5);
+    width: 80%;
+    margin: auto;
+    padding: 5px;
+    border-radius: 10px;
+}

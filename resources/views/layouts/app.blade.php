@@ -20,7 +20,7 @@
     </head>
     <body>
 		<div id="wrapper">
-			<nav class="navbar navbar-inverse">
+			<nav class="navbar navbar-inverse" style="background-color: rgba(255,255,255, 0.6);">
 				<div class="container-fluid">
 					<div class="navbar-header">
 						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -28,12 +28,13 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span> 
 						</button>
-						<a href="{{ url('/consultations') }}"><img src="{{  asset('img/logo-main.png') }}" width="70px"></a>
+						<a href="{{ url('/consultations') }}" style="margin-left: 10px;"><img src="{{  asset('img/logo-main.png') }}" width="70px"></a>
 					</div>
 					<div class="collapse navbar-collapse" id="myNavbar">
 						<ul class="nav navbar-nav">
 							<!--li><a href="{{ url('/home') }}">Home</a></li-->
 							<li><a href="{{ url('/consultations') }}">Konsultasi</a></li>
+							<li><a href="{{ url('/consultations/recommendation') }}">Rekomendasi</a></li>
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
 							<li>       

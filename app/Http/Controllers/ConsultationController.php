@@ -67,10 +67,10 @@ class ConsultationController extends Controller
 		$err = $x['err'];
 		$response = $x['response'];
 		
-		$data = json_decode($response);
-		//$title = $data->job_title[0];
-		echo print_r($response);
-		return "OKE";
+		$data = json_decode($response, true);
+        return view('consultation/recommendation',[
+			'data' => $data,
+        ]);
 	}
     
     protected function getRules () {
