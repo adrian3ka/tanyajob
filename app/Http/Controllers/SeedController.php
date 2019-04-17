@@ -999,6 +999,33 @@ class SeedController extends Controller
 		App\MasterLocation::firstOrCreate(['name' => 'Manokwari']);
 		App\MasterLocation::firstOrCreate(['name' => 'Cirebon']);
 	    App\MasterLocation::firstOrCreate(['name' => 'Kediri']);
+	    
+	    
+	    App\MasterLocation::firstOrCreate(['name' => 'Kalimantan Selatan']);
+	    App\MasterLocation::firstOrCreate(['name' => 'Rembang']);
+	    App\MasterLocation::firstOrCreate(['name' => 'Tegal']);
+	    App\MasterLocation::firstOrCreate(['name' => 'Banyumas']);
+	    App\MasterLocation::firstOrCreate(['name' => 'Banjarnegara']);
+	    App\MasterLocation::firstOrCreate(['name' => 'Sragen']);
+	    App\MasterLocation::firstOrCreate(['name' => 'Sulawesi Barat']);
+	    App\MasterLocation::firstOrCreate(['name' => 'Tabanan']);
+	    App\MasterLocation::firstOrCreate(['name' => 'Cianjur']);
+	    App\MasterLocation::firstOrCreate(['name' => 'Sumatera Selatan']);
+	    App\MasterLocation::firstOrCreate(['name' => 'Bandarlampung']);
+	    App\MasterLocation::firstOrCreate(['name' => 'Lhokseumawe']);
+	    App\MasterLocation::firstOrCreate(['name' => 'Bukittinggi']);
+	    App\MasterLocation::firstOrCreate(['name' => 'Kendal']);
+	    App\MasterLocation::firstOrCreate(['name' => 'Padangsidempuan']);
+	    App\MasterLocation::firstOrCreate(['name' => 'Papua Barat']);
+	    App\MasterLocation::firstOrCreate(['name' => 'Cilegon']);
+	    App\MasterLocation::firstOrCreate(['name' => 'Purwodadi']);
+	    App\MasterLocation::firstOrCreate(['name' => 'Pasuruan']);
+	    App\MasterLocation::firstOrCreate(['name' => 'Ngawi']);
+	    App\MasterLocation::firstOrCreate(['name' => 'Cimahi']);
+	    App\MasterLocation::firstOrCreate(['name' => 'Bojonegoro']);
+	    App\MasterLocation::firstOrCreate(['name' => 'Kulon Progo']);
+	    App\MasterLocation::firstOrCreate(['name' => 'Banjar']);
+	    
 		
 		App\MasterIndustry::firstOrCreate(['name' => 'Operasional']);
 		App\MasterIndustry::firstOrCreate(['name' => 'Penerbangan']);
@@ -1478,6 +1505,12 @@ class SeedController extends Controller
 		App\MasterField::firstOrCreate(['name' => 'Dokter Spesialis']);
 		App\MasterField::firstOrCreate(['name' => 'Edukasi']);
 		App\MasterField::firstOrCreate(['name' => 'Fotografer']);
+		App\MasterField::firstOrCreate(['name' => 'Akuntan Perpajakan']);
+		App\MasterField::firstOrCreate(['name' => 'Broker Asuransi']);
+		App\MasterField::firstOrCreate(['name' => 'Desainer Grafis Komputer']);
+		App\MasterField::firstOrCreate(['name' => 'Jurnalisme Teknik']);
+		App\MasterField::firstOrCreate(['name' => 'Kesehatan']);
+		App\MasterField::firstOrCreate(['name' => 'Agen Real Estat']);
 		
 		App\MasterFacility::firstOrCreate(['name' => 'Makan Siang']);
 		App\MasterFacility::firstOrCreate(['name' => 'Makan Malam']);
@@ -1508,6 +1541,7 @@ class SeedController extends Controller
 		App\MasterJobLevel::firstOrCreate(['name' => 'Vice President']);
 		App\MasterJobLevel::firstOrCreate(['name' => 'Direktur']);
 		App\MasterJobLevel::firstOrCreate(['name' => 'Kepala Unit']);
+		App\MasterJobLevel::firstOrCreate(['name' => 'CEO']);
 
 		echo "success";
 	}
