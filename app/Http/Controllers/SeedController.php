@@ -1030,6 +1030,7 @@ class SeedController extends Controller
 	    App\MasterLocation::firstOrCreate(['name' => 'Bojonegoro']);
 	    App\MasterLocation::firstOrCreate(['name' => 'Kulon Progo']);
 	    App\MasterLocation::firstOrCreate(['name' => 'Banjar']);
+	    App\MasterLocation::firstOrCreate(['name' => 'Nusa Tenggara Timur']);
 	    
 		
 		App\MasterIndustry::firstOrCreate(['name' => 'Operasional']);
