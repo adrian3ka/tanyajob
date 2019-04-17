@@ -14,6 +14,19 @@ body {
     color: black;
 }
 
+.alert {
+    color: #a94442;
+    background-color: #f2dede;
+    padding: 15px;
+    border: 1px solid transparent;
+    text-align: center;
+    font-size: 1.2em;
+    margin-top: 2px;
+    margin-bottom: 10px;
+    width: 80%;
+    margin: auto;
+}
+
 #wrapper #header{
 	font-family: "Century Gothic";
 	background-color: white;

@@ -61,6 +61,9 @@
 				</div>
 			</nav>
             <div id="content">
+				@if($errors->any())
+					<h4 class="alert">{{$errors->first()}}</h4>
+				@endif
 				@yield('content')
             </div>
             

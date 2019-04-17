@@ -60,6 +60,21 @@ class ConsultationController extends Controller
     }
     
     public function recommendation() {
+		$curr_rules = $this->getRules ();
+		
+		$completed = true;
+		
+		foreach ($curr_rules as $key => $value) {
+			if ($value === null) {
+				$completed = false;
+				break;
+			}
+		}
+		
+		if (!$completed) {
+			return redirect('consultations')->withErrors(['Silakan Lakukan Konsultasi Terlebih Dahulu untuk Melengkapi Semua data!']);
+		}
+		
 		$data = $this->getUserData();
 
 		$x = $this->curlTanyaJob(config('api.getJobRecommendation'), $data);
