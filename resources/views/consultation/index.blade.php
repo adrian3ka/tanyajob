@@ -60,6 +60,12 @@
 			getNextQuestion(getQuestionUrl);
 			$("#form-chat-bot").submit(function(e){
 				var message = $("#txt-message").val();
+				console.log(message);
+				
+				if (message == "") {
+					alert("Harap isi kolom chat terlebih dahulu");
+					return false;
+				}
 				e.preventDefault();
 				$("#content-chat").append('<p class="user-chat chat">' + message + '</p>');
 
