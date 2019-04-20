@@ -59,7 +59,7 @@ class ConsultationController extends Controller
         $this->middleware('auth');
     }
     
-    public function recommendation() {
+    public function recommendation(Request $request) {
 		$curr_rules = $this->getRules ();
 		
 		$completed = true;
@@ -75,16 +75,40 @@ class ConsultationController extends Controller
 			return redirect('consultations')->withErrors(['Silakan Lakukan Konsultasi Terlebih Dahulu untuk Melengkapi Semua data!']);
 		}
 		
-		$data = $this->getUserData();
-
+		$current_page = $request->query('page');
+		
+		if ($current_page == null) {
+			$current_page = 1;
+		}
+		
+		$data = $this->getUserData($current_page);
+		
 		$x = $this->curlTanyaJob(config('api.getJobRecommendation'), $data);
 		
 		$err = $x['err'];
 		$response = $x['response'];
 		
 		$data = json_decode($response, true);
+		
+		$start_page = $current_page - 2;
+		$last_page = $current_page + 2;
+		
+		$final_page = ceil($data['total']/self::LIMIT);
+		
+		if ($start_page < 1) {
+			$start_page = 1;
+		}
+		
+		if ($last_page > ceil($data['total']/self::LIMIT)) {
+			$last_page = ceil($data['total']/self::LIMIT);
+		}
+		
         return view('consultation/recommendation',[
 			'data' => $data,
+			'current_page' => $current_page,
+			'start_page' => $start_page,
+			'last_page' => $last_page,
+			'final_page' => $final_page,
         ]);
 	}
     
@@ -555,7 +579,8 @@ class ConsultationController extends Controller
 			if ($nextTopic == self::COMPLETED) {
 				$job_title = $this->getJobRecommendation();
 				echo json_encode([
-					"question" => "Rekomendasi Pekerjaan untuk kamu adalah " . $job_title
+					"question" => "Rekomendasi Pekerjaan untuk kamu adalah " . implode(", ", $job_title) . 
+					"<br>Klik Link  <a href='". url('/consultations/recommendation') ."'>Berikut</a> untuk melihat saran lowongan pekerjaan dari kami "
 				]);
 			} else {
 				echo $response;
@@ -576,7 +601,7 @@ class ConsultationController extends Controller
 			]);
 		} else {
 			$data = json_decode($response);
-			return $data->job_title[0];
+			return $data->job_title;
 		
 		}
 	}

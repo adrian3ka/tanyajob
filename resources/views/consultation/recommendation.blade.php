@@ -10,17 +10,23 @@
 @endsection
 
 @section('content')
-	<h5 style="color: white;">{{ $data['job_title'][0] }}</h5>
+	<h5 style="color: white;">Rekomendasi Pekerjaan Untuk Anda : {{ implode(", ", $data['job_title']) }}</h5>
 
 	<div>
-		@foreach ($data['data'] as $data)
-			<a href="{{ $data['link'] }}">
+		@foreach ($data['data'] as $d)
+			<a href="{{ $d['link'] }}">
 				<div class="recommendation-box">
-					<div> {{ $data['title'] }}</div>
-					<div> {{ $data['link'] }}</div>
+					<div> {{ $d['title'] }}</div>
+					<div> {{ $d['link'] }}</div>
 				</div>
 			</a>
 		@endforeach
 	</div>
+	<span class="pagination"><a href="{{ url('/consultations/recommendation?page=1') }}">First</a></span>
+	@for ($i = $start_page; $i <= $last_page; $i++)
+		<span class="pagination {{($i == $current_page ? 'active' : '')}}"><a href="{{ url('/consultations/recommendation?page=' . $i) }}">{{ $i }} </a></span>
+	@endfor
+	
+	<span class="pagination"><a href="{{ url('/consultations/recommendation?page=' . $final_page) }}">Last</a></span>
 @endsection
 

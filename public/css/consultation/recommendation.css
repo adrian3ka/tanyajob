@@ -8,3 +8,20 @@
     border: 1px solid white;
     margin-bottom: 10px;
 }
+
+.pagination {
+    display: inline-block;
+    padding-left: 0;
+    margin: 20px 0;
+    padding: 10px;
+    border: 1px solid white;
+    background: rgba(200,200,200,0.5);
+}
+
+.pagination a {
+	color: black;
+}
+
+.pagination.active {
+    background: rgba(250,250,250,0.8);
+}
