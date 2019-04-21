@@ -535,17 +535,17 @@ class ConsultationController extends Controller
 	protected function generateSugesstionForNotFoundWord ($topic) {
 		$limit = 10;
 		if ($topic == self::DEGREE) {
-			$master_data = MasterDegree::select('name')->limit($limit)->get();
+			$master_data = MasterDegree::inRandomOrder()->select('name')->limit($limit)->get();
 		} else if ($topic == self::MAJOR) {
-			$master_data = MasterMajor::select('name')->limit($limit)->get();
+			$master_data = MasterMajor::inRandomOrder()->select('name')->limit($limit)->get();
 		} else if ($topic == self::INDUSTRY) {
-			$master_data = MasterIndustry::select('name')->limit($limit)->get();
+			$master_data = MasterIndustry::inRandomOrder()->select('name')->limit($limit)->get();
 		} else if ($topic == self::FIELD) {
-			$master_data = MasterField::select('name')->limit($limit)->get();
+			$master_data = MasterField::inRandomOrder()->select('name')->limit($limit)->get();
 		} else if ($topic == self::JOBLEVEL) {
-			$master_data = MasterJobLevel::select('name')->limit($limit)->get();
+			$master_data = MasterJobLevel::inRandomOrder()->select('name')->limit($limit)->get();
 		} else if ($topic == self::EXPECTED_LOCATION) {
-			$master_data = MasterJobLevel::select('name')->limit($limit)->get();
+			$master_data = MasterLocation::inRandomOrder()->select('name')->limit($limit)->get();
 		}
 		
 		$word = [];
