@@ -454,7 +454,7 @@ class ConsultationController extends Controller
 			$user->save();
 	    }
 	    catch(exception $e){
-			if($data->typo_correction){
+			if(count($data->suggested_word) > 0){
 		        $suggestion_word = $data->suggested_word;		
 		        $list_suggestion_word="";
 		        $list_suggestion_word = implode(", ", $suggestion_word);
