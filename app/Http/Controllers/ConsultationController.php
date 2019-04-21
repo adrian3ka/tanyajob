@@ -532,6 +532,29 @@ class ConsultationController extends Controller
 		return $nextTopic;
 	}
 	
+	protected function generateSugesstionForNotFoundWord ($topic) {
+		if ($topic == self::DEGREE) {
+			$master_data = MasterDegree::select('name')->limit(3)->get();
+		} else if ($topic == self::MAJOR) {
+			$master_data = MasterMajor::select('name')->limit(3)->get();
+		} else if ($topic == self::INDUSTRY) {
+			$master_data = MasterIndustry::select('name')->limit(3)->get();
+		} else if ($topic == self::FIELD) {
+			$master_data = MasterField::select('name')->limit(3)->get();
+		} else if ($topic == self::JOBLEVEL) {
+			$master_data = MasterJobLevel::select('name')->limit(3)->get();
+		} else if ($topic == self::EXPECTED_LOCATION) {
+			$master_data = MasterJobLevel::select('name')->limit(3)->get();
+		}
+		
+		$word = [];
+		foreach ($master_data as $d) {
+			array_push($word, $d->name);
+		}
+		
+		return "Contohnya : ". implode(", ", $word) . " atau lainnya";
+	}
+	
     public function getQuestion(){
 		$nextTopic = $this->decideNextTopic();
 		$err = null;
@@ -563,8 +586,9 @@ class ConsultationController extends Controller
 				} else if($consultation->suggested_word == self::NOT_FOUND_IN_DB){
 					$randomRespon = array_rand(self::NOT_FOUND_IN_DB_RESPONSE,1);
 					$respon = self::NOT_FOUND_IN_DB_RESPONSE[$randomRespon];
+					$word = $this->generateSugesstionForNotFoundWord($consultation->last_topic);
 					echo json_encode([
-			            "question" => $respon
+			            "question" => $respon . $word
 		            ]);
 				} else{
 		            echo json_encode([
