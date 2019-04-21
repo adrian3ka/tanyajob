@@ -40,7 +40,7 @@
 						<ul class="nav navbar-nav navbar-right">
 							<li>       
 								@auth
-									<a class = "header-button" href="{{ route('/consultations/recommendation') }}"><span class="glyphicon glyphicon-user"></span> {{ Auth::user()->name }}</a>
+									<a class = "header-button" href="{{ url('/consultations/recommendation') }}"><span class="glyphicon glyphicon-user"></span> {{ Auth::user()->name }}</a>
 								@else
 									<a class = "header-button" href="{{ route('register') }}"><span class="glyphicon glyphicon-user"></span> Daftar</a>
 								@endauth
