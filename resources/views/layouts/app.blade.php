@@ -35,6 +35,7 @@
 							<!--li><a href="{{ url('/home') }}">Home</a></li-->
 							<li><a href="{{ url('/consultations') }}">Konsultasi</a></li>
 							<li><a href="{{ url('/consultations/recommendation') }}">Rekomendasi</a></li>
+							<li><a href="{{ url('/about') }}">About</a></li>
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
 							<li>       

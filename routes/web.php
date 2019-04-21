@@ -47,7 +47,7 @@ Route::get('/consultations/recommendation','ConsultationController@recommendatio
 Route::get('/consultations/get/question','ConsultationController@getQuestion');
 Route::post('/consultations/extract/information','ConsultationController@extractInformation');
 Route::get('/consultations/decide/topic','ConsultationController@decideNextTopic');
-
+Route::get('/about', 'HomeController@about');
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
