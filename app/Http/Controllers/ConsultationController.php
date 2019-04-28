@@ -64,7 +64,17 @@ class ConsultationController extends Controller
 		
 		$completed = true;
 		
+		//Null if not freshgraduate
+        if (Auth::user()->fresh_graduate == true) {
+        	$freshgraduate = 1;
+        } else {
+			$freshgraduate = 0;
+		}
+		
 		foreach ($curr_rules as $key => $value) {
+			if (in_array($key, self::EXPERIENCED_CATEGORY) && $value == null && $freshgraduate == 1){
+                continue;				
+			}
 			if ($value === null) {
 				$completed = false;
 				break;
@@ -82,7 +92,7 @@ class ConsultationController extends Controller
 		}
 		
 		$data = $this->getUserData($current_page);
-		
+		echo(json_encode($data));
 		$x = $this->curlTanyaJob(config('api.getJobRecommendation'), $data);
 		
 		$err = $x['err'];
