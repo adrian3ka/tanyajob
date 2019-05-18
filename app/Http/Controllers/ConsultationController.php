@@ -92,7 +92,7 @@ class ConsultationController extends Controller
 		}
 		
 		$data = $this->getUserData($current_page);
-		echo(json_encode($data));
+		
 		$x = $this->curlTanyaJob(config('api.getJobRecommendation'), $data);
 		
 		$err = $x['err'];
