@@ -17,7 +17,6 @@
 			<a href="{{ $d['link'] }}">
 				<div class="recommendation-box">
 					<div> {{ $d['title'] }}</div>
-					<div> {{ $d['link'] }}</div>
 				</div>
 			</a>
 		@endforeach
